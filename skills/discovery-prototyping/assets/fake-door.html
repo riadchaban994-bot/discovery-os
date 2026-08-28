@@ -1,0 +1,130 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Fake door test page</title>
+<!--
+  FAKE DOOR / PAINTED DOOR TEST PAGE
+
+  Ethics are built into this template and must not be removed:
+    - the honest close fires immediately on click
+    - no money is taken
+    - no obligation is created
+    - the sign-up promises a real follow-up, including if you decide not to build
+
+  BEFORE RUNNING
+    1. Set a threshold in advance (edit THRESHOLD below) and write down where it came from.
+    2. Note a comparison point: the click rate of a comparable existing entry point.
+       An absolute click rate with nothing to compare it to is uninterpretable.
+    3. Decide an end date. Two weeks maximum. A fake door running for a month is a
+       broken promise.
+    4. Replace the local logging below with your real analytics events.
+
+  WHAT COUNTS AS THE SIGNAL
+    Clicks are curiosity. The intent capture (a real email, deliberately given) is the
+    signal. Report both, and report the ratio between them.
+-->
+<style>
+  :root{--ink:#15181c;--muted:#6b7280;--line:#e6e8eb;--accent:#1d4ed8;--ok:#047857}
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       color:var(--ink);background:#fbfbfc}
+  .wrap{max-width:620px;margin:0 auto;padding:56px 22px}
+  h1{font-size:32px;line-height:1.2;margin:0 0 12px;letter-spacing:-.01em}
+  p.lead{font-size:18px;color:#333;margin:0 0 28px}
+  .cta{display:inline-block;background:var(--accent);color:#fff;border:0;border-radius:9px;
+       padding:14px 26px;font:inherit;font-weight:600;cursor:pointer}
+  .panel{border:1px solid var(--line);background:#fff;border-radius:12px;padding:22px;margin-top:26px}
+  input{font:inherit;padding:12px;border:1px solid var(--line);border-radius:8px;width:100%;
+        margin:10px 0}
+  .muted{color:var(--muted);font-size:14px}
+  .hide{display:none}
+  .ok{color:var(--ok);font-weight:600}
+  ul{padding-left:20px}
+</style>
+
+<div class="wrap">
+
+  <!-- ============ THE DOOR: describe the value, not the mechanism ============ -->
+  <section id="door">
+    <h1>Know what you sold today, without counting it twice</h1>
+    <p class="lead">
+      Your counter sales and your delivery app add up in one place, at the end of every day.
+      No spreadsheet, no reconciling two screens.
+    </p>
+    <button class="cta" id="open">See how it works</button>
+    <p class="muted" style="margin-top:16px">Built for shops running both a counter and delivery.</p>
+  </section>
+
+  <!-- ============ THE HONEST CLOSE: fires immediately, never optional ======== -->
+  <section id="close" class="panel hide">
+    <h2 style="margin-top:0">This is not built yet, and that is the honest answer</h2>
+    <p>
+      We are working out whether to build it, and the number of people who click this is
+      part of how we decide. Nothing is being sold here and you have not signed up for
+      anything.
+    </p>
+    <p>If you want to be told what we decide, leave an email. We will write to you either way,
+       including if we decide not to build it.</p>
+    <form id="signup">
+      <input type="email" id="email" placeholder="you@example.com" required>
+      <button class="cta" type="submit">Tell me what you decide</button>
+    </form>
+    <p class="muted">One message. No list, no marketing.</p>
+  </section>
+
+  <section id="thanks" class="panel hide">
+    <p class="ok">Thank you. We will be in touch with the decision.</p>
+    <p class="muted">If you would rather we deleted your address, reply to that message and we will.</p>
+  </section>
+
+  <hr style="margin:44px 0;border:0;border-top:1px solid var(--line)">
+  <details>
+    <summary class="muted">Test instrumentation (remove before publishing)</summary>
+    <div class="panel">
+      <p class="muted">Locally recorded for demonstration. Replace with your analytics events.</p>
+      <pre id="dump" style="font-size:12px;white-space:pre-wrap"></pre>
+      <button onclick="localStorage.removeItem('fd');draw()">Clear</button>
+    </div>
+  </details>
+</div>
+
+<script>
+/* Set BEFORE the test runs, from the business case. Write down where it came from. */
+const THRESHOLD = {
+  min_clicks_pct:  0.04,   // of page views, versus a comparable existing entry point
+  min_signup_pct:  0.25,   // of clickers. This is the real signal
+  comparison_note: "Existing 'reports' entry point on the same screen converts at 9% of views"
+};
+
+function ev(name){
+  const log = JSON.parse(localStorage.getItem('fd') || '[]');
+  log.push({name, t:new Date().toISOString()});
+  localStorage.setItem('fd', JSON.stringify(log));
+  draw();
+  /* Replace with your real event call, e.g.
+     analytics.track(name, {experiment:'fake_door_daily_totals'});          */
+}
+function draw(){
+  const log = JSON.parse(localStorage.getItem('fd') || '[]');
+  const c = n => log.filter(e => e.name === n).length;
+  const views = c('view') || 1;
+  document.getElementById('dump').textContent =
+    `views ${c('view')}\nclicks ${c('click')}  (${(100*c('click')/views).toFixed(1)}% of views, threshold ${100*THRESHOLD.min_clicks_pct}%)\n` +
+    `signups ${c('signup')}  (${c('click') ? (100*c('signup')/c('click')).toFixed(1) : 0}% of clickers, threshold ${100*THRESHOLD.min_signup_pct}%)\n` +
+    `comparison: ${THRESHOLD.comparison_note}`;
+}
+
+ev('view');
+document.getElementById('open').onclick = () => {
+  ev('click');
+  document.getElementById('door').classList.add('hide');
+  document.getElementById('close').classList.remove('hide');
+};
+document.getElementById('signup').onsubmit = e => {
+  e.preventDefault();
+  ev('signup');
+  /* Send the address somewhere you will actually read. Then actually write back. */
+  document.getElementById('close').classList.add('hide');
+  document.getElementById('thanks').classList.remove('hide');
+};
+draw();
+</script>

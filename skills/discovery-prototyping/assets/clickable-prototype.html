@@ -1,0 +1,259 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Clickable prototype</title>
+<!--
+  Self-contained clickable prototype with a built-in usability observation log.
+  No build step, no dependencies. Open the file in a browser.
+
+  HOW TO USE
+  1. Edit the SCREENS and TASKS objects below. That is the whole authoring surface.
+  2. Content fidelity matters more than visual fidelity: put REAL copy and REAL numbers
+     in the screens. Placeholder text makes the session untestable for comprehension.
+  3. Run the session. The log records every click: which screen, what was clicked,
+     whether it was a defined target (hit) or a dead click (miss), and the time since
+     the task started.
+  4. Press "Export log" to download a CSV for analysis.
+
+  MODERATOR KEYS (hidden from the participant)
+    h  toggle hotspot highlighting
+    n  next task
+    x  mark current task as failed
+-->
+<style>
+  :root{
+    --ink:#1a1d21; --muted:#6b7280; --line:#e5e7eb; --bg:#ffffff;
+    --accent:#2563eb; --ok:#059669; --bad:#dc2626; --chrome:#f3f4f6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       color:var(--ink);background:var(--chrome)}
+  #taskbar{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;
+           padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  #taskbar b{font-weight:600}
+  #taskbar .task{flex:1;min-width:240px}
+  #taskbar button{font:inherit;padding:6px 12px;border:0;border-radius:6px;cursor:pointer}
+  .btn-done{background:var(--ok);color:#fff}
+  .btn-fail{background:var(--bad);color:#fff}
+  .btn-ghost{background:#374151;color:#fff}
+  #stage{max-width:420px;margin:24px auto;background:var(--bg);border-radius:14px;
+         box-shadow:0 6px 30px rgba(0,0,0,.12);overflow:hidden;min-height:640px}
+  .screen{display:none;padding:20px}
+  .screen.active{display:block}
+  .screen h1{font-size:20px;margin:0 0 4px}
+  .screen h2{font-size:15px;margin:20px 0 8px;color:var(--muted);font-weight:600;
+             text-transform:uppercase;letter-spacing:.04em}
+  .row{display:flex;justify-content:space-between;align-items:center;
+       padding:12px 0;border-bottom:1px solid var(--line)}
+  .card{border:1px solid var(--line);border-radius:10px;padding:14px;margin:10px 0}
+  .cta{display:block;width:100%;text-align:center;background:var(--accent);color:#fff;
+       padding:13px;border-radius:9px;border:0;font:inherit;font-weight:600;cursor:pointer}
+  .link{color:var(--accent);cursor:pointer;text-decoration:none}
+  .muted{color:var(--muted);font-size:13px}
+  [data-go]{cursor:pointer}
+  body.show-hot [data-go]{outline:2px dashed var(--accent);outline-offset:2px}
+  #log{max-width:900px;margin:20px auto;background:#fff;border-radius:10px;padding:14px;
+       font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;max-height:260px;overflow:auto}
+  #log table{width:100%;border-collapse:collapse}
+  #log td,#log th{padding:3px 6px;border-bottom:1px solid var(--line);text-align:left}
+  .miss{color:var(--bad)}
+  #foot{max-width:900px;margin:0 auto 40px;display:flex;gap:10px}
+  #foot button{font:inherit;padding:8px 14px;border:1px solid var(--line);background:#fff;
+               border-radius:7px;cursor:pointer}
+</style>
+
+<div id="taskbar">
+  <b id="tasknum">Task 1</b>
+  <span class="task" id="tasktext">-</span>
+  <button class="btn-done" onclick="endTask('completed')">Completed</button>
+  <button class="btn-fail" onclick="endTask('failed')">Gave up</button>
+  <button class="btn-ghost" onclick="reset()">Restart</button>
+</div>
+
+<div id="stage"></div>
+
+<div id="foot">
+  <button onclick="exportCsv()">Export log (CSV)</button>
+  <button onclick="document.body.classList.toggle('show-hot')">Toggle hotspots (h)</button>
+</div>
+<div id="log"><table><thead><tr><th>t (s)</th><th>task</th><th>screen</th><th>clicked</th><th>result</th></tr></thead><tbody id="logrows"></tbody></table></div>
+
+<script>
+/* ==========================================================================
+   AUTHORING AREA. Replace everything between here and END AUTHORING.
+   Use real copy and real numbers.
+   ========================================================================== */
+
+const TASKS = [
+  "You need to know how much you sold today. Find that out.",
+  "A customer says their order has not arrived. Find that order and see what happened.",
+  "Set up a reminder so you know when stock of a product runs low."
+];
+
+const SCREENS = {
+  home: {
+    title: "Home",
+    html: `
+      <h1>Al Nour Store</h1>
+      <p class="muted">Tuesday 14 April</p>
+      <div class="card" data-go="sales" data-label="today-sales-card">
+        <div class="row" style="border:0;padding:0">
+          <span>Today's sales</span><b>SYP 1,240,000</b>
+        </div>
+        <p class="muted" style="margin:6px 0 0">32 orders</p>
+      </div>
+      <h2>Needs attention</h2>
+      <div class="row"><span>4 orders awaiting delivery</span>
+        <span class="link" data-go="orders" data-label="orders-link">View</span></div>
+      <div class="row"><span>2 products low on stock</span>
+        <span class="link" data-go="stock" data-label="stock-link">View</span></div>
+      <h2>Shortcuts</h2>
+      <div class="row"><span data-go="orders" data-label="nav-orders">Orders</span><span>&rsaquo;</span></div>
+      <div class="row"><span data-go="stock" data-label="nav-stock">Stock</span><span>&rsaquo;</span></div>
+      <div class="row"><span data-go="settings" data-label="nav-settings">Settings</span><span>&rsaquo;</span></div>
+    `
+  },
+  sales: {
+    title: "Sales",
+    html: `
+      <span class="link" data-go="home" data-label="back">&larr; Back</span>
+      <h1>Sales today</h1>
+      <div class="card"><b style="font-size:28px">SYP 1,240,000</b>
+        <p class="muted">32 orders, average SYP 38,750</p></div>
+      <h2>By channel</h2>
+      <div class="row"><span>Shop counter</span><b>SYP 810,000</b></div>
+      <div class="row"><span>Delivery app</span><b>SYP 430,000</b></div>
+      <p class="muted">Updated 4 minutes ago</p>
+    `
+  },
+  orders: {
+    title: "Orders",
+    html: `
+      <span class="link" data-go="home" data-label="back">&larr; Back</span>
+      <h1>Orders</h1>
+      <div class="row" data-go="order1" data-label="order-1043">
+        <span>#1043 &middot; Rana K.<br><span class="muted">Out for delivery, 2h ago</span></span><b>SYP 64,000</b></div>
+      <div class="row"><span>#1042 &middot; Samer D.<br><span class="muted">Delivered</span></span><b>SYP 22,500</b></div>
+      <div class="row"><span>#1041 &middot; Lina M.<br><span class="muted">Delivered</span></span><b>SYP 118,000</b></div>
+    `
+  },
+  order1: {
+    title: "Order 1043",
+    html: `
+      <span class="link" data-go="orders" data-label="back">&larr; Orders</span>
+      <h1>#1043</h1>
+      <p class="muted">Rana K. &middot; 0955 123 456</p>
+      <div class="card">
+        <div class="row" style="border:0;padding:4px 0"><span>Picked up</span><span class="muted">14:02</span></div>
+        <div class="row" style="border:0;padding:4px 0"><span>Rider left the shop</span><span class="muted">14:11</span></div>
+        <div class="row" style="border:0;padding:4px 0"><span>Rider reported wrong address</span><span class="muted">14:38</span></div>
+        <div class="row" style="border:0;padding:4px 0"><span>Waiting</span><span class="muted">now</span></div>
+      </div>
+      <button class="cta" data-go="order1" data-label="call-customer">Call the customer</button>
+    `
+  },
+  stock: {
+    title: "Stock",
+    html: `
+      <span class="link" data-go="home" data-label="back">&larr; Back</span>
+      <h1>Stock</h1>
+      <div class="row"><span>Olive oil 1L</span><b>3 left</b></div>
+      <div class="row"><span>Rice 5kg</span><b>2 left</b></div>
+      <div class="row"><span>Sugar 1kg</span><b>41 left</b></div>
+      <button class="cta" data-go="alerts" data-label="stock-alerts-cta">Set low stock alerts</button>
+    `
+  },
+  alerts: {
+    title: "Alerts",
+    html: `
+      <span class="link" data-go="stock" data-label="back">&larr; Stock</span>
+      <h1>Low stock alerts</h1>
+      <p>Tell us when to warn you.</p>
+      <div class="row"><span>Warn me when a product drops below</span><b>5 units</b></div>
+      <div class="row"><span>Send to</span><b>WhatsApp</b></div>
+      <button class="cta" data-go="alerts_done" data-label="save-alerts">Turn on alerts</button>
+    `
+  },
+  alerts_done: {
+    title: "Alerts on",
+    html: `<h1>Alerts are on</h1>
+      <p>We will message you on WhatsApp when a product drops below 5 units.</p>
+      <button class="cta" data-go="home" data-label="done-home">Back to home</button>`
+  },
+  settings: {
+    title: "Settings",
+    html: `<span class="link" data-go="home" data-label="back">&larr; Back</span>
+      <h1>Settings</h1><div class="row"><span>Shop details</span><span>&rsaquo;</span></div>
+      <div class="row"><span>Staff</span><span>&rsaquo;</span></div>
+      <div class="row"><span>Notifications</span><span>&rsaquo;</span></div>`
+  }
+};
+
+const START = "home";
+
+/* ============================ END AUTHORING ============================== */
+
+let taskIdx = 0, taskStart = Date.now(), current = START, rows = [];
+
+function render(id){
+  const stage = document.getElementById('stage');
+  stage.innerHTML = Object.entries(SCREENS).map(([k,s])=>
+    `<section class="screen${k===id?' active':''}" id="scr-${k}">${s.html}</section>`).join('');
+  current = id;
+}
+
+function t(){ return ((Date.now()-taskStart)/1000).toFixed(1); }
+
+function logRow(label, result){
+  rows.push({t:t(), task:taskIdx+1, screen:current, clicked:label, result:result});
+  const tb = document.getElementById('logrows');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${t()}</td><td>${taskIdx+1}</td><td>${current}</td>`
+    + `<td>${label}</td><td class="${result==='miss'?'miss':''}">${result}</td>`;
+  tb.appendChild(tr);
+  tb.parentElement.parentElement.scrollTop = 1e6;
+}
+
+document.addEventListener('click', e => {
+  if (e.target.closest('#taskbar') || e.target.closest('#foot')) return;
+  const hot = e.target.closest('[data-go]');
+  if (hot){
+    logRow(hot.dataset.label || hot.dataset.go, 'hit');
+    render(hot.dataset.go);
+  } else if (e.target.closest('#stage')){
+    const desc = (e.target.textContent||'').trim().slice(0,40) || e.target.tagName;
+    logRow(desc, 'miss');   // dead click: the participant expected something here
+  }
+});
+
+function setTask(i){
+  taskIdx = i; taskStart = Date.now();
+  document.getElementById('tasknum').textContent = 'Task ' + (i+1);
+  document.getElementById('tasktext').textContent = TASKS[i] || 'Session finished.';
+  render(START);
+}
+function endTask(result){
+  logRow('[task ' + (taskIdx+1) + ']', result);
+  if (taskIdx + 1 < TASKS.length) setTask(taskIdx + 1);
+  else { document.getElementById('tasktext').textContent = 'Session finished. Export the log.'; }
+}
+function reset(){ rows = []; document.getElementById('logrows').innerHTML=''; setTask(0); }
+
+function exportCsv(){
+  const head = 'seconds,task,screen,clicked,result\n';
+  const body = rows.map(r => [r.t,r.task,r.screen,'"'+String(r.clicked).replace(/"/g,'""')+'"',r.result].join(',')).join('\n');
+  const blob = new Blob([head+body], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'usability-log-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'h') document.body.classList.toggle('show-hot');
+  if (e.key === 'n') endTask('completed');
+  if (e.key === 'x') endTask('failed');
+});
+
+setTask(0);
+</script>

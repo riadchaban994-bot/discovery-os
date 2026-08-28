@@ -1,0 +1,26 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "discovery-os",
+  "owner": {
+    "name": "Riad Chaban",
+    "url": "https://www.linkedin.com/in/riadchaban"
+  },
+  "metadata": {
+    "description": "Discovery OS: a master product discovery system for Claude Code, Codex and any agent that reads skills. Built for ProductTank Syria, 2026.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "discovery-os",
+      "source": "./",
+      "description": "Product discovery for AI agents, done properly. Seven skills: a routing commander with a sixteen-rule constitution, interviewing, synthesis, quantitative analysis with five tested scripts, experiments, prototyping with working artifacts, and discovery operations. It picks the method that fits the evidence you have, and it will not invent a customer, a number, or a confidence level.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Riad Chaban",
+        "url": "https://www.linkedin.com/in/riadchaban"
+      },
+      "license": "MIT",
+      "keywords": ["product-discovery", "user-research", "experimentation", "product-management"]
+    }
+  ]
+}

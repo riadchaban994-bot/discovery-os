@@ -1,0 +1,131 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Wizard of Oz console</title>
+<!--
+  WIZARD OF OZ HARNESS
+
+  Two panes that talk to each other in the same browser via BroadcastChannel:
+    left  = what the participant sees
+    right = the operator console (open in a second window, keep it off-screen)
+
+  Open this file twice. Add ?role=user to one and ?role=operator to the other, or use
+  the buttons. In a real session, run the user pane on the participant's device and
+  the operator pane on yours, backed by a shared channel (a websocket, a shared
+  document, or a chat tool). The interaction design below is the part worth keeping.
+
+  THE RULE THAT MAKES THE DATA VALID
+    Match the latency the real system would have. If the automated version would take
+    four seconds, wait four seconds. An operator who answers instantly, or who answers
+    far better than the system ever could, produces a result you cannot reproduce.
+    Set DELAY_MS from the intended system, and hold to it.
+
+  ETHICS
+    Output quality must match what the interface promises. The operator must not see
+    sensitive data without disclosure. Debrief afterwards where the study design allows.
+-->
+<style>
+  :root{--ink:#16191d;--muted:#6b7280;--line:#e5e7eb;--accent:#1d4ed8;--warn:#b45309}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink)}
+  .bar{padding:8px 14px;background:#111827;color:#fff;display:flex;gap:10px;align-items:center}
+  .bar a{color:#93c5fd}
+  .pane{max-width:640px;margin:0 auto;padding:20px}
+  .msg{padding:10px 14px;border-radius:12px;margin:8px 0;max-width:78%}
+  .from-user{background:#eef2ff;margin-left:auto}
+  .from-system{background:#f3f4f6}
+  textarea,input{font:inherit;width:100%;padding:10px;border:1px solid var(--line);border-radius:8px}
+  button{font:inherit;padding:10px 16px;border:0;border-radius:8px;background:var(--accent);
+         color:#fff;cursor:pointer}
+  .op{background:#fffbeb;border:1px solid #fde68a;padding:12px;border-radius:10px;margin-bottom:14px}
+  .queue{border:1px solid var(--line);border-radius:10px;padding:10px;min-height:140px;margin-bottom:12px}
+  .stamp{color:var(--muted);font-size:12px}
+  .thinking{color:var(--muted);font-style:italic}
+</style>
+<div class="bar">
+  <b id="rolelabel">Wizard of Oz</b>
+  <a href="?role=user">user pane</a>
+  <a href="?role=operator">operator pane</a>
+  <span id="delaynote" class="stamp"></span>
+</div>
+<div class="pane" id="pane"></div>
+
+<script>
+const DELAY_MS = 3000;   // match the latency the real system would have
+const role = new URLSearchParams(location.search).get('role') || 'user';
+const chan = new BroadcastChannel('woz');
+const pane = document.getElementById('pane');
+document.getElementById('rolelabel').textContent = 'Wizard of Oz: ' + role;
+document.getElementById('delaynote').textContent = 'simulated latency ' + DELAY_MS + 'ms';
+
+const log = [];
+function stamp(){ return new Date().toISOString().slice(11,19); }
+
+if (role === 'user'){
+  pane.innerHTML = `
+    <h2>Ask about your shop</h2>
+    <p class="stamp">Type a question. You will get an answer in a few seconds.</p>
+    <div id="thread"></div>
+    <form id="f" style="display:flex;gap:8px;margin-top:14px">
+      <input id="q" placeholder="e.g. how much did I sell last Tuesday?" autocomplete="off">
+      <button>Ask</button>
+    </form>`;
+  const thread = document.getElementById('thread');
+  document.getElementById('f').onsubmit = e => {
+    e.preventDefault();
+    const q = document.getElementById('q').value.trim();
+    if (!q) return;
+    thread.insertAdjacentHTML('beforeend', `<div class="msg from-user">${esc(q)}</div>`);
+    thread.insertAdjacentHTML('beforeend', `<div class="msg from-system thinking" id="pending">working on it…</div>`);
+    chan.postMessage({type:'q', text:q, t:stamp()});
+    document.getElementById('q').value = '';
+  };
+  chan.onmessage = e => {
+    if (e.data.type !== 'a') return;
+    const p = document.getElementById('pending');
+    setTimeout(() => {                       // enforce the promised latency
+      if (p){ p.classList.remove('thinking'); p.id=''; p.textContent = e.data.text; }
+    }, Math.max(0, DELAY_MS - (Date.now() - (e.data.sent||Date.now()))));
+  };
+} else {
+  pane.innerHTML = `
+    <div class="op"><b>Operator.</b> Answer as the system would, not better. Keep the
+    wording consistent. If you cannot answer, say what the system would say when it
+    cannot. Note every question you could not answer: those are the requirements.</div>
+    <div class="queue" id="queue"><span class="stamp">waiting for questions…</span></div>
+    <textarea id="a" rows="3" placeholder="answer as the system"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button onclick="send()">Send</button>
+      <button style="background:#6b7280" onclick="cannot()">Send "I cannot do that yet"</button>
+      <button style="background:#374151" onclick="dump()">Export session</button>
+    </div>`;
+  chan.onmessage = e => {
+    if (e.data.type !== 'q') return;
+    log.push({t:e.data.t, role:'user', text:e.data.text});
+    const q = document.getElementById('queue');
+    if (q.querySelector('.stamp')) q.innerHTML='';
+    q.insertAdjacentHTML('beforeend',
+      `<div><span class="stamp">${e.data.t}</span> ${esc(e.data.text)}</div>`);
+    q.scrollTop = 1e6;
+  };
+  window.send = () => {
+    const t = document.getElementById('a').value.trim();
+    if (!t) return;
+    log.push({t:stamp(), role:'operator', text:t});
+    chan.postMessage({type:'a', text:t, sent:Date.now()});
+    document.getElementById('a').value = '';
+  };
+  window.cannot = () => {
+    const t = "I cannot do that yet.";
+    log.push({t:stamp(), role:'operator', text:t, flag:'unanswerable'});
+    chan.postMessage({type:'a', text:t, sent:Date.now()});
+  };
+  window.dump = () => {
+    const csv = 'time,role,flag,text\n' + log.map(r =>
+      [r.t, r.role, r.flag||'', '"'+r.text.replace(/"/g,'""')+'"'].join(',')).join('\n');
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    a.download='woz-session.csv'; a.click();
+  };
+}
+function esc(s){ return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+</script>
