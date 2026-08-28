@@ -101,7 +101,10 @@ theme from the codes. Never theme directly from raw text.
 1. Sort codes by source count, descending
 2. Group by shared meaning, not by shared word
 3. A candidate theme needs at least three independent sources, or it is a signal to
-   investigate rather than a finding
+   investigate rather than a finding. Three is the floor for a theme; a claim about what
+   "users" in general do needs five or more, and a single-source theme is a red flag, not a
+   small theme. The three numbers describe three different claims, not three opinions about
+   the same one
 4. Write the theme as a full sentence that makes a claim, not as a topic label.
    "Reconciliation happens twice because the two systems disagree" is a theme.
    "Reconciliation" is a folder

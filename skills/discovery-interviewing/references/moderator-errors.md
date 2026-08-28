@@ -64,7 +64,8 @@ differently?"
 *Prevention:* it is written verbatim in the guide, not improvised.
 
 **12. Not writing it up within a day.**
-*Cost:* roughly half of what you learned, and all of the texture.
+*Cost:* `[HEURISTIC]` a large part of what you learned, and nearly all of the texture.
+Detail decays fast and it decays first.
 *Recovery:* write it now, and mark what you are unsure of as unsure.
 *Prevention:* book 30 minutes immediately after every session, permanently.
 

@@ -4,8 +4,10 @@ Frameworks are argument structures. They organise thinking and make reasoning au
 They do not produce evidence, and applying one to weak inputs produces a well-organised
 wrong answer.
 
-Every entry states what it is for and **what it is not for**. The second line is the one
-that matters. Most framework misuse is a good tool pointed at the wrong question.
+Where a framework is commonly misapplied, the entry states **what it is not for**. That
+line matters more than the description, because most framework misuse is a good tool
+pointed at the wrong question. Entries with no such line are ones this skill has no
+recorded misuse pattern for, not ones that cannot be misused.
 
 **Rule for using any framework in an output:** apply it with the user's real context and
 real evidence, or do not name it. Name-dropping a framework and then writing generic
@@ -30,8 +32,9 @@ across desirability, viability, feasibility, usability and ethical risk.
 *For:* turning discovery from a project into a habit.
 *Not for:* teams with no customer access. Fix access first; the habits assume it.
 
-**The four big risks.** Marty Cagan, *Inspired* (2008, 2nd ed. 2017). Value, usability,
-feasibility, business viability. Discovery's job is to address all four before delivery.
+**The four big risks.** Marty Cagan, *Inspired* 2nd edition (2017) and the SVPG writing
+around it. Value, usability, feasibility, business viability. Not in the 2008 first
+edition. Discovery's job is to address all four before delivery.
 *For:* diagnosing which risk is actually open, which determines the method.
 *Not for:* a checklist to tick after the decision is made. Torres's addition of ethical
 risk is worth carrying.
@@ -59,7 +62,9 @@ divergence and convergence in each half.
 **Shape Up.** Ryan Singer, Basecamp (2019). Fixed time, variable scope; appetite instead
 of estimate; betting table; shaping before committing.
 *For:* protecting a team from unbounded work, and forcing a decision about appetite.
-*Not for:* a discovery method. Shaping assumes the problem is already understood.
+*Not for:* a substitute for discovery. Shaping does include problem framing, so this is a
+reading rather than a property of the method: in practice teams reach for Shape Up once the
+problem is settled, and use it to bound the solution.
 
 **Working Backwards / PR-FAQ.** Amazon; documented in Bryar and Carr, *Working Backwards*
 (2021). Write the press release and FAQ before building.
@@ -83,13 +88,18 @@ not summarise its steps from memory.
 - *Outcome-Driven Innovation*: Tony Ulwick, *What Customers Want* (2005), *Jobs to be
   Done: Theory to Practice* (2016). Jobs decompose into desired outcome statements
   (direction + metric + object + context), rated on importance and satisfaction.
-  Opportunity score = importance + max(importance − satisfaction, 0).
-  *For:* quantifying unmet need at scale, n>=180 for segment reads.
+  Opportunity score = importance + max(importance - satisfaction, 0).
+  **The inputs are top-two-box percentages** of respondents rating the outcome important
+  and rating themselves satisfied, not raw means. Applied to mean scores the formula
+  produces nonsense.
+  *For:* quantifying unmet need at scale. Strategyn's own practice suggests roughly 180
+  responses per segment for a stable read `[practitioner guidance, not a statistical rule]`.
   *Not for:* small qualitative samples. The algorithm needs survey data.
-- *Switch / Forces*: Bob Moesta, Chris Spiek, Clayton Christensen, *Competing Against
-  Luck* (2016), *Demand-Side Sales 101* (2020). Reconstruct the timeline of a real switch
-  and map the four forces: push of the situation, pull of the new, habit of the present,
-  anxiety about the new.
+- *Switch / Forces*: the switch interview was developed by Bob Moesta and Chris Spiek at
+  Re-Wired. Moesta sets it out in *Demand-Side Sales 101* (2020, with Greg Engle); the
+  broader theory is in Christensen, Hall, Dillon and Duncan, *Competing Against Luck*
+  (2016). Reconstruct the timeline of a real switch and map the four forces: push of the
+  situation, pull of the new, habit of the present, anxiety about the new.
   *For:* understanding why change happened, and what blocks it.
   *Not for:* prevalence or sizing.
 
@@ -114,9 +124,13 @@ independent of any product, then align capabilities to it.
 *For:* organising observations for a team.
 *Not for:* evidence, when filled from imagination. Every quadrant needs a source.
 
-**Service blueprint.** G. Lynn Shostack (1984). Customer actions, frontstage, backstage,
-support processes, and the lines of visibility and interaction.
-*For:* service and operational products where the failure is behind the counter.
+**Service blueprint.** G. Lynn Shostack (HBR, 1984) introduced the blueprint, the line of
+visibility and fail points. The five-lane, three-line version in common use today, adding
+physical evidence and the line of internal interaction, is Bitner, Ostrom and Morgan
+(2008), developed from Shostack. Cite whichever you are actually using.
+*For:* service and operational products where the failure is behind the counter. Full
+anatomy in `../discovery-synthesis/references/experience-mapping.md`; use one version
+consistently rather than mixing the 1984 and 2008 layouts.
 
 **Personas:** only legitimate when built from real research and carrying their evidence.
 A persona with a stock photo, a name, and invented hobbies is a liability. Prefer
@@ -141,7 +155,8 @@ into must-be over time.
 **ICE.** Sean Ellis. Impact, Confidence, Ease. Faster and cruder than RICE.
 
 **WSJF / Cost of Delay.** Don Reinertsen, *The Principles of Product Development Flow*
-(2009), operationalised in SAFe. Value of delay divided by duration.
+(2009), operationalised in SAFe. Cost of delay divided by duration. Delay has a cost, not
+a value, and the wording matters because it is what makes the number computable.
 *For:* sequencing when delay genuinely costs money, which is more often than teams think.
 
 **Now / Next / Later.** Janna Bastow, ProdPad.
@@ -173,8 +188,9 @@ evidence from one does not transfer to the other.
 ## 4. Experimentation and testing
 
 **Testing Business Ideas.** David Bland and Alex Osterwalder (2019). A library of
-experiments organised by desirability, feasibility, viability and adaptability, with an
-explicit evidence-strength scale, plus test cards and learning cards.
+experiments organised by desirability, feasibility and viability, with an explicit
+evidence-strength scale, plus test cards and learning cards. (Adaptability appears in later
+Strategyzer work, *The Invincible Company*, 2020, not as a fourth axis here.)
 *For:* the single best reference for choosing an experiment.
 
 **Assumption mapping.** Bland. Importance against evidence, 2x2. Top-right (important,
@@ -291,7 +307,8 @@ familiarisation, initial codes, searching for themes, reviewing themes, defining
 naming, reporting.
 *For:* the defensible way to get from transcripts to themes.
 
-**Five Whys.** Taiichi Ohno, Toyota. Iteratively ask why to reach a cause.
+**Five Whys.** Originated by Sakichi Toyoda; embedded in the Toyota Production System by
+Taiichi Ohno. Iteratively ask why to reach a cause.
 *For:* a fast root-cause probe.
 *Not for:* a single causal chain in a complex system. Real causes branch. Use a fishbone
 diagram or a fault tree when the system is not linear.

@@ -53,7 +53,10 @@ losing its own telemetry.
 ## 7. Peeking
 
 Watching a running test and stopping when it looks good inflates the false-positive rate
-severely. Ten looks at alpha=0.05 gives roughly a one-in-three chance of a false positive.
+severely. At a nominal alpha of 0.05, repeated significance testing on a true null gives
+roughly 8% after 2 looks, 14% after 5, 19% after 10 and 25% after 20
+`[src: Armitage, McPherson and Rowe (1969); reproduced by simulation in this
+repository's test suite]`. A one-in-three false-positive rate needs about fifty looks.
 
 **Fix:** fixed horizon declared in advance, or a sequential method built for continuous
 monitoring, or Bonferroni across a small declared number of looks

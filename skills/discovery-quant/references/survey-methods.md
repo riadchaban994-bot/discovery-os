@@ -36,7 +36,8 @@ responded. Then state who is missing.
 
 **Non-response bias is usually larger than the effect you are measuring.** People who
 answer surveys differ systematically from people who do not: more engaged, more opinionated,
-more time. A 4 percent response rate to a satisfaction survey tells you about the 4 percent.
+more time. A survey with a single-digit response rate tells you about the people who responded, and
+nothing about the rest.
 
 **Mitigations:** compare respondent characteristics to the full population on variables you
 have, report the response rate always, and never generalise beyond the frame.

@@ -22,7 +22,7 @@ a decision rest above the level of its weakest load-bearing evidence.
 | **L4** | Observed behaviour. Usability sessions, field observation, session replay, existing product analytics | Design decisions, usability judgements, describing what happens now | Why it happens, or what would happen if you changed it |
 | **L5** | Simulated commitment. Fake-door click, waitlist signup, landing-page conversion, email intercept, pricing-page interaction | Go or no-go on further investment, relative demand between propositions | Satisfaction after use, retention, absolute market size |
 | **L6** | Real commitment. Money paid, contract or LOI signed, tool adopted **by choice** and still used at 30 days, meaningful time invested | The business case, willingness to pay, value delivered | Causality, and generalisation beyond the tested audience |
-| **L7** | Controlled experiment. Randomised, powered, pre-registered, on the real product | Causal effect size, scaled rollout decisions | Why the effect exists, and effects outside the tested population and window |
+| **L7** | Controlled experiment. Randomised, powered, pre-registered. Yours on your product, or a published trial discounted for population distance (see below) | Causal effect size, scaled rollout decisions | Why the effect exists, and effects outside the tested population and window |
 
 **Lineage.** The graduated-evidence idea comes from Itamar Gilad's Confidence Meter and
 from the evidence-strength scale in Bland and Osterwalder's *Testing Business Ideas*.
@@ -41,8 +41,8 @@ exact confidence inflation it exists to prevent.
 **The mis-grading to watch for.** Mandated usage is not commitment. Twelve thousand
 employees using the expense tool is **L4 evidence of behaviour and L0 evidence of value**,
 because they had no alternative. Reporting it as L6 and reaching "Established" is the most
-available way to break this ledger, and it happens because the L6 row says "tool adopted and
-still used at 30 days".
+available way to break this ledger, and it happens which is why the L6 row above says "adopted **by choice**". Without that qualifier the
+row invites exactly this reading.
 
 **Substitute commitment signals, by context:**
 
@@ -149,11 +149,21 @@ Cheapest check: offer a paid pilot to three operators.
 [UNVERIFIED: ~60% of small retailers in the region use a smartphone POS? source needed]
 ```
 
-Three markers, used consistently, do almost all the work:
+Four markers, used consistently, do almost all the work:
 
-- `[src: ...]`: has provenance
-- `[ASSUMPTION]`: a belief the document depends on, stated as such
-- `[UNVERIFIED: ...]`: a number or fact that needs a source, with a pointer to where
+- `[src: ...]` has provenance
+- `[ASSUMPTION]` a belief the document depends on, stated as such
+- `[UNVERIFIED: ...]` a number or fact that needs a source, with a pointer to where
+- `[HEURISTIC]` a practitioner rule of thumb: field experience, widely held, not measured.
+  Useful for planning, not citable as a fact
+
+`[UNVERIFIED]` and `[HEURISTIC]` are different claims, and confusing them wastes someone's
+afternoon. `[UNVERIFIED]` means a real measurement exists somewhere and you have not fetched
+it. `[HEURISTIC]` means no measurement exists and the number is accumulated judgement.
+Marking the second as the first sends a reader looking for a source that was never there.
+
+If you would not defend a number under challenge, it is a heuristic, and saying so costs
+eleven characters.
 
 ---
 

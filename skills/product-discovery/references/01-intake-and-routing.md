@@ -81,7 +81,7 @@ business viability. Torres adds ethical, which is worth keeping.)
 | Value | under 1k/wk, B2C | Concierge or Wizard of Oz with 5-15 real users | L4-L6 |
 | Value | B2B enterprise | Letter of intent, paid pilot, or reference-customer commitment | L6 |
 | Value | concept only | Comparison prototype test in interviews, plus demand landing page | L2-L5 |
-| Usability | prototype exists | Moderated usability test, 5 per round, 2-3 rounds | L4 |
+| Usability | prototype exists | Moderated usability test, 5 per round, 3 rounds | L4 |
 | Feasibility | any | Technical spike, timeboxed, engineer-owned, written finding | L4 |
 | Viability | any | Unit economics model with real cost inputs, plus channel and CAC test | L3-L6 |
 | Ethical | any | Structured harms assessment plus premortem before build | n/a |
@@ -160,8 +160,10 @@ description, not the value of the feature.
 **Sequence matters. Do not start with interviews.**
 
 1. Verify the metric moved. Tracking change, instrumentation break, bot traffic, timezone
-   or reporting-window artefact, definition change. Roughly half of investigated metric
-   movements are measurement artefacts. Check this first, every time.
+   or reporting-window artefact, definition change. `[HEURISTIC]` a large share of
+   investigated metric movements turn out to be measurement artefacts rather than behaviour.
+   Check this first, every time. The cost of checking is an hour; the cost of skipping it is
+   a week of theorising about a tracking bug.
 2. Decompose. Segment by acquisition source, platform, geography, cohort, plan, device,
    app version. Find where the movement concentrates. A movement everywhere is usually
    external or measurement; a movement in one slice is usually a change.
@@ -196,7 +198,8 @@ Ordered by evidence strength, weakest first. Use the strongest one your situatio
    conversation opener
 2. Van Westendorp price sensitivity meter: L2, gives an acceptable range, not a price
 3. Gabor-Granger: L2, purchase-intent curve at price points
-4. Conjoint or MaxDiff: L2-L3, good for relative feature and price trade-offs at n>=200
+4. MaxDiff for relative importance across a long item list, n>=200. Choice-based conjoint
+   for price and bundle trade-offs, n>=250. Both L2-L3
 5. Pricing page A/B with real checkout: L7 where volume allows
 6. Pre-sale, deposit, or annual prepay at the tested price: L6
 7. Signed letter of intent or paid pilot in enterprise: L6
@@ -288,8 +291,10 @@ stocking cost, channel margin, support burden, shelf or catalogue space. Those h
 to do with end-user value and they decide whether you sell anything.
 **Commitment signal:** a stocking order placed at the distributor's own risk, or a design
 win at the customer's engineering team. Not end-user enthusiasm relayed to you.
-**Unit economics** must carry the channel margin stack, commonly 25 to 40 percent in
-industrial distribution. A model without it can show a viable product that is not.
+**Unit economics** must carry the channel margin stack. `[HEURISTIC]` in industrial
+distribution it is commonly a substantial share of list price, often a quarter to
+two-fifths, but it varies enough by sector that you must get your own numbers from the
+actual contracts rather than planning against a range from a document. A model without it can show a viable product that is not.
 
 ### Marketplace or two-sided
 **Diagnose liquidity before you diagnose product.** Supply-side retention is usually a

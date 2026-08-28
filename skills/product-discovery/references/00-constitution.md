@@ -98,6 +98,23 @@ is not.
 > [ASSUMPTION, unverified] × 60-80% with any digital tooling [ASSUMPTION]. Range is wide
 > because two of three inputs are assumed. Narrow it by [X].`
 
+**Three constraints on a Fermi estimate, because the output outlives its brackets.** A range
+on a slide reads as a measurement to the third person who sees it.
+
+1. **Every multiplier is either sourced or explicitly named as the next thing to check.** A
+   multiplier a model produced from general knowledge is not an input, it is a guess with a
+   decimal point. Where there is no basis at all, use a deliberately wide band, a factor of
+   two or more, so the width itself signals the ignorance.
+2. **Never collapse to a single number.** Report the range, and name the one input that
+   would most narrow it. A point estimate has thrown away the only honest thing the method
+   produced.
+3. **The marker travels with the output, not just with the working.**
+   `[ESTIMATE, 2 of 3 inputs assumed]` survives a copy-paste. A "built from" line does not.
+
+This is the most likely route by which a plausible invented figure reaches a decision, and
+it gets more likely under deadline, which is exactly when rule 17 is in play. Rule 17 says
+give them something usable. It does not say give them a number.
+
 ---
 
 ## 4. The user decides

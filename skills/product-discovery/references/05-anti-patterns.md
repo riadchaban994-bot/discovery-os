@@ -1,7 +1,7 @@
 # Anti-patterns and CHALLENGE mode
 
-Thirty ways discovery produces confident nonsense, and the protocol for red-teaming a plan
-or a conclusion.
+Thirty-five ways discovery produces confident nonsense, and the protocol for red-teaming a
+plan or a conclusion.
 
 ---
 

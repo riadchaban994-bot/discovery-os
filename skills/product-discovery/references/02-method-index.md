@@ -28,7 +28,9 @@ Portigal, *Interviewing Users*.
 forces: push of the situation, pull of the new solution, habit of the present, anxiety
 about the new.
 **Fails when:** run on people who did not actually switch, or too long after the event.
-**Source:** Moesta and Spiek, *Demand-Side Sales*; Christensen, *Competing Against Luck*.
+**Source:** the switch interview is Moesta and Spiek's method; Moesta, *Demand-Side Sales
+101* (2020, with Greg Engle). Broader theory: Christensen, Hall, Dillon and Duncan,
+*Competing Against Luck* (2016).
 
 ### A3 Contextual inquiry / field study `[L4] [half day per site]`
 **Answers:** what people do rather than what they report doing. Catches workarounds,
@@ -152,7 +154,8 @@ customer factors) for a comparative judgement, or ODI opportunity scoring
 be rated.
 **How:** direction + metric + object + context. "Minimise the time it takes to reconcile
 cash against orders at end of day."
-**Source:** Ulwick, *Outcome-Driven Innovation*.
+**Source:** Ulwick's Outcome-Driven Innovation. Books: *What Customers Want* (2005),
+*Jobs to be Done: Theory to Practice* (2016).
 
 ---
 
@@ -293,8 +296,9 @@ validating one.
 
 ### D9 Accessibility audit `[L4] [1-3 days]`
 **Answers:** conformance against WCAG, plus real barriers.
-**How:** automated scan catches roughly a third of issues. Manual keyboard and screen
-reader testing catches the rest. At least two sessions with actual assistive-technology
+**How:** `[HEURISTIC]` an automated scan catches a minority of real accessibility issues,
+commonly cited as around a third; treat it as a first pass, not coverage. Manual keyboard
+and screen reader testing is where the rest are found. At least two sessions with actual assistive-technology
 users.
 
 ---
@@ -313,16 +317,42 @@ for products respondents genuinely understand.
 under stated intent.
 **Fails when:** stated intent is treated as demand. Deflate heavily.
 
-### E3 Conjoint / MaxDiff `[L2-L3] [n>=200]`
-**Answers:** relative value of attributes including price, via forced trade-offs. Much
-better than direct rating because respondents must give something up.
-**Fails when:** attribute list is written from internal language, or has more than about
-six attributes for MaxDiff comfort.
+### E3 MaxDiff (best-worst scaling) `[L2-L3] [n>=200]`
+**Answers:** the relative importance of a list of items, by forcing a best and a worst
+choice from each subset. Much better than rating scales because respondents must give
+something up.
+**Scales to long lists**, typically 10 to 40 items, showing each respondent subsets of four
+or five. With six or fewer items, run a full ranking instead; MaxDiff earns its complexity
+on lists too long to rank.
+**Cannot price.** It ranks items against each other and produces no willingness-to-pay.
+**Fails when:** the item list is written in internal language rather than the customer's.
+
+### E3b Choice-based conjoint `[L2-L3] [n>=250]`
+**Answers:** trade-offs across attribute *bundles* including price, and from that a demand
+curve and attribute-level utilities.
+**Needs:** realistic, mutually exclusive attribute levels. A badly specified attribute list
+invalidates the whole study, and this is the usual failure.
+**Fails when:** used where MaxDiff would do. Conjoint is the heavier instrument and it is
+worth it only when you need the price interaction.
 
 ### E4 Price A/B test `[L7] [needs volume + willingness]`
 **Answers:** actual demand curve behaviour.
 **Fails when:** existing customers see different prices, which is a fairness and legal
 problem in several jurisdictions. Test on new customers only, and check local law.
+
+### E4b Market sizing by Fermi decomposition `[L1-L3, inherits from inputs] [hours]`
+**Answers:** roughly how many, to an order of magnitude, when no published figure exists or
+the published ones are vendor marketing.
+**Needs:** one real anchor with a source and a date. A government register, a census, a
+regulator's published count, a platform's disclosed totals. Without an anchor this is not an
+estimate, it is a sequence of guesses.
+**How:** anchor, then multiply down by filters. Each multiplier carries its own tag:
+`[src]`, or `[ASSUMPTION]` with a deliberately wide band. Report a range, never a point.
+Name the single input that would most narrow it, and what it would cost to get.
+**Fails when:** the multipliers are model-generated and the brackets get stripped three
+documents later. See the Fermi constraints under rule 3 in `references/00-constitution.md`.
+**Use it as the honest substitute** when someone needs a market number today and no
+defensible published figure exists. That is rule 17 in practice.
 
 ### E5 Unit economics model `[L1-L6, inherits from inputs]`
 **Answers:** whether the business case can hold at all.
@@ -421,7 +451,9 @@ pricing). Randomise time blocks in a region rather than users.
 ### G6 Holdout group `[L7]`
 **Answers:** the cumulative effect of everything a team shipped over a quarter, and the
 true incremental value of a programme (CRM, recommendations, promotions).
-**How:** a persistent randomly-withheld slice, typically 1-10%.
+**How:** a persistent randomly-withheld slice. Size it from the power calculation for the
+effect you need to detect, not from a convention. Small enough not to cost real revenue,
+large enough to detect the effect: those two constraints usually decide it.
 **Note:** promotion and CRM programmes without a holdout cannot report incrementality.
 Redemption is not incrementality; many redeemers would have converted anyway.
 

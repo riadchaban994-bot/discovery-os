@@ -61,7 +61,9 @@ the most common piece of fiction in journey maps.
 
 ## Service blueprint
 
-Shostack (1984). Five layers:
+Shostack (HBR, 1984) introduced the blueprint, the line of visibility and fail points. The
+version below, with five lanes and three lines, is Bitner, Ostrom and Morgan (2008),
+developed from it. Eight rows:
 
 1. Physical evidence
 2. Customer actions

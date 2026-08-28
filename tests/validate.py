@@ -454,6 +454,31 @@ def t_rule_count():
                 fail(f'{f}: says "{w} rules" but there are {n}')
 
 
+@check("empirical claims carrying a number are sourced or marked")
+def t_numbers_marked():
+    # Constitution rule 3 applies to this repository's own prose. An unsourced statistic
+    # inside the file that demands sources teaches the opposite of what it says.
+    pat = re.compile(
+        r'\b(roughly|about|typically|commonly|usually|normal(?:ly)?|around|often)\b'
+        r'[^.\n]{0,80}?'
+        r'(\d+\s*(?:to|-)\s*\d+\s*(?:percent|%)|\d+\s*(?:percent|%)|a third|two thirds)',
+        re.I)
+    markers = ('[src:', '[UNVERIFIED', '[ESTIMATE', '[HEURISTIC', '[ASSUMPTION')
+    for p in md_files():
+        if p.startswith('./docs') or p in ('./README.md', './CONTRIBUTING.md'):
+            continue
+        lines = open(p, encoding='utf-8').read().split('\n')
+        for i, line in enumerate(lines):
+            m = pat.search(line)
+            if not m:
+                continue
+            # prose wraps, so a marker for this claim may sit a few lines either side
+            ctx = ' '.join(lines[max(0, i - 2):i + 4])
+            if any(t in ctx for t in markers):
+                continue
+            fail(f'{p}:{i+1}: unsourced empirical claim "{m.group(0)[:50]}"')
+
+
 # ---------------------------------------------------------------------------
 def main():
     checks = [v for k, v in sorted(globals().items())

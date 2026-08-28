@@ -11,12 +11,17 @@ method; Christensen et al., *Competing Against Luck* (2016); Moesta, *Demand-Sid
 Reconstruct backwards in the interview, present forwards in the analysis.
 
 ```
-FIRST THOUGHT ──► PASSIVE LOOKING ──► EVENT ──► ACTIVE LOOKING ──► DECIDING ──► USING
-     |                  |               |            |               |            |
-  something         aware but      something     comparing       committing    reality
-  is not right      not urgent     forces it     options         to one        versus
-                                                                              expectation
+FIRST      PASSIVE     EVENT 1     ACTIVE      EVENT 2    DECIDING   ONBOARDING   ONGOING
+THOUGHT ─► LOOKING ──► ────────►   LOOKING ──► ───────►   ────────►  ─────────►   USE
+   |          |        something      |        something     |           |          |
+something  aware but   makes it    comparing  forces a   committing   first      reality
+is not     not urgent  urgent      options    decision   to one       week       versus
+right                                                                          expectation
 ```
+
+Moesta's timeline has **two** events, not one. Event 1 ends passive looking and starts the
+search. Event 2 ends the search and forces a decision. They are usually different things,
+and teams that find only one have normally found Event 2 and missed the trigger.
 
 **The three moments that matter most:**
 
@@ -35,8 +40,12 @@ tell you the sales cycle and the decay of the trigger.
 
 ## The four forces
 
-Two push toward change, two hold in place. Change happens only when push plus pull exceeds
-habit plus anxiety.
+Two push toward change, two hold in place. Change happens when push and pull together
+outweigh habit and anxiety.
+
+The forces are **qualitative**. They are not commensurable quantities and the method does
+not produce magnitudes, so the sentence above is a way of remembering the structure, not a
+formula. Treat any arithmetic on them as a mnemonic.
 
 | Force | Direction | What to look for |
 |---|---|---|
@@ -80,6 +89,10 @@ switcher kind and almost nobody does it.
 Written after the analysis, not before.
 
 > When [situation], I want to [motivation], so I can [expected outcome].
+
+This job-story template is Paul Adams and the Intercom team, popularised by Alan Klement.
+It is not Moesta's or Christensen's, and it sits alongside their work rather than inside
+it.
 
 **Rules:** no product in it, no technology, and it should still be true in ten years. If
 your product disappeared tomorrow the job would remain, which is the test of whether you

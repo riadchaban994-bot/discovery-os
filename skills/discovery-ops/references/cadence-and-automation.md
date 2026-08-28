@@ -40,8 +40,9 @@ happens, offering a short conversation with an incentive, linked to a booking pa
 never show it twice to the same person inside 90 days, never during a task, never to someone
 in an active support ticket, and always make the incentive clear before they click.
 
-**Over-recruit by 30 percent.** No-show rates of 20-30 percent are normal for consumer
-research, higher when unpaid, lower in B2B where a colleague made the introduction.
+**Over-recruit by 30 percent.** `[HEURISTIC]` no-show rates in the twenties are common for consumer
+research, higher when unpaid and lower in B2B where a colleague made the introduction.
+Track your own; it varies more by recruiting channel than by anything else.
 
 **Confirm 24 hours before**, with a short message from a person.
 

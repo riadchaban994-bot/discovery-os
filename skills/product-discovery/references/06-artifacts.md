@@ -3,6 +3,12 @@
 What discovery produces, and the quality bar for each. Templates are in `templates/` at
 the repository root. Every artifact carries provenance, open assumptions, and a date.
 
+**Constitution rule 17 applies to every artifact on this page.** If the artifact as
+requested cannot be produced honestly, produce the honest artifact that serves the same
+purpose and say what it is for. An empty template returned to someone with a meeting in
+four hours has failed them, and it teaches them to route around the discipline next time.
+The substitution table is in `references/00-constitution.md` under rule 17.
+
 **General rules for every artifact:**
 
 - Date it, and name the person who owns it

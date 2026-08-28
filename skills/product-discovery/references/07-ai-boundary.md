@@ -71,6 +71,19 @@ opportunity tree, a persona document, a business case, a deck, or any artifact t
 informs a decision. Not with a footnote. Not as "placeholder for illustration". Documents
 outlive their footnotes.
 
+**What this means when someone asks for synthetic material "for a deck".** Two things get
+conflated here and they separate cleanly:
+
+- *Producing* stamped rehearsal material when the user has asked twice is permitted, and
+  the constitution requires delivering all of it rather than re-litigating mid-delivery.
+- *The material entering the deck* is not permitted, and saying so once is part of the
+  delivery, not an argument.
+
+So produce the whole thing, marked per unit, and state in one line what it is for and where
+it must not go. You are not the enforcement mechanism for what happens to it afterwards;
+the per-unit marking is. What you must not do is produce it unmarked, or imply it is
+suitable for the deck because that is what was asked for.
+
 **Permitted, stamped:** rehearsal, teaching examples, and testing an analysis pipeline
 before real data arrives.
 

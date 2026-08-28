@@ -83,17 +83,34 @@ def cmd_kano(a):
     results = []
     for attr, c in per_attr.items():
         n = sum(c.values())
-        valid = n - c["Q"]
+        # Berger et al. (1993): both Questionable and Reverse are excluded from the
+        # denominator. Leaving R in understates both coefficients, and it does so worst
+        # on exactly the polarising attributes you would consult them about.
+        valid = c["A"] + c["O"] + c["M"] + c["I"]
         if valid <= 0:
             continue
-        winner = max("AOMIR", key=lambda k: c[k])
+        # Conventional tie-break (Lee and Newcomb): M > O > A > I > R. Resolving ties
+        # toward Attractive would flatter the result.
+        order = {"M": 0, "O": 1, "A": 2, "I": 3, "R": 4}
+        winner = min("AOMIR", key=lambda k: (-c[k], order[k]))
         cs = (c["A"] + c["O"]) / valid
         ds = -(c["O"] + c["M"]) / valid
-        results.append((attr, c, n, winner, cs, ds))
-    for attr, c, n, winner, cs, ds in sorted(results, key=lambda r: -r[4]):
-        print("  %-28s %5d %5d %5d %5d %5d %5d  %-16s %+6.2f %+6.2f"
+        q_share = c["Q"] / n if n else 0.0
+        results.append((attr, c, n, winner, cs, ds, q_share))
+    flagged = []
+    for attr, c, n, winner, cs, ds, q_share in sorted(results, key=lambda r: -r[4]):
+        mark = "  <-- discard" if q_share > 0.10 else ""
+        print("  %-28s %5d %5d %5d %5d %5d %5d  %-16s %+6.2f %+6.2f%s"
               % (attr[:28], c["A"], c["O"], c["M"], c["I"], c["R"], c["Q"],
-                 KANO_NAME[winner], cs, ds))
+                 KANO_NAME[winner], cs, ds, mark))
+        if q_share > 0.10:
+            flagged.append((attr, q_share))
+    if flagged:
+        print()
+        print("  DISCARD, do not interpret: more than 10% Questionable means the question")
+        print("  pair was misunderstood, so the category for that attribute is noise.")
+        for attr, q in flagged:
+            print("    %-30s %.0f%% questionable" % (attr[:30], 100 * q))
 
     print()
     print("  CS+ = satisfaction if present. DS- = dissatisfaction if absent.")
