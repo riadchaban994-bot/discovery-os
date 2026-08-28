@@ -100,6 +100,50 @@ still a model.
 with a timestamp.
 **Fails when:** done by someone who knows the shortcuts.
 
+### A13 Operational and regulatory records you already hold `[L4] [1-3 days] [free]`
+**Answers:** what is actually happening, at full population, from data the organisation
+already has under existing operational authority. No recruiting, no consent process, no
+procurement, usually no permission beyond a query.
+
+**This is the first corpus in every non-consumer market, and it is the one teams miss**,
+because the standard discovery reading list is written for consumer software and lists
+support tickets, app reviews and session replay. Those may not exist for you. These will.
+
+| Context | The dataset sitting there already |
+|---|---|
+| Clinical and healthcare | The EHR audit log. Alert firing counts, override rates, timestamps, clinician ids, order sets. Answers "how bad is this and for whom" this afternoon |
+| Channel-sold and hardware | Distributor sell-through against sell-in, stocking depth, RMA and warranty claims, field service reports, returns reason codes |
+| Government and public service | Case management records, inspection and works-order data, contact-centre logs, statutory reporting returns, complaints registers |
+| Internal and captive | Workflow audit trails, approval and rejection logs, help-desk tickets by category, the exports people take, the spreadsheets on the shared drive |
+| Financial services | Transaction and exception logs, dispute and chargeback records, manual-review queues, regulatory reporting |
+| Marketplace | Match and fill logs, cancellation reasons, dispute records, supplier earnings distribution |
+
+**How:** name the dataset, name who owns it, confirm the existing authority to query it, then
+sample rather than reading everything. Code inductively. Volume by code is a prevalence
+signal within the population the system observes.
+
+**Fails when:** treated as complete. It records what the system saw, not what happened. An
+alert nobody logged, a fault nobody reported and a workaround done on paper are all invisible
+here, and the gap between the record and reality is itself a finding worth chasing.
+
+**Run this before designing any new collection.** Planning fresh data gathering while the
+answer sits in a table you can already query is the most expensive avoidable mistake in
+non-consumer discovery.
+
+### A14 Structured literature review `[L1 to L7, graded on the source's own design] [1-3 days]`
+**Answers:** what has already been established, by someone with a bigger sample and a better
+design than you can afford.
+**Needs:** a domain with a real published literature: clinical, pharmaceutical, education,
+public health, safety, human factors, economics.
+**How:** search the actual databases rather than the open web. Grade each paper on **its own
+design**, not on the fact that someone else ran it, then discount for how far its population
+and setting sit from yours. State the discount and the reason.
+**Fails when:** graded L1 as generic desk research, which is the default error and which
+pushes people to spend months generating weaker primary evidence than a morning of reading
+would have returned. See `references/03-evidence-ledger.md`.
+**In a domain with a literature, this is frequently the cheapest and strongest study
+available, and it should be step one.**
+
 ### A12 Competitor teardown `[L1] [1 day]`
 **Answers:** what the category has trained customers to expect, and where the gaps are.
 **How:** map their flows against the jobs your evidence has surfaced, not against a
@@ -358,6 +402,10 @@ defensible published figure exists. That is rule 17 in practice.
 **Answers:** whether the business case can hold at all.
 **How:** acquisition cost, conversion, price, cost to serve, retention, payback. Tag each
 input with its evidence level; the model's confidence equals its weakest load-bearing input.
+**The default stack above is consumer-shaped.** Channel-sold products need the channel margin
+stack or the model shows a viable product that is not. Captive and internal products have no
+price and no acquisition cost, and the case is fully-loaded minutes times frequency times
+headcount. Marketplaces need both sides. See `references/01-intake-and-routing.md` Step 3a.
 **Fails when:** built with placeholder numbers that lose their brackets.
 
 ### E6 Channel and CAC test `[L6] [2-4 weeks]`
@@ -548,7 +596,9 @@ exists.
 The honest set for `customer_access = none`, `instrumentation = none`,
 `product_state = concept`. Every one of these is L1-L2. Say so.
 
-1. Desk research with sources and dates, gaps named explicitly
+1. Desk research with sources and dates, gaps named explicitly. In a domain with a real
+   published literature, this is A14 and it is graded on each source's own design, not as
+   generic desk research. Do that before anything else on this list
 2. Expert interviews, labelled as orientation
 3. Public review and forum mining
 4. Search volume and query analysis

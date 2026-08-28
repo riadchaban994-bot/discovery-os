@@ -26,6 +26,7 @@ flow, and the wrong tool when the question is about comprehension, trust or desi
 | Will people take a real step toward it? | Fake door or landing page | Live | 1-2 days |
 | Does it work with real data and real edge cases? | Live-data prototype | High | 1 week |
 | Is the value real when delivered? | Concierge or Wizard of Oz | Operational | 1-3 weeks |
+| Same, but in a clinical, financial-advice, legal, safety-critical or statutory context | **Shadow mode**, never Wizard of Oz. See `references/prototype-types.md` | Technical | 1-2 weeks |
 | Can it be built? | Feasibility prototype, throwaway code | Technical | 1-5 days |
 
 Cagan's four types (*Inspired*): feasibility, user, live-data, and hybrid prototypes. The

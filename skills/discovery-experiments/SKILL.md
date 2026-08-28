@@ -139,6 +139,8 @@ reviewed before it runs.
 - The success threshold was set after the data arrived
 - One solution being "tested" with nothing to compare against
 - A fake door with no honest message on the other side
+- A fake door or a Wizard of Oz proposed in a clinical, safety-critical, financial-advice
+  or statutory-service context. Those are prohibited, not conditional. Shadow mode instead
 - A test that cannot come back negative
 - "Statistically significant" with no effect size or interval
 - A test read before the sample ratio check

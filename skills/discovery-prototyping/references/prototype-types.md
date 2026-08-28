@@ -66,6 +66,11 @@ competing propositions.
 **Proves:** behaviour with a working product before the product works.
 **Cannot prove:** anything that depends on the automation's real quality or latency.
 **Cost:** one to three weeks. **Evidence:** L5 to L6.
+**Do not run** where the concealed output is a clinical, diagnostic, financial, legal or
+safety judgement, or on a statutory service. A human silently generating recommendations a
+professional believes came from a checked system is a safety hazard and very likely a
+regulated-device or professional-practice violation. Use shadow mode instead: the new logic
+runs and is logged but is never shown.
 **Especially good for AI features:** it tells you what accuracy the experience actually
 needs, which is nearly always lower than the team assumed, and sometimes much higher.
 

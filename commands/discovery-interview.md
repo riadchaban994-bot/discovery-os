@@ -19,8 +19,11 @@ delivering.
 does: partial, meandering, occasionally contradictory, politely agreeable when pitched.
 Never produce tidy insight-shaped sentences. Afterwards, break character and critique the
 interviewer against the checks in `references/live-interview-copilot.md`.
-Stamp every rehearsal artifact `SYNTHETIC - NOT EVIDENCE` at the top and bottom, and prefix
-the filename with `SYNTHETIC_`.
+Mark every rehearsal artifact three ways, all required, because a header does not survive a
+copy-paste and the paragraph is what gets pasted: the `SYNTHETIC - NOT EVIDENCE` stamp at
+top and bottom, every participant named `SYNTHETIC-P01`, and every fabricated line opening
+with an inline `[SYNTHETIC]`. Filename prefix `SYNTHETIC_`. Keep the material deliberately
+dull; the vivid quotable line is the one that gets lifted.
 
 **Debrief.** Produce the interview snapshot from `skills/product-discovery/templates/interview-snapshot.md`. Verbatim
 quotes with timestamps only, `[inaudible]` where unclear and never filled in. Fill the

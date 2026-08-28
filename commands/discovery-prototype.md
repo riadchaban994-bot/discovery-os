@@ -20,7 +20,9 @@ Paths written as `references/...`, `assets/...` and `templates/...` below are re
    - `fake-door.html` for demand questions. Set the threshold and the comparison point
      before running. Keep the honest close.
    - `woz-console.html` for value questions where the automation does not exist yet. Set
-     `DELAY_MS` to the latency the real system would have.
+     `DELAY_MS` to the latency the real system would have. **Do not use it where the
+     concealed output is a clinical, diagnostic, financial, legal or safety judgement, or on
+     a statutory service. Shadow mode instead.**
 4. Produce the test protocol from `references/prototype-testing.md`: tasks in the
    participant's words, the rescue rule, and the observation sheet.
 

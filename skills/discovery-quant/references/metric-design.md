@@ -98,6 +98,24 @@ them produces a Simpson's paradox by construction.
 change that spreads work more evenly to help supply retention usually costs the demand side
 speed or quality, and a one-sided read will call it a win.
 
+### Clinical and safety-critical
+
+Clinical mandates are captive, so the task-cost model above applies. Add the measures the
+field already uses, because inventing your own here is both slower and less credible with
+the clinicians whose behaviour you are trying to change.
+
+| Metric | Why |
+|---|---|
+| Alert or interruption burden per clinician per shift | The exposure. The denominator matters more than the rate |
+| Override or dismissal rate, by alert type | The blunt signal that an alert is not earning its interruption |
+| Appropriateness-adjusted override | Overriding a bad alert is correct behaviour. Splitting appropriate from inappropriate overrides is the whole analysis |
+| Time to dismiss | Sub-second dismissal means it was never read |
+| Effect on the downstream clinical action | The only outcome that matters, and the one that needs a design, not a dashboard |
+
+**The trap:** optimising the override rate by suppressing alerts. That improves the metric
+and can harm patients. Any alert-burden work needs a safety guardrail on missed events, and a
+design that can detect one.
+
 ### Public services
 
 **The outcome is a duty against a published standard**, not growth. Time to resolve, repeat
@@ -116,6 +134,12 @@ Sell-in (units shipped to the channel) is not sell-through (units bought by end 
 and the gap is inventory that will come back. Track both, plus channel margin, stocking
 depth, return and RMA rate, attach rate for consumables, and time from design win to first
 production order.
+
+**The discovery corpus for a physical product** is not tickets and reviews. It is warranty
+and RMA claims with their reason codes, field service reports, installed-base telemetry where
+the device reports home, distributor sell-through, and the alpha or field-trial programme
+with named sites. RMA reason codes in particular are a free, structured, honest record of
+what fails in the real world, and almost nobody in product reads them.
 
 ---
 

@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "Riad Chaban's plugin marketplace. Discovery OS: a master product discovery system for Claude Code, Codex and any agent that reads skills. Given away at ProductTank Syria, 2026.",
-    "version": "1.0.1"
+    "version": "1.1.0"
   },
   "plugins": [
     {
       "name": "discovery-os",
       "source": "./",
       "description": "Product discovery for AI agents, done properly. Seven skills: a routing commander with a seventeen-rule constitution, interviewing, synthesis, quantitative analysis with five tested scripts, experiments, prototyping with working artifacts, and discovery operations. It picks the method that fits the evidence you have, and it will not invent a customer, a number, or a confidence level.",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "author": {
         "name": "Riad Chaban",
         "url": "https://github.com/riadchaban994-bot"

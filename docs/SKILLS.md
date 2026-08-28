@@ -43,7 +43,7 @@ corrected by you:
 | `instrumentation` | none / partial events / full analytics / experimentation platform |
 | `volume` | under 100 per week / 100 to 1k / 1k to 10k / over 10k |
 | `product_state` | concept / prototype / live and small / live at scale |
-| `market` | B2C mass / B2B SMB / B2B enterprise / internal or government / marketplace |
+| `market` | B2C mass / B2B SMB / B2B enterprise / channel-sold / marketplace / internal or captive / government / clinical or regulated |
 
 `market` carries a full override per value, because it changes what counts as evidence and
 what a good metric looks like, not just the sample size. Nine rows: B2C mass, B2B SMB, B2B
@@ -56,7 +56,7 @@ regulated. Read the row for yours before reading any method card.
 |---|---|
 | `references/00-constitution.md` | The seventeen rules, with the enforcement behaviour and exact wording for each |
 | `references/01-intake-and-routing.md` | Fifteen canonical questions, each with a decision table, plus the overrides that veto a method |
-| `references/02-method-index.md` | 60+ method cards: what it answers, what it needs, how it runs, and the failure mode that makes it lie to you |
+| `references/02-method-index.md` | 65+ method cards: what it answers, what it needs, how it runs, the failure mode that makes it lie to you, and where it applies, the contexts in which it must not be run at all |
 | `references/03-evidence-ledger.md` | The L0 to L7 ladder, the four confidence levels, provenance tags, the AUDIT protocol |
 | `references/04-frameworks-canon.md` | 45+ frameworks with real sources, and what each is **not** for |
 | `references/05-anti-patterns.md` | 35 ways discovery produces confident nonsense, and the CHALLENGE protocol |

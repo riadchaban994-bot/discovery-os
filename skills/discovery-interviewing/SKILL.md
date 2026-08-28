@@ -110,8 +110,17 @@ vagueness and reluctance, and does not volunteer perfectly structured insight. A
 session, it switches out of character and critiques the interviewer: leading questions,
 missed probes, pitching, rescuing, questions about the future, talk-time ratio.
 
-Every rehearsal output carries the stamp at top and bottom, and the filename starts with
-`SYNTHETIC_`.
+**Marking is per unit, not per file.** The stamp at top and bottom does not survive someone
+selecting three paragraphs and pasting them into a PRD, and the paragraph is what gets
+pasted. So: every participant is named `SYNTHETIC-P01`, `SYNTHETIC-P02`; every fabricated
+line opens with an inline `[SYNTHETIC]`; the filename starts `SYNTHETIC_`. Test it by
+pasting three random lines into a blank document. A reader who has never seen the original
+must still be able to tell.
+
+**Keep it deliberately dull.** A vivid, specific, quotable synthetic line is the one that
+gets lifted into a real document. Rehearsal material should be hedged and free of the
+numbers, names and turns of phrase that make a quote attractive. If a line would look good
+on a slide, rewrite it duller. The point is to practise the interview, not to write prose.
 
 ## After the interview
 

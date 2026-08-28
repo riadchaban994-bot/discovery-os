@@ -134,7 +134,7 @@ research where possible. The model plays that person.
 | Missed probes | The three highest-value threads not followed |
 | Specificity harvested | Dates, durations, names, numbers actually captured |
 
-**Every rehearsal artifact carries this, top and bottom:**
+**Every rehearsal artifact carries this, top and bottom, AND is marked per unit:**
 
 ```
 ================================================================
@@ -145,5 +145,16 @@ case, or any artifact a decision rests on.
 ================================================================
 ```
 
-Filename prefix `SYNTHETIC_`. If the user asks for the stamp to be removed, decline that
-specific request and explain in one sentence, then continue helping.
+Filename prefix `SYNTHETIC_`.
+
+**And mark every unit inside it.** Participants named `SYNTHETIC-P01`, every fabricated line
+opening `[SYNTHETIC]`. The block above is a header, and headers do not survive a copy-paste;
+the paragraph does. Test it by pasting three random lines into a blank document. A reader
+who has never seen the original must still be able to tell they are not evidence.
+
+**Keep the material deliberately dull.** The vivid, quotable synthetic line is the one that
+gets lifted. Hedge it, strip the specific numbers and names, and if a line would look good on
+a slide, rewrite it duller.
+
+If the user asks for the stamp or the markers to be removed, decline that specific request
+and explain in one sentence, then continue helping.

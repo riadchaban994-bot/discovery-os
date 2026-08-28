@@ -94,11 +94,14 @@ disagreement is itself a finding and usually points at an unstated difference in
 
 Within the top-right quadrant, order by:
 
-1. **Kill potential.** Which assumption, if false, ends the project? Test that first. A
+1. **Freeze date.** Which assumptions stop being changeable, and when? Anything that
+   becomes irreversible at a tooling, BOM, licence or public-commitment freeze gets tested
+   before that date, whatever it costs, because after it the answer is unusable
+2. **Kill potential.** Which assumption, if false, ends the project? Test that first. A
    cheap test that can kill the project is worth more than an expensive one that refines it
-2. **Cost of being wrong later.** How much will be spent before this surfaces on its own?
-3. **Test cost.** Cheapest first among assumptions of similar importance
-4. **Dependency.** Some assumptions only matter if another holds. Sequence them
+3. **Cost of being wrong later.** How much will be spent before this surfaces on its own?
+4. **Test cost.** Cheapest first among assumptions of similar importance
+5. **Dependency.** Some assumptions only matter if another holds. Sequence them
 
 **The common failure:** testing usability before value. Usability testing is comfortable,
 concrete and well tooled. It also tells you nothing about whether anyone wants the thing.
@@ -109,8 +112,8 @@ If value is unevidenced, test value first, even though it is harder.
 ## Output
 
 ```
-| # | Assumption | Category | Importance | Evidence | Test | Threshold | Owner | Status |
-|---|-----------|----------|------------|----------|------|-----------|-------|--------|
+| # | Assumption | Category | Importance | Evidence | Freezes on | Test | Threshold | Owner | Status |
+|---|-----------|----------|------------|----------|------------|------|-----------|-------|--------|
 | 1 | Merchants pay 5% of order value | Viability | Collapse | L0 | Pre-sale to 20 | 5 of 20 | | queued |
 | 2 | Partner API p95 under 800ms | Feasibility | Collapse | L1 | Spike, 2 days | p95<800ms | | running |
 | 3 | Setup under 10 min unaided | Usability | Harder | L0 | 5 usability sessions | 4 of 5 | | queued |

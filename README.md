@@ -366,6 +366,7 @@ card.
 - Let a positive prototype test be reported as demand
 - Grade mandated usage as evidence that anyone wanted the thing
 - Recommend a fake door or a Wizard of Oz in a clinical or safety-critical setting
+- Send you off to collect new data when the answer is already in a table you can query
 - Use the word "validated"
 
 ---

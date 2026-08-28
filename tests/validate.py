@@ -479,6 +479,60 @@ def t_numbers_marked():
             fail(f'{p}:{i+1}: unsourced empirical claim "{m.group(0)[:50]}"')
 
 
+@check("the per-unit marking rule reaches every file that produces synthetic material")
+def t_per_unit_marking():
+    # A rule that lives only where it was written is not enforced where the work happens.
+    # Any file that instructs the model to produce rehearsal or illustrative material must
+    # carry the per-unit requirement, not just the file-level stamp.
+    producers = [
+        'skills/product-discovery/SKILL.md',
+        'skills/product-discovery/references/00-constitution.md',
+        'skills/product-discovery/references/07-ai-boundary.md',
+        'skills/discovery-interviewing/SKILL.md',
+        'skills/discovery-interviewing/references/live-interview-copilot.md',
+        'skills/product-discovery/templates/synthetic-stamp.md',
+        'commands/discovery-interview.md',
+    ]
+    for f in producers:
+        if not os.path.exists(f):
+            fail(f'{f} missing'); continue
+        s = open(f, encoding='utf-8').read()
+        if 'SYNTHETIC-P01' not in s:
+            fail(f'{f} produces or governs synthetic material but never requires '
+                 f'per-unit naming (SYNTHETIC-P01)')
+        if '[SYNTHETIC]' not in s:
+            fail(f'{f} never requires the inline [SYNTHETIC] marker')
+
+
+@check("every file that instructs someone to run a deceptive test carries its contraindication")
+def t_deceptive_test_guards():
+    # The contraindication existed in one file and leaked from every other route to the
+    # method. In a clinical setting that is a patient-safety gap, so the routes are pinned
+    # here. Files that merely mention a fake door in passing are not routes.
+    routes = [
+        'skills/product-discovery/references/02-method-index.md',
+        'skills/discovery-experiments/references/experiment-library.md',
+        'skills/discovery-experiments/references/ethics-and-consent.md',
+        'skills/discovery-experiments/SKILL.md',
+        'skills/discovery-prototyping/SKILL.md',
+        'skills/discovery-prototyping/references/prototype-types.md',
+        'skills/discovery-prototyping/references/prototype-build-guide.md',
+        'skills/discovery-prototyping/assets/woz-console.html',
+        'skills/discovery-prototyping/assets/fake-door.html',
+        'commands/discovery-prototype.md',
+        'commands/discovery-experiment.md',
+    ]
+    guard_words = ('do not run', 'do not use', 'never wizard', 'prohibited', 'shadow mode',
+                   'honest close', 'not built yet')
+    for p in routes:
+        if not os.path.exists(p):
+            fail(f'{p} missing'); continue
+        low = open(p, encoding='utf-8').read().lower()
+        if not any(w in low for w in guard_words):
+            fail(f'{p} routes to a deceptive test with no contraindication or honest-close '
+                 f'requirement anywhere in the file')
+
+
 # ---------------------------------------------------------------------------
 def main():
     checks = [v for k, v in sorted(globals().items())

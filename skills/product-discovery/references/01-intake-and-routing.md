@@ -42,6 +42,7 @@ Every discovery request reduces to one of these. Pick one. If two apply, sequenc
 | on demand / scheduled | any | Story-based interviews, continuous | 5-8 per segment, then to saturation | n/a |
 | slow | live | Trace mining first (tickets, sales calls, reviews, search logs, session replay), then interviews | full corpus, then 5 interviews | n/a |
 | none | live | Trace mining only, conclusion marked provisional | full corpus | Open a parallel workstream to fix access. Access is the real blocker |
+| any | non-consumer market | **A13 first**: the operational or regulatory records you already hold. Then interviews | full corpus | This is free, needs no recruiting, and is the step most often skipped |
 | none | concept | Secondary research plus expert interviews plus proxy communities | 5-10 experts or forum threads | Say plainly: no primary evidence is available, so everything is a hypothesis |
 
 **Enterprise and government variant.** Access exists but is politically gated. Route
@@ -79,7 +80,9 @@ business viability. Torres adds ethical, which is worth keeping.)
 |---|---|---|---|
 | Value | over 1k/wk on the surface | Painted door or fake door with intent capture, honest close | L5 |
 | Value | under 1k/wk, B2C | Concierge or Wizard of Oz with 5-15 real users | L4-L6 |
-| Value | B2B enterprise | Letter of intent, paid pilot, or reference-customer commitment | L6 |
+| Value | B2B enterprise | Letter of intent, paid pilot, or reference-customer commitment from the economic buyer | L6 |
+| Value | channel-sold | A distributor stocking order at their own risk, or a design win at the customer engineering team. **Not** an LOI from an end user who does not buy | L6 |
+| Value | clinical or regulated | Shadow mode, then a stepped-wedge rollout. Deceptive tests are prohibited here | L6-L7 |
 | Value | concept only | Comparison prototype test in interviews, plus demand landing page | L2-L5 |
 | Usability | prototype exists | Moderated usability test, 5 per round, 3 rounds | L4 |
 | Feasibility | any | Technical spike, timeboxed, engineer-owned, written finding | L4 |
@@ -128,6 +131,9 @@ Build the model before the research, so the research knows what precision it nee
 Minimum viable model: acquisition volume, conversion, price, cost to serve, retention
 curve, payback period. Mark each input with its evidence level. The output range is
 determined by the weakest input, and the weakest input tells you what to research.
+**Substitute the stack for your market first** (Step 3a): channel margin for channel-sold,
+fully-loaded time saved for captive and internal, both sides for a marketplace. The default
+above is consumer-shaped and will show a viable product that is not.
 
 Route to `discovery-quant` for the model, `discovery-experiments` for the pricing and
 channel tests that feed it.
@@ -187,6 +193,8 @@ segment holds steady means the mix changed, not the behaviour.
 | No (interference between users) | Yes | Switchback, cluster or geo randomisation |
 | No (rollout already happened) | Yes | Difference-in-differences with a control group and a parallel-trends check, or interrupted time series, or synthetic control. Label as quasi-experimental and state the identifying assumption |
 | No, and no control exists | Either | You cannot answer this causally. Say so. Offer the best associational read plus the competing explanations |
+| Withholding it permanently is not acceptable (clinical, public service, internal rollout) | Enough units | Stepped wedge, randomised crossover order |
+| Showing the output carries real risk | Any | Shadow mode first, then a controlled rollout |
 
 Full design and analysis guidance in `discovery-experiments`.
 
@@ -238,10 +246,17 @@ Quantitative first, qualitative second, and recruit from the right population.
 
 ### Q14. What do we already know?
 
-Almost always the first study to run, and almost always skipped. Corpus: past research,
-support tickets, sales call recordings and CRM loss reasons, app store and G2 reviews,
-NPS verbatims, session replays, search-inside-product queries, community and social
+Almost always the first study to run, and almost always skipped. Consumer-software corpus:
+past research, support tickets, sales call recordings and CRM loss reasons, app store and G2
+reviews, NPS verbatims, session replays, search-inside-product queries, community and social
 mentions, churn exit notes, onboarding drop-off points.
+
+**Outside consumer software that list is the wrong one.** Start with A13, the operational and
+regulatory records the organisation already holds: the EHR audit log, distributor sell-through
+and RMA records, case management and inspection data, workflow audit trails, transaction and
+exception logs. No recruiting, no consent process, no procurement. And in any domain with a
+published literature, A14, a structured literature review, graded on each source's own design
+rather than as desk research.
 
 Route to `discovery-synthesis`. Output is a coded corpus with an explicit map of what is
 known, what is contested, and what is absent. The absences are the research plan.
@@ -371,6 +386,7 @@ They are not deadlines. A deadline shortens the plan; a gate reorders it and rem
 | Legal, privacy and data protection | 2 to 8 weeks | Recording, PII handling, cross-border transfer, deceptive tests |
 | Certification and licensing | 3 to 18 months | Shipping at all. Often the dominant risk, and usually discovered late |
 | Tooling, BOM or design freeze | fixed date | Every change to the frozen part, permanently |
+| Component lead time and sourcing | weeks to a year | Any design depending on a long-lead or sole-source part. On a long cycle this is routinely the schedule-dominant risk and it is the one teams discover last |
 
 **Write the gates down before selecting methods.** For each: lead time, who grants it, and
 which methods it makes unavailable inside your window. In S-tier failure cases, a team plans

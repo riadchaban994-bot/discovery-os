@@ -25,5 +25,10 @@ Paths written as `references/...`, `assets/...` and `templates/...` below are re
 6. For a controlled experiment, produce the full pre-registration from
    `skills/product-discovery/templates/experiment-plan.md`.
 
-Never propose a test whose success criterion could be decided afterwards. Check the ethics
-section before finalising any deceptive test.
+Never propose a test whose success criterion could be decided afterwards.
+
+Before finalising any deceptive test (fake door, painted door, Wizard of Oz), check the
+contraindications on the method card itself, not only the ethics file. **Do not run one at
+all** where the concealed output is a clinical, diagnostic, financial, legal or safety
+judgement, or on a statutory service. Shadow mode is the substitute. Every fake door needs
+an honest close firing on the click and takes no money.

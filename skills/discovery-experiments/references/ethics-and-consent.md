@@ -44,7 +44,9 @@ is acceptable within limits.
 - Concealing that a feature is not yet built, provided the user is told immediately on the
   click and no obligation is created
 - Concealing that a human is doing the work, provided output quality matches what is
-  promised and no sensitive data reaches the operator undisclosed
+  promised, no sensitive data reaches the operator undisclosed, and the output is **not** a
+  clinical, diagnostic, financial, legal or safety judgement. Where it is, this is prohibited
+  outright rather than conditional, and shadow mode is the substitute
 - Testing a price without building the product, provided nothing is charged, or the charge
   is refunded promptly and this was stated
 
@@ -53,7 +55,8 @@ is acceptable within limits.
 - Creating a legal or financial obligation the user did not knowingly accept
 - Concealing a material safety, health, financial or legal fact
 - Testing on people who cannot consent, or in a context where they cannot walk away
-- Running a deceptive test in a regulated context without checking the local rule first
+- Running any deceptive test in a clinical, safety-critical or statutory-service context.
+  Not "without checking the local rule first". Not at all
 - Letting a deceptive test run past the decision it was designed to inform
 
 **The honest close is mandatory.** Every deceptive test ends with a truthful message to the

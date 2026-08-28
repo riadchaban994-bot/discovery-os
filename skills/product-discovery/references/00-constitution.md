@@ -306,6 +306,12 @@ ladder, not five.
 two-hour analysis of existing data could settle, stop. Check what you already have first.
 The cheapest study is the one already run.
 
+**The reversibility exception.** Cheapest-sufficient is right while decisions stay
+reversible. Where one freezes (tooling, moulds, BOM, a licence scope, a public commitment, a
+data model at scale) reversibility outranks cost, and you spend disproportionately before
+the freeze even when a cheaper method exists for some other question. Ordering and the
+freeze axis are in `references/01-intake-and-routing.md` Step 3b.
+
 ---
 
 ## 13. Contradicting evidence is surfaced, never smoothed

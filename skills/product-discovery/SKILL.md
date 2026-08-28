@@ -69,7 +69,9 @@ Read `references/00-constitution.md` for the enforcement behaviour behind each o
     pay, or would like are downgraded to stated preference. Specific stories about what
     actually happened are the target. (Fitzpatrick, Torres, Ulwick)
 12. **Test the riskiest assumption first, with the cheapest method that settles it.**
-    Not the easiest assumption, and not the most elaborate method. (Cagan, Bland)
+    Not the easiest assumption, and not the most elaborate method. Where a decision becomes
+    irreversible at a freeze, reversibility outranks cost: front-load discovery onto it even
+    when a cheaper method exists elsewhere. (Cagan, Bland)
 13. **Contradicting evidence is surfaced, never smoothed.** Every synthesis carries a
     "Disconfirming evidence" section. If it is empty, say so explicitly, because an empty
     one usually means nobody looked.
@@ -186,7 +188,7 @@ a bug. `UNKNOWN` in a slot is a question to ask, not a hole to paper over.
 | `instrumentation` | none / partial events / full analytics / experimentation platform |
 | `volume` | under 100 relevant users per week / 100 to 1k / 1k to 10k / over 10k |
 | `product_state` | concept / prototype / live and small / live at scale |
-| `market` | B2C mass / B2B SMB / B2B enterprise / internal or government / marketplace |
+| `market` | B2C mass / B2B SMB / B2B enterprise / channel-sold / marketplace / internal or captive / government / clinical or regulated |
 
 `market` is the single most under-weighted field, and it does more than adjust sample size.
 It changes what counts as evidence of value and what a good metric looks like. Captive users
@@ -195,7 +197,8 @@ distributor's interests oppose your research. A marketplace has a liquidity prob
 has a product problem. A public service is judged against a duty, not a growth target.
 
 **Read the row for your market in `references/01-intake-and-routing.md` Step 3a before
-reading any method card.** Nine rows, each replacing part of the default model.
+reading any method card.** Eight rows, each replacing part of the default model. If your
+situation spans two, read both; channel-sold plus clinical is a real combination.
 
 ---
 
@@ -219,7 +222,7 @@ question differ, say so once, then route on the real one.
 | What will people pay? | `discovery-experiments` → pricing and commitment tests | Commitment beats stated preference at every sample size |
 | Do we have product-market fit? | `discovery-quant` → retention plus PMF survey | Retention curve first, survey second. Never survey alone |
 | Why are people leaving? | `discovery-quant` (who and when) then `discovery-interviewing` (why) | Churn interviews recruited from actual churned users, not current ones |
-| What do we already know? | `discovery-synthesis` | Existing corpus. Cheapest study is often the one already run |
+| What do we already know? | `discovery-synthesis` | Existing corpus. Cheapest study is often the one already run. Outside consumer software, start with the operational records you already hold (method A13): the EHR audit log, distributor sell-through and RMA data, case management records, workflow audit trails |
 | How do we run this continuously? | `discovery-ops` | A team that will actually hold a cadence |
 
 ### Gates before methods

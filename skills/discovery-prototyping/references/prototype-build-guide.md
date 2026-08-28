@@ -75,6 +75,12 @@ transport.
 template enforces `DELAY_MS`. An operator who answers instantly, or far better than the
 system ever could, produces a result you cannot reproduce with software.
 
+**Do not run this at all** where the concealed output is a clinical, diagnostic, financial,
+legal or safety judgement, or on a statutory service. A human silently generating
+recommendations a professional believes came from a checked system is a safety hazard, not a
+research method. Use shadow mode instead: run the logic, log what it would have done, show
+nobody, compare against what actually happened.
+
 **The operator's real job:** answer as the system would, not as a helpful human would. Keep
 the wording consistent. When you cannot answer, say what the system would say. **Log every
 question you could not answer.** That log is the requirements document, and it is the single

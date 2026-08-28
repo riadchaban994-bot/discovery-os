@@ -99,6 +99,13 @@ never do, you are testing a different product.
 **Especially useful for AI features:** test the experience before the model exists, and
 learn what accuracy threshold the experience actually needs.
 
+**Do not run this at all** where the concealed output is a clinical, diagnostic, financial,
+legal or safety judgement, or on a statutory service. A human silently generating a
+recommendation that a professional believes came from a checked system is a safety hazard,
+is very likely a regulated-device or professional-practice violation, and a debrief
+afterwards does not fix it. **Shadow mode** is the substitute: run the logic, log what it
+would have done, show nobody, and compare against what actually happened.
+
 ---
 
 ## Pre-sale, deposit, letter of intent
