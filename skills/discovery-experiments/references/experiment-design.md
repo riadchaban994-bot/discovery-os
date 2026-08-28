@@ -73,6 +73,22 @@ treated unit's pre-period, then compare after.
 *Assumption:* the synthetic control would have continued to track.
 *Check:* pre-period fit quality, and placebo tests on untreated units.
 
+**Stepped wedge.** Units cross from control to treatment in a randomised order at staggered
+times, so every unit is eventually treated.
+*Assumption:* the underlying time trend is modelled correctly, since time and treatment order
+are entangled by construction.
+*Use when* withholding the intervention permanently is not acceptable: healthcare, education,
+public services, union-covered workplaces, internal rollouts across sites. It is the standard
+design in health services research and it is the one that gets approved where a withheld
+control would be refused.
+
+**Shadow mode.** Run the new logic in production, log what it would have done, show nobody,
+and compare against what actually happened.
+*Not a causal design.* It tells you what the system would output, not how a human would
+respond to seeing it, so it is L4 evidence about the model rather than about the experience.
+*Use when* displaying an unproven output carries real risk: clinical decision support, credit
+and fraud decisions, safety alerting, moderation. Pair it with a controlled rollout after.
+
 **Propensity matching.** Match treated and untreated units on observed characteristics.
 *Assumption:* no unobserved confounders. This assumption is almost always false in product
 data, because the decision to adopt a feature is driven by exactly the unobserved motivation

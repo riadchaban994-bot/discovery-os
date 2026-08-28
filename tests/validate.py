@@ -424,6 +424,36 @@ def t_installer_stdout_clean():
             fail('install.sh: git clone in resolve_source must redirect to stderr')
 
 
+@check("the constitution rule count agrees everywhere it is stated")
+def t_rule_count():
+    body = open('skills/product-discovery/references/00-constitution.md',
+                encoding='utf-8').read()
+    numbered = sorted(int(n) for n in re.findall(r'^## (\d+)\.', body, re.M))
+    if numbered != list(range(1, len(numbered) + 1)):
+        fail(f'constitution rules are not contiguous: {numbered}')
+    n = len(numbered)
+    words = {13: 'thirteen', 14: 'fourteen', 15: 'fifteen', 16: 'sixteen',
+             17: 'seventeen', 18: 'eighteen', 19: 'nineteen', 20: 'twenty'}
+    word = words.get(n)
+    if not word:
+        fail(f'no spelled-out word for {n} rules; extend the map'); return
+    # the skill body must carry exactly n numbered rules too
+    sk = open('skills/product-discovery/SKILL.md', encoding='utf-8').read()
+    section = sk.split('## The Constitution')[1].split('### Order:')[0]
+    inline = sorted(int(x) for x in re.findall(r'^(\d+)\. \*\*', section, re.M))
+    if inline != list(range(1, n + 1)):
+        fail(f'SKILL.md lists rules {inline}, constitution has {n}')
+    # and every file that states the count must state the same one
+    for f in ['skills/product-discovery/SKILL.md',
+              'skills/product-discovery/references/00-constitution.md',
+              'README.md', 'docs/SKILLS.md',
+              '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json']:
+        txt = open(f, encoding='utf-8').read().lower()
+        for w in words.values():
+            if w != word and re.search(r'\b' + w + r'[ -](rule|rules)', txt):
+                fail(f'{f}: says "{w} rules" but there are {n}')
+
+
 # ---------------------------------------------------------------------------
 def main():
     checks = [v for k, v in sorted(globals().items())

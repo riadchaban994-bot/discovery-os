@@ -13,7 +13,7 @@
     {
       "name": "discovery-os",
       "source": "./",
-      "description": "Product discovery for AI agents, done properly. Seven skills: a routing commander with a sixteen-rule constitution, interviewing, synthesis, quantitative analysis with five tested scripts, experiments, prototyping with working artifacts, and discovery operations. It picks the method that fits the evidence you have, and it will not invent a customer, a number, or a confidence level.",
+      "description": "Product discovery for AI agents, done properly. Seven skills: a routing commander with a seventeen-rule constitution, interviewing, synthesis, quantitative analysis with five tested scripts, experiments, prototyping with working artifacts, and discovery operations. It picks the method that fits the evidence you have, and it will not invent a customer, a number, or a confidence level.",
       "version": "1.0.0",
       "author": {
         "name": "Riad Chaban",

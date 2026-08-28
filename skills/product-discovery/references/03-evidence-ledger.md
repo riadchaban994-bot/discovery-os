@@ -21,7 +21,7 @@ a decision rest above the level of its weakest load-bearing evidence.
 | **L3** | Reported behaviour. Interview stories about specific past episodes, support tickets, sales-call records, CRM history | Naming an opportunity, describing a workflow, generating design constraints | Prevalence at population level, causality |
 | **L4** | Observed behaviour. Usability sessions, field observation, session replay, existing product analytics | Design decisions, usability judgements, describing what happens now | Why it happens, or what would happen if you changed it |
 | **L5** | Simulated commitment. Fake-door click, waitlist signup, landing-page conversion, email intercept, pricing-page interaction | Go or no-go on further investment, relative demand between propositions | Satisfaction after use, retention, absolute market size |
-| **L6** | Real commitment. Money paid, contract or LOI signed, tool adopted and still used at 30 days, meaningful time invested | The business case, willingness to pay, value delivered | Causality, and generalisation beyond the tested audience |
+| **L6** | Real commitment. Money paid, contract or LOI signed, tool adopted **by choice** and still used at 30 days, meaningful time invested | The business case, willingness to pay, value delivered | Causality, and generalisation beyond the tested audience |
 | **L7** | Controlled experiment. Randomised, powered, pre-registered, on the real product | Causal effect size, scaled rollout decisions | Why the effect exists, and effects outside the tested population and window |
 
 **Lineage.** The graduated-evidence idea comes from Itamar Gilad's Confidence Meter and
@@ -29,6 +29,47 @@ from the evidence-strength scale in Bland and Osterwalder's *Testing Business Id
 Savoia's "skin in the game" principle in *The Right It* is the reason L5 and L6 sit where
 they do. The levels above are this skill's own calibration; use them consistently rather
 than mixing scales.
+
+### When the user cannot choose
+
+L5 and L6 are both **demand signals**, and they assume a person who could have said no.
+Strip that and the top of the ladder goes hollow. This is not an edge case: internal tools,
+government services, clinical mandates, school systems, compliance software and anything
+channel-sold all live here. Reading the ladder literally in those contexts produces the
+exact confidence inflation it exists to prevent.
+
+**The mis-grading to watch for.** Mandated usage is not commitment. Twelve thousand
+employees using the expense tool is **L4 evidence of behaviour and L0 evidence of value**,
+because they had no alternative. Reporting it as L6 and reaching "Established" is the most
+available way to break this ledger, and it happens because the L6 row says "tool adopted and
+still used at 30 days".
+
+**Substitute commitment signals, by context:**
+
+| Context | What counts as L6 | What does not |
+|---|---|---|
+| Captive users (internal, mandated, statutory) | Unpaid effort invested: a workaround built, a shadow spreadsheet maintained, time spent beyond the required path, voluntary escalation, refusal to migrate off a bespoke setup. Plus the budget holder funding it | Usage, logins, adoption, satisfaction scores collected at work |
+| Channel-sold (distribution, resellers, OEM) | A distributor stocking order at their own risk, a design win at the customer's engineering team, inclusion on an approved-vendor list | End-user enthusiasm the distributor reports back to you |
+| Two-sided marketplace | Commitment on **both** sides, measured separately. A supplier turning down other work, a buyer moving spend across | A signal on one side alone, which is usually the easy side |
+| Public service | Sustained voluntary use where an offline alternative exists, and complaint volume falling against a stable baseline | Transaction counts, when the service is the only route |
+| Clinical or professional | The clinician changing what they do when the tool is not looking, and continued use when an override is one click away | Compliance with a mandated workflow |
+
+**The general test.** Ask what the person gave up. If the answer is nothing, because they had
+no alternative, it is not commitment evidence whatever the usage numbers say.
+
+### Published research in regulated and scientific domains
+
+L1 covers "analogy, benchmarks, what worked elsewhere" and that grading is right for a
+competitor teardown or a vendor's marketing benchmark. It is **wrong for a peer-reviewed
+controlled trial from another institution**, and applying it mechanically pushes people in
+clinical, pharmaceutical, education and public-health contexts to spend months generating L3
+interview data that is weaker than what a literature search returns for free.
+
+**Rule:** grade published research on the design it actually used, not on the fact that
+someone else ran it. A randomised trial published in a peer-reviewed journal is L7 evidence
+about its own population, discounted for how far your population and setting differ from it.
+State the discount and the reason. In a domain with a real literature, reading it is
+frequently the cheapest and strongest study available, and it should be the first step.
 
 ### Level modifiers
 

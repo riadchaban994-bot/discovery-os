@@ -174,6 +174,10 @@ read in a week.
 placement rather than demand; or when the honest message is missing, which is a trust
 cost you cannot repay.
 **Ethics:** never take money. Always disclose immediately after the click.
+**Do not run** in clinical, financial-advice, legal, safety-critical or statutory-service
+contexts, or on vulnerable populations, without a named approval from whoever owns that
+risk. A fake door implies a capability, and in those settings implying a capability you do
+not have is a regulatory matter, not a research one.
 
 ### C3 Demand landing page + paid traffic `[L5] [3-5 days]`
 **Answers:** whether a proposition attracts a defined audience, and at what cost.
@@ -202,6 +206,12 @@ experience before the model exists.
 transferable. Match the timing.
 **Ethics:** acceptable where output quality matches what is promised and no sensitive data
 is exposed to the operator without disclosure.
+**Do not run** where the concealed output is a clinical, diagnostic, financial, legal or
+safety judgement. A human silently generating recommendations that a professional believes
+came from a checked system is a safety hazard, is very likely a regulated-device or
+professional-practice violation, and is not fixed by a debrief afterwards. In those
+settings use shadow mode instead: the new logic runs and is logged but is never shown, and
+you compare what it would have done against what happened.
 
 ### C6 Single-feature MVP `[L6] [2-6 weeks]`
 **Answers:** whether the core value holds when everything else is stripped away.
@@ -234,6 +244,8 @@ waitlist, hold out a control.
 **Answers:** whether an entry point gets used at all.
 **How:** ship the control, log the click, show an honest "coming soon".
 **Fails when:** left running for weeks. It is a two-week instrument at most.
+**Do not run** on a statutory service, a safety path, or anywhere a user could reasonably
+believe the control performs a duty someone owes them.
 
 ### C12 High-fidelity value test in interview `[L2-L4] [per session]`
 **Answers:** whether people understand the value, and whether it connects to a need they
@@ -332,6 +344,22 @@ dies. Ends in an ask, so it can produce L6 evidence.
 
 ## F. Testing feasibility
 
+### F0 Regulatory and approval feasibility `[L4] [days to weeks] [run first]`
+**Answers:** what permission, licence, certification or approval this needs in order to
+exist at all, who grants it, how long it takes, what it costs, and what a refusal looks
+like.
+**Needs:** someone who has been through it, or the regulator's own published process. Not a
+summary from a model, and not a competitor's marketing.
+**How:** name every gate, its lead time and its owner. Then work backwards from the launch
+date. If the licence takes twelve months and the plan is nine, that is the finding and
+everything else is secondary.
+**Fails when:** skipped, or left until after the product works. Licensing, medical-device
+classification, financial services authorisation, CE, FCC, ATEX and IP ratings, data
+residency and accessibility law all determine whether a product can ship, and all of them
+have lead times measured in months.
+**Run this before F1 to F5**, on the same logic F3 uses for data availability: there is no
+point proving you can build a thing you are not permitted to sell.
+
 ### F1 Technical spike `[L4] [timeboxed 1-5 days]`
 **Answers:** one named technical unknown.
 **How:** written brief with the unknown, the timebox, and what a yes and a no each look
@@ -404,6 +432,26 @@ Redemption is not incrementality; many redeemers would have converted anyway.
 **Answers:** whether anything breaks, with limited blast radius. Not a substitute for an
 experiment; it has no control group unless you build one.
 
+### G8b Stepped-wedge rollout `[L6-L7]`
+**Answers:** the causal effect where everyone must eventually receive the intervention.
+**How:** units (wards, branches, regions, schools, teams) cross over from control to
+treatment in a randomised order, at staggered times. Every unit ends up treated, which is
+exactly why ethics committees and unions accept it where a withheld-control design would be
+refused.
+**Best for:** healthcare, education, public services, and internal rollouts across sites.
+The standard design in health services research and almost unknown in product teams.
+**Fails when:** there are too few units, or a secular trend is confounded with the rollout
+order. Model time explicitly.
+
+### G8c Shadow mode / silent launch `[L4-L6]`
+**Answers:** what the new logic would have done, without anyone acting on it.
+**How:** run the new model, rule or ranking in production, log its output, show nobody.
+Compare against what actually happened and against the incumbent.
+**Best for:** any setting where showing an unproven output carries real risk: clinical
+decision support, credit decisions, fraud, safety alerting, moderation.
+**Fails when:** treated as sufficient on its own. It tells you what the system would output,
+not how a human would respond to seeing it. Pair it with a controlled rollout afterwards.
+
 ### G9 Quasi-experiments `[L5-L6]`
 Difference-in-differences, interrupted time series, regression discontinuity, synthetic
 control. For when randomisation was impossible. Each rests on an identifying assumption
@@ -474,8 +522,21 @@ The honest set for `customer_access = none`, `instrumentation = none`,
 4. Search volume and query analysis
 5. Competitor teardown against jobs, not features
 6. A demand landing page with paid traffic, which is the fastest route from L1 to L5
-7. A recruiting plan, because access is the actual blocker and everything else is a
+7. **Commission local capacity.** A paid local research partner, an enumerator, a
+   university student, a merchant association, an NGO already working with the segment.
+   This is the standard move in markets you cannot easily travel to, it converts
+   `customer_access = none` into `scheduled` in about three weeks, and it is missing from
+   most plans because teams think of research as something they must do personally
+8. A recruiting plan, because access is the actual blocker and everything else is a
    workaround for not having fixed it
+
+**Where the audience is not on the open web**, and in most emerging markets they are not,
+the instruments above need substituting. Search-volume tools have thin coverage, and a paid
+landing page assumes people are reachable on search or social and will convert on a web
+form. The real channels are messaging apps, community groups, trade associations and the
+physical marketplace. The L5 instrument becomes a messaging-app waitlist, a deposit
+collected by an agent, or a pre-order taken in person. Same evidence level, different
+plumbing.
 
 Present these as a bridge to real evidence, with a date by which access must exist. A
 project that stays in this set for a quarter is not doing discovery.

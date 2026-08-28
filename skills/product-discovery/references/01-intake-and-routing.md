@@ -251,7 +251,145 @@ solution tree that is updated rather than rebuilt.
 
 ---
 
-## Step 3: apply the evidence overrides
+## Step 3a: apply the market override
+
+`market` is collected at intake and it is the field teams get wrong most often. Every value
+below replaces part of the default model. Read the row for your market before reading any
+method card, because these change what "good" even looks like.
+
+### B2C mass
+The default the rest of this skill is written against. Voluntary users, demand signals
+available, volume usually sufficient for experiments.
+
+### B2B SMB
+Smaller n, buyer and user often the same person, churn visible monthly. Interviews reach
+saturation faster because the segment is narrower. Commitment evidence via pre-sale or
+annual prepay is usually available.
+
+### B2B enterprise
+Sample sizes are small by nature. Weight depth, triangulation and commitment evidence.
+Statistical significance is usually unavailable and pretending otherwise is worse than
+admitting it.
+**Metric model:** account-level, not user-level. Seat usage against contracted seats, ticket
+severity, sponsor turnover, whether the original business case was ever measured. Survival
+curves and week-one leading indicators are user-churn tools and become noise below about 100
+accounts. Do not plot Kaplan-Meier on thirty-four accounts.
+**Roles:** buyer, user, approver and blocker are four different interviews. The person who
+signs the renewal may never open the product.
+**Politics:** researching an account inside an active renewal cycle reads to the customer as
+a save motion, and the account executive's commission is exposed. Agree the approach with
+them first, and say what the research is for.
+
+### Channel-sold (distributors, resellers, OEM, retail)
+**The gatekeeper's interests oppose the research.** A distributor has an active margin
+incentive to prevent you talking to end users, because disintermediation is the threat.
+Treat the distributor as a customer in their own right with their own buying criteria:
+stocking cost, channel margin, support burden, shelf or catalogue space. Those have nothing
+to do with end-user value and they decide whether you sell anything.
+**Commitment signal:** a stocking order placed at the distributor's own risk, or a design
+win at the customer's engineering team. Not end-user enthusiasm relayed to you.
+**Unit economics** must carry the channel margin stack, commonly 25 to 40 percent in
+industrial distribution. A model without it can show a viable product that is not.
+
+### Marketplace or two-sided
+**Diagnose liquidity before you diagnose product.** Supply-side retention is usually a
+distribution problem: if the top decile of suppliers takes most of the work, everyone else
+churns because they never got a second job. A retention curve for a supplier who received
+zero matches is a meaningless number.
+**Check the ratio first.** Suppliers to buyers, and jobs to suppliers. A heavily
+supply-saturated marketplace has a demand problem that no supply-side retention work will
+fix.
+**Metric model:** match rate, fill rate, time to first match, share of suppliers with at
+least one match per period, retention **conditioned on having received a match**, take rate.
+**Segment by the unit of liquidity**, not by platform or device. Language pair, city,
+category, vehicle class. Two language pairs are two marketplaces and aggregating them is a
+Simpson's paradox waiting to happen.
+**Every experiment needs a metric on both sides and a joint overall evaluation criterion.**
+A change that spreads work more evenly to help supply retention usually costs the demand
+side speed or quality. Randomise by time block, cluster or geo, never by user.
+
+### Internal tools and captive users
+**Adoption is meaningless.** They cannot leave. See the captive-user block in
+`references/03-evidence-ledger.md` before grading anything.
+**Metric model is task cost, not usage:** time to complete, error and rework rate, rejection
+and resubmission rate, help-desk contacts per hundred transactions, and hours the receiving
+team spends correcting. The business case is fully-loaded minutes times frequency times
+headcount, which finance accepts as a hard number.
+**The shadow-process indicator is the most honest signal a captive tool emits.** What are
+people doing in a spreadsheet instead, and why.
+**Separate policy pain from tool pain before coding a single complaint.** In expense,
+procurement, HR and compliance tools, a large share of what "everyone complains about" is a
+rule owned by Finance, Audit or Legal that the product team cannot change. Mixing the two
+produces a backlog of things you are not allowed to fix.
+
+### Government and public service
+**The outcome is a duty, not a growth target.** Judged against a statutory or published
+service standard: time to resolve, repeat contact rate, and equity of service across
+districts or demographics. Not volume.
+**Ground truth does not come from users.** Reports received measures reporting propensity,
+not incidence. Get incidence from the operational source: inspection crews, contractors,
+sensors, case records. Otherwise you optimise for the districts that already complain.
+**The excluded population is the research question**, more often than the served one.
+**Incentives** for participants are restricted or prohibited in many public contexts. Check
+before designing recruitment around them.
+**A commitment made upward is usually not reversible.** When a director has promised a
+minister or a mayor, "change their mind with evidence" is startup advice that ends careers
+in a hierarchy. The move is to keep the commitment and use discovery to decide what it
+resolves to in practice, so the promised thing lands on a real operational problem.
+
+### Clinical, regulated and safety-critical
+**Find out what the constraint actually forbids before accepting it.** Research on
+professionals using a tool is often quality improvement or non-human-subjects work and
+frequently exempt; it becomes regulated research when it touches patient outcomes or seeks
+generalisable knowledge. Getting that determination is usually a short conversation and it
+opens most of the study.
+**Two designs exist that ethics committees routinely accept**, and both are missing from
+most product teams' vocabulary: **shadow or silent mode**, where new logic runs without
+being displayed and you compare what it would have done against what happened, carrying
+essentially no risk; and the **stepped-wedge rollout**, where every unit receives the
+intervention eventually and the order is randomised, which is why it gets approved.
+**Published literature is not L1 here.** See `references/03-evidence-ledger.md`.
+**Deceptive tests are prohibited.** No fake doors, no Wizard of Oz, no concealment of who or
+what is generating a clinical, financial or legal output.
+
+---
+
+## Step 3b: name the external gates
+
+Four things determine when discovery must happen and which methods are purchasable at all.
+They are not deadlines. A deadline shortens the plan; a gate reorders it and removes options.
+
+| Gate | Typical lead time | What it removes |
+|---|---|---|
+| Procurement | 1 to 6 months | Paid tools, panels, incentives, media spend, agencies |
+| Ethics, IRB or clinical governance | 2 weeks to 3 months | Anything touching patients or generalisable knowledge |
+| Legal, privacy and data protection | 2 to 8 weeks | Recording, PII handling, cross-border transfer, deceptive tests |
+| Certification and licensing | 3 to 18 months | Shipping at all. Often the dominant risk, and usually discovered late |
+| Tooling, BOM or design freeze | fixed date | Every change to the frozen part, permanently |
+
+**Write the gates down before selecting methods.** For each: lead time, who grants it, and
+which methods it makes unavailable inside your window. In S-tier failure cases, a team plans
+a study that requires a tool they cannot buy for four months.
+
+### Sort assumptions by when the decision freezes, not only by cost
+
+The default rule is "cheapest method that settles it". That is right when decisions stay
+reversible. Where they do not, reversibility outranks cost.
+
+| Decision type | Discovery timing |
+|---|---|
+| Irreversible after a freeze (tooling, moulds, BOM, chip selection, licence scope, public commitment, data model at scale) | Front-load. Spend disproportionately here, before the freeze, even on expensive methods |
+| Expensive to reverse (pricing tiers, brand, API contracts, integrations shipped to customers) | Test before commitment, accept a slower method |
+| Cheap to reverse (copy, layout, flows, most software features) | Ship and learn. A test here often costs more than the mistake |
+
+**In long-cycle products the manufacturing loop is not the learning loop.** An 18-month
+hardware cycle does not mean 18-month feedback. Decouple them: keep the irreversible physical
+decisions on the slow loop with heavy up-front discovery, and run continuous discovery on the
+firmware, calibration, software and service layers that stay changeable for years.
+
+---
+
+## Step 3c: apply the evidence overrides
 
 Run these checks after selecting a method. Any one of them can veto the choice.
 

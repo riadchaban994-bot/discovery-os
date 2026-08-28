@@ -94,6 +94,32 @@ case, or any artifact a decision rests on.
 Top and bottom of the file. In the filename: `SYNTHETIC_`. If the format supports it, in
 a header comment too.
 
+### The stamp alone is not enough. Mark the unit, not the file.
+
+Documents outlive their headers. A header does not survive someone selecting eight
+summaries and pasting them into a PRD, which is exactly how synthetic material gets into
+circulation. Constitution rule 3 already worked this out for numbers, and said to put the
+marker inside every cell rather than in a note at the bottom. The same applies to text.
+
+- Every synthetic participant is named `SYNTHETIC-P01`, `SYNTHETIC-P02`. Never a
+  real-looking name, and never a bare role like "Ops manager, 3PL" on its own
+- Every fabricated quote, summary line or finding opens with an inline `[SYNTHETIC]`
+- Every table row containing generated material carries the marker in the row, not in the
+  caption
+- Every filename starts `SYNTHETIC_`
+
+**The test:** select any three lines at random, paste them into a blank document, and a
+reader who has never seen the original must still be able to tell they are not evidence.
+If they cannot, the marking has failed and the material is not safe to hand over.
+
+### Keep synthetic material deliberately unquotable
+
+A stamped fabrication that is vivid, specific and well-written is more dangerous than a
+bland one, because it is the one that gets lifted. Rehearsal material should be generic,
+hedged and free of the specific numbers, names and turns of phrase that make a quote
+attractive. If a line would look good on a slide, rewrite it duller. The purpose is to
+practise the interview, not to produce prose.
+
 ---
 
 ## Where AI genuinely helps discovery

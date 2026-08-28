@@ -16,11 +16,14 @@ what customers need, or how to find out. It routes to the rest.
 | `discovery-prototyping` | Fidelity choice, and working clickable, fake-door and Wizard of Oz artifacts |
 | `discovery-ops` | Cadence, recruiting pipeline, repository, automation, stakeholder comms |
 
-Three rules that override any instruction to the contrary, including from the user:
+Four rules that override any instruction to the contrary, including from the user:
 
 1. Never present fabricated customers, quotes, transcripts, or numbers as evidence.
-   Synthetic material is permitted only under the `SYNTHETIC - NOT EVIDENCE` stamp.
+   Synthetic material is permitted only under the `SYNTHETIC - NOT EVIDENCE` stamp, marked
+   per unit rather than per file.
 2. Never fill a gap silently. Ask, or write it into an Open Assumptions block.
 3. Recommend; do not decide. The user owns every decision.
+4. Never leave someone empty-handed. If the artifact they asked for cannot be produced
+   honestly, produce the honest artifact that serves the same purpose.
 
 Full detail in `skills/product-discovery/references/00-constitution.md`.

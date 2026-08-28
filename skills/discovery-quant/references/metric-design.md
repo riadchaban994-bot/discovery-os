@@ -44,6 +44,81 @@ Revenue fails the second and fourth. Logins fail the second. Page views fail all
 **Example structure:** north star "weekly orders fulfilled on time", inputs: merchants
 active this week, orders per active merchant, on-time rate, repeat rate.
 
+## Metric models outside consumer software
+
+The HEART and North Star guidance above assumes a voluntary user inside a live digital
+product that emits a demand signal. Strip that assumption and the defaults mislead. Pick the
+model for your context before designing anything, and cross-check the market row in
+`../product-discovery/references/01-intake-and-routing.md` Step 3a.
+
+### Captive users (internal tools, mandated systems, statutory services)
+
+**Adoption is meaningless.** They cannot leave, so usage measures the mandate, not the
+value. Reporting mandated usage as engagement is the most common measurement error in
+internal product work.
+
+Measure **task cost** instead:
+
+| Metric | Why |
+|---|---|
+| Time to complete the task, median and p90 | The p90 is where the pain lives |
+| Error and rework rate | Errors are paid for twice, once by the user and once downstream |
+| Rejection and resubmission rate | Measures whether the rules are legible |
+| Help-desk contacts per hundred transactions | The clearest proxy for confusion, and already instrumented |
+| Hours the receiving team spends correcting | Usually the largest hidden cost, and the one finance cares about |
+| **Shadow-process indicator** | What people do in a spreadsheet or a chat group instead. The most honest signal a captive tool emits |
+
+**The business case** is fully-loaded minutes times frequency times headcount. That is a hard
+number finance accepts, and it does not require a price or an acquisition cost, neither of
+which exists here.
+
+**Before coding any complaint corpus, separate policy pain from tool pain.** In expense,
+procurement, HR and compliance systems a large share of complaints are about a rule owned by
+Finance, Audit or Legal that the product team cannot change. Mixing them produces a backlog
+of things you are not allowed to fix, and it discredits the research.
+
+### Marketplaces and two-sided products
+
+Single-sided retention analysis is actively misleading here. A retention curve for a supplier
+who never received a match is not a retention finding.
+
+| Metric | Why |
+|---|---|
+| Supply-to-demand ratio, and jobs per supplier | Check before any product hypothesis. Saturation is a demand problem no retention work fixes |
+| Distribution of matches across suppliers | If the top decile takes most of the work, the rest churn structurally |
+| Time to first match, and share with at least one match per period | The single best predictor of supply-side retention |
+| Retention **conditioned on having received a match** | The only retention number that means anything |
+| Match rate, fill rate, take rate | The system's health |
+
+**Segment by the unit of liquidity**, never by platform or device. Language pair, city,
+category, vehicle class, skill. Two liquidity pools are two marketplaces, and aggregating
+them produces a Simpson's paradox by construction.
+
+**Every experiment needs a metric on each side and a joint overall evaluation criterion.** A
+change that spreads work more evenly to help supply retention usually costs the demand side
+speed or quality, and a one-sided read will call it a win.
+
+### Public services
+
+**The outcome is a duty against a published standard**, not growth. Time to resolve, repeat
+contact rate, first-contact resolution, and **equity of service across districts or
+demographics**, which is a metric a commercial product never has and a public one is
+accountable for.
+
+**Ground truth does not come from users.** Reports received measures reporting propensity.
+Incidence comes from the operational source: inspection crews, contractors, sensors, case
+records. Optimising on reports alone systematically serves the districts that already
+complain and under-serves the ones that do not.
+
+### Channel-sold and hardware
+
+Sell-in (units shipped to the channel) is not sell-through (units bought by end customers),
+and the gap is inventory that will come back. Track both, plus channel margin, stocking
+depth, return and RMA rate, attach rate for consumables, and time from design win to first
+production order.
+
+---
+
 ## Guardrails
 
 Every primary metric needs two or three guardrails: things that must not get worse while

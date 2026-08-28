@@ -13,8 +13,9 @@ evidence, a metric that moved, research that needs planning or synthesising, siz
 prioritising, auditing a document, setting up a discovery practice.
 
 **What it does.** Finds the real question behind the request, inventories what evidence you
-actually have, and routes to the cheapest method that can answer it. It carries the rules
-that bind every other skill.
+actually have, and routes to the cheapest method that can answer it. It carries the seventeen
+rules that bind every other skill, and it calibrates the size of the answer to the size of
+the decision: a two-line question gets two lines.
 
 **Six modes.** State the mode, get the matching output.
 
@@ -44,14 +45,16 @@ corrected by you:
 | `product_state` | concept / prototype / live and small / live at scale |
 | `market` | B2C mass / B2B SMB / B2B enterprise / internal or government / marketplace |
 
-`market` is the most under-weighted field in practice. Eight interviews is a large sample
-in enterprise and a rounding error in consumer.
+`market` carries a full override per value, because it changes what counts as evidence and
+what a good metric looks like, not just the sample size. Nine rows: B2C mass, B2B SMB, B2B
+enterprise, channel-sold, marketplace, internal or captive, government, clinical or
+regulated. Read the row for yours before reading any method card.
 
 **Inside it:**
 
 | File | What |
 |---|---|
-| `references/00-constitution.md` | The sixteen rules, with the enforcement behaviour and exact wording for each |
+| `references/00-constitution.md` | The seventeen rules, with the enforcement behaviour and exact wording for each |
 | `references/01-intake-and-routing.md` | Fifteen canonical questions, each with a decision table, plus the overrides that veto a method |
 | `references/02-method-index.md` | 60+ method cards: what it answers, what it needs, how it runs, and the failure mode that makes it lie to you |
 | `references/03-evidence-ledger.md` | The L0 to L7 ladder, the four confidence levels, provenance tags, the AUDIT protocol |

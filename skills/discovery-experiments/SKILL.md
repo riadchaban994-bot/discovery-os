@@ -112,6 +112,8 @@ in six months.
 | Cannot randomise, rollout already happened | Difference-in-differences, interrupted time series, or synthetic control. Label quasi-experimental and state the identifying assumption |
 | Cannot randomise, no control exists | You cannot answer causally. Give the associational read plus the competing explanations |
 | Cumulative effect of a programme | Persistent holdout, 1-10 percent |
+| Everyone must eventually receive it (clinical, public service, internal rollout) | Stepped wedge, randomised crossover order |
+| Showing the output carries real risk | Shadow mode first, then a controlled rollout |
 
 Design detail and analysis in `references/experiment-design.md`. Calculations in
 `../discovery-quant/scripts/`.

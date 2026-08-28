@@ -154,7 +154,7 @@ See **[docs/EXAMPLES.md](docs/EXAMPLES.md)** for what each one actually produces
 
 ## The constitution
 
-Sixteen rules bind every output. They are inline in the commander skill so they always load.
+Seventeen rules bind every output. They are inline in the commander skill so they always load.
 
 1. **Evidence has a source or it does not exist.** No tag means it is written as
    `[ASSUMPTION]`, not asserted
@@ -180,14 +180,19 @@ Sixteen rules bind every output. They are inline in the commander skill so they 
 15. **Confidence is stated, not implied**, with the evidence that would most change it
 16. **AI does not replace customer contact.** Asked to substitute, it produces the smallest
     real-contact path instead
+17. **The user still needs something they can use.** Rigour that leaves someone with an
+    empty table four hours before a meeting has failed them. When the artifact as asked for
+    cannot be produced honestly, it produces the honest artifact that serves the same
+    purpose
 
 ### When you push back
 
 It does not argue twice and it does not refuse the work. It does the work with the guardrail
 made structural:
 
-- Fabricated material only under a `SYNTHETIC - NOT EVIDENCE` stamp that survives into every
-  downstream artifact
+- Fabricated material only under a `SYNTHETIC - NOT EVIDENCE` stamp, marked **per unit**:
+  every participant `SYNTHETIC-P01`, every line opening `[SYNTHETIC]`, because a header does
+  not survive a copy-paste
 - Unsourced figures stay in `[UNVERIFIED]` brackets rather than being quietly promoted
 - A decision recorded on thin evidence gets a confidence label matching the evidence, not
   matching the confidence in the room
@@ -255,9 +260,22 @@ Then the overrides fire, and any one of them can veto the method you wanted:
 - `market = enterprise or government` means small samples by nature, so it weights depth,
   triangulation and commitment evidence instead of pretending significance is available
 
-`market` is the most under-weighted field in real teams. Eight interviews is a large sample
-in enterprise and a rounding error in consumer, and carrying a consumer heuristic into a
-government context is how good research produces wrong answers.
+`market` does more than adjust sample size. It changes what counts as evidence of value and
+what a good metric looks like, so there is a full override per value: B2C, B2B SMB, B2B
+enterprise, channel-sold, marketplace, internal or captive, government, clinical or
+regulated.
+
+Captive users cannot express demand, so the top of the evidence ladder does not apply to
+them and mandated usage is graded L4 behaviour, never L6 commitment. A distributor's
+interests oppose your research and they are a customer in their own right. A marketplace has
+a liquidity problem before it has a product problem. A public service is judged against a
+duty, not a growth target. In a clinical setting fake doors and Wizard of Oz are prohibited,
+and stepped-wedge and shadow-mode designs take their place.
+
+**Gates come before methods.** Procurement, ethics or IRB approval, certification, licensing
+and design freezes are not deadlines. A deadline shortens the plan; a gate reorders it and
+removes methods from the menu. And where a decision becomes irreversible at a freeze,
+discovery is front-loaded onto it even when a cheaper method exists elsewhere.
 
 Fifteen canonical questions, each with its own decision table, live in
 [`01-intake-and-routing.md`](skills/product-discovery/references/01-intake-and-routing.md).
@@ -346,6 +364,8 @@ card.
 - Choose your opportunity, set your priority, or declare product-market fit for you
 - Design a study whose two possible outcomes lead to the same action
 - Let a positive prototype test be reported as demand
+- Grade mandated usage as evidence that anyone wanted the thing
+- Recommend a fake door or a Wizard of Oz in a clinical or safety-critical setting
 - Use the word "validated"
 
 ---
@@ -441,7 +461,7 @@ participant's strongest language, back-translating guides, and the concepts that
 badly. Coding a corpus in a language your team does not read is one of the genuinely large
 wins available here.
 
-**I disagree with one of the sixteen rules.**
+**I disagree with one of the seventeen rules.**
 Open an issue and argue it. They are deliberate, not sacred. What they are not is
 adjustable per prompt, because a guardrail you can talk your way past is decoration.
 
