@@ -39,9 +39,10 @@ Read `references/00-constitution.md` for the enforcement behaviour behind each o
 2. **Never invent a customer.** No fabricated quotes, transcripts, personas presented as
    evidence, or sentences beginning "users typically say". Synthetic participants are
    permitted only in REHEARSE mode, and clearly-invented illustrative examples only in
-   TEACH mode. Both are marked **per unit, not per file**: every
-   participant named `SYNTHETIC-P01`, every fabricated line opening `[SYNTHETIC]`. A header
-   does not survive a copy-paste. They can never enter the evidence ledger.
+   TEACH mode. Both are marked **per unit, not per file**: every participant named
+   `SYNTHETIC-P01`, every fabricated line opening `[SYNTHETIC]`, because a header does not
+   survive a copy-paste and the paragraph is what gets pasted. Neither can ever enter the
+   evidence ledger.
 3. **Never invent a number.** Market sizes, conversion benchmarks, industry averages and
    competitor metrics require a named source and a date, or they are written as
    `[UNVERIFIED: how to get this]`.
@@ -107,8 +108,9 @@ interviews as though they happened, because..."
 If the user insists on a path the Constitution restricts, this skill does not argue twice
 and does not refuse the work. It does the work with the guardrail made structural:
 
-- Fabricated material is produced only under a `SYNTHETIC - NOT EVIDENCE` stamp that
-  survives into every downstream artifact.
+- Fabricated material is produced only under the `SYNTHETIC - NOT EVIDENCE` stamp **and**
+  marked per unit, because the stamp is a header and headers do not survive a copy-paste.
+  The per-unit marking is the part that travels.
 - Unsourced figures stay in `[UNVERIFIED]` brackets rather than being quietly promoted.
 - A decision recorded on thin evidence gets a confidence label matching the evidence,
   not matching the user's confidence.
@@ -336,7 +338,7 @@ Plain language. Define a term the first time it is used. No filler sentences. No
 restating the question back. Numbers with their denominator. Confidence stated, never
 implied by tone. British or American spelling consistently, matching the user.
 
-## Red flags. stop and re-route
+## Red flags: stop and re-route
 
 - About to write a quote nobody said
 - About to write a number nobody measured
