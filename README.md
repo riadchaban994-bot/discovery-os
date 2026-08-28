@@ -120,7 +120,7 @@ skill did not load.
 
 | Skill | Owns | Read |
 |---|---|---|
-| **`product-discovery`** | The commander. Routes any question to the right method for your evidence. Carries the constitution, the evidence ladder, 60+ method cards, the framework canon, the AI boundary, and thirteen templates | [details](docs/SKILLS.md#product-discovery--the-commander) |
+| **`product-discovery`** | The commander. Routes any question to the right method for your evidence. Carries the constitution, the evidence ladder, 77 method cards, the framework canon, the AI boundary, and thirteen templates | [details](docs/SKILLS.md#product-discovery--the-commander) |
 | **`discovery-interviewing`** | Guide design, recruiting as a pipeline, moderating, AI-moderated sessions with real participants, rehearsal under a stamp, write-up | [details](docs/SKILLS.md#discovery-interviewing) |
 | **`discovery-synthesis`** | Coding and codebooks, saturation measured rather than felt, thematic analysis, opportunity solution trees, JTBD forces, experience maps | [details](docs/SKILLS.md#discovery-synthesis) |
 | **`discovery-quant`** | Metric design, funnels, cohorts, retention, survival, segmentation, surveys, statistical guardrails, five runnable scripts | [details](docs/SKILLS.md#discovery-quant) |

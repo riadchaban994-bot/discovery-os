@@ -533,6 +533,36 @@ def t_deceptive_test_guards():
                  f'requirement anywhere in the file')
 
 
+@check("documented counts match what the repository actually contains")
+def t_documented_counts():
+    import glob
+    idx = open('skills/product-discovery/references/02-method-index.md', encoding='utf-8').read()
+    cards = len(re.findall(r'^### [A-J]\d+[a-z]? ', idx, re.M))
+    templates = len(os.listdir('skills/product-discovery/templates'))
+    skills = len([d for d in os.listdir('skills') if os.path.isdir('skills/' + d)])
+    commands = len(glob.glob('commands/*.md'))
+    scripts = len(glob.glob('skills/discovery-quant/scripts/*.py'))
+    claims = {
+        'method cards': (cards, r'(\d+)\+? method cards'),
+        'templates': (templates, r'[Tt]hirteen[, ]|(\d+) templates'),
+    }
+    for f in ['README.md', 'docs/SKILLS.md']:
+        txt = open(f, encoding='utf-8').read()
+        for m in re.finditer(r'(\d+)\+? method cards', txt):
+            claimed = int(m.group(1))
+            if claimed > cards or claimed < cards - 5:
+                fail(f'{f} claims {claimed} method cards, the index has {cards}')
+    # structural counts that must not drift
+    if skills != 7:
+        fail(f'expected 7 skills, found {skills}')
+    if commands != 7:
+        fail(f'expected 7 commands, found {commands}')
+    if scripts != 6:
+        fail(f'expected 6 script files, found {scripts}')
+    if templates != 13:
+        fail(f'expected 13 templates, found {templates}')
+
+
 # ---------------------------------------------------------------------------
 def main():
     checks = [v for k, v in sorted(globals().items())
