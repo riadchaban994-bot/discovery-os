@@ -14,7 +14,7 @@
 
 set -euo pipefail
 
-REPO_URL="${DISCOVERY_OS_REPO:-https://github.com/riadchaban/discovery-os.git}"
+REPO_URL="${DISCOVERY_OS_REPO:-https://github.com/riadchaban994-bot/discovery-os.git}"
 SKILLS=(product-discovery discovery-interviewing discovery-synthesis discovery-quant
         discovery-experiments discovery-prototyping discovery-ops)
 COMMANDS=(discovery discovery-audit discovery-interview discovery-synthesise

@@ -3,7 +3,7 @@
   "name": "riadchaban",
   "owner": {
     "name": "Riad Chaban",
-    "url": "https://www.linkedin.com/in/riadchaban"
+    "url": "https://github.com/riadchaban994-bot"
   },
   "metadata": {
     "description": "Riad Chaban's plugin marketplace. Discovery OS: a master product discovery system for Claude Code, Codex and any agent that reads skills. Given away at ProductTank Syria, 2026.",
@@ -17,7 +17,7 @@
       "version": "1.0.0",
       "author": {
         "name": "Riad Chaban",
-        "url": "https://www.linkedin.com/in/riadchaban"
+        "url": "https://github.com/riadchaban994-bot"
       },
       "license": "MIT",
       "keywords": [
@@ -25,7 +25,9 @@
         "user-research",
         "experimentation",
         "product-management"
-      ]
+      ],
+      "homepage": "https://github.com/riadchaban994-bot/discovery-os",
+      "repository": "https://github.com/riadchaban994-bot/discovery-os"
     }
   ]
 }

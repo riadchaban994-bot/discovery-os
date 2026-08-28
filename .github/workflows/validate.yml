@@ -1,0 +1,82 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  self-check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.9', '3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Self-check (structure, references, statistics, assets)
+        run: python3 tests/validate.py
+
+      - name: Analysis scripts run end to end
+        run: |
+          cd skills/discovery-quant/scripts
+          python3 sample_size.py proportion --baseline 0.05 --mde-rel 0.10 --daily 4000
+          python3 sample_size.py srm --counts 10432 9987
+          python3 experiment_analysis.py binary --control 1204 24010 --variant 1310 23980
+          python3 experiment_analysis.py multiple --pvalues 0.012 0.031 0.048 0.20 0.44
+
+      - name: Optional numpy paths (Bayesian, CUPED)
+        run: |
+          pip install --quiet numpy
+          cd skills/discovery-quant/scripts
+          python3 experiment_analysis.py binary --control 1204 24010 --variant 1310 23980 --bayes
+
+  installer:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install into a sandbox home, then uninstall
+        shell: bash
+        run: |
+          set -euo pipefail
+          SANDBOX="$(mktemp -d)"
+          mkdir -p "$SANDBOX/.claude" "$SANDBOX/.codex" "$SANDBOX/.gemini"
+          HOME="$SANDBOX" ./install.sh
+
+          for runtime in .claude .codex .gemini .agents; do
+            for skill in product-discovery discovery-interviewing discovery-synthesis \
+                         discovery-quant discovery-experiments discovery-prototyping \
+                         discovery-ops; do
+              test -f "$SANDBOX/$runtime/skills/$skill/SKILL.md" \
+                || { echo "missing $runtime/skills/$skill"; exit 1; }
+            done
+          done
+          test -f "$SANDBOX/.claude/commands/discovery.md"
+          echo "install verified across 4 runtimes"
+
+          HOME="$SANDBOX" ./install.sh --uninstall
+          remaining=$(find "$SANDBOX" -name SKILL.md | wc -l | tr -d ' ')
+          test "$remaining" = "0" || { echo "uninstall left $remaining files"; exit 1; }
+          echo "uninstall verified"
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build release artifacts
+        run: ./package.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: discovery-os-dist
+          path: dist/

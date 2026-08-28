@@ -4,7 +4,7 @@
   "description": "A master product discovery system for AI agents. Routes any discovery question to the right method for the evidence you actually have, and enforces a sixteen-rule constitution that stops AI fabricating customers, numbers, quotes and confidence. Covers interviewing, qualitative coding and synthesis, quantitative analysis with runnable scripts, assumption mapping, the full experiment library, prototyping, and continuous discovery operations. Grounded in Torres, Cagan, Ulwick, Moesta, Fitzpatrick, Bland and Osterwalder, Savoia, Kohavi, and Braun and Clarke.",
   "author": {
     "name": "Riad Chaban",
-    "url": "https://www.linkedin.com/in/riadchaban"
+    "url": "https://github.com/riadchaban994-bot"
   },
   "license": "MIT",
   "keywords": [
@@ -26,5 +26,7 @@
     "anti-hallucination"
   ],
   "skills": "./skills/",
-  "commands": "./commands/"
+  "commands": "./commands/",
+  "homepage": "https://github.com/riadchaban994-bot/discovery-os",
+  "repository": "https://github.com/riadchaban994-bot/discovery-os"
 }

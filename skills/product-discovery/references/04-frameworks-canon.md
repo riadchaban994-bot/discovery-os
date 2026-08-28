@@ -197,6 +197,9 @@ validated learning, innovation accounting, pivot or persevere.
 *For:* the loop, and for innovation accounting in genuinely new ventures.
 *Not for:* an excuse to ship an incomplete product. Ries's MVP is an experiment, not a
 release.
+*A note on his vocabulary:* "validated learning" is Ries's term and it is used here to name
+his concept. It is not a licence to write "validated" in your own outputs. Evidence
+accumulates or fails to; use the four confidence levels instead.
 
 **Lean UX.** Jeff Gothelf and Josh Seiden (2013). Hypothesis format: We believe [outcome]
 will be achieved if [user] attains [benefit] with [feature]. We will know we are right when
