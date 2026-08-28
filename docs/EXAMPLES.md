@@ -17,6 +17,7 @@ What the skills actually do, in the shape they do it.
 - [5. Designing an interview](#5-designing-an-interview)
 - [6. Setting a test threshold](#6-setting-a-test-threshold)
 - [7. When it tells you not to bother](#7-when-it-tells-you-not-to-bother)
+- [8. When it is not consumer software](#8-when-it-is-not-consumer-software)
 
 ---
 
@@ -305,3 +306,61 @@ And if the real motive is that a stakeholder wants evidence before approving,
 say so. That is a legitimate goal and it needs a much cheaper instrument than
 a decision-grade study.
 ```
+
+---
+
+## 8. When it is not consumer software
+
+Every example above is a consumer or B2B software product, which is the default the whole
+field is written for. Here is what changes when it is not.
+
+**You:**
+
+> I own an internal expense tool at a 12,000-person company. Everyone complains about it.
+> Usage is 100% because they have no choice. Where do I even start?
+
+```
+Mode: ASSESS
+
+market = internal or captive. That changes three things before we go further.
+
+1. Adoption is meaningless here and so is engagement. They cannot leave. The
+   100% is the mandate, not the product. Reporting it as anything else is the
+   most common measurement error in internal product work.
+
+   What replaces it is task cost: time to complete a submission at the median
+   and the 90th percentile, error and rework rate, rejection and resubmission
+   rate, help-desk contacts per hundred submissions, and the hours the finance
+   team spends correcting. The business case is fully-loaded minutes times
+   frequency times 12,000, which is a hard number finance accepts.
+
+2. Your first study is not research, it is a query. The records already exist
+   under authority you already have: workflow audit trails, approval and
+   rejection logs, help-desk tickets by category, and the exports people take.
+   Two days, no recruiting, no consent process, no procurement.
+
+   Add the shadow-process indicator, which is the most honest signal a captive
+   tool emits: what are people doing in a spreadsheet instead, and why.
+
+3. Before you code a single complaint, separate policy pain from tool pain.
+   In expense, procurement, HR and compliance systems a large share of what
+   everyone complains about is a rule owned by Finance, Audit or Legal that you
+   cannot change. Mixing them gives you a backlog of things you are not allowed
+   to fix, and it discredits the research the first time you present it.
+
+One caution on the evidence side. Because your users cannot decline, the top of
+the evidence ladder is unavailable to you: fake doors and adoption numbers say
+nothing about value here. Your commitment signal is unpaid effort. Someone
+maintaining a shadow spreadsheet has told you more than any satisfaction survey
+will.
+
+Next action: pull help-desk tickets by category for the last two quarters and
+the rejection and resubmission rate by expense type. Then find three people who
+keep their own spreadsheet and ask to see it.
+```
+
+The same shift happens for hardware sold through distributors, for clinical tools, for
+public services and for marketplaces. Eight market rows, each replacing the parts of the
+default model that do not survive contact with that context. The full set is in
+`skills/product-discovery/references/01-intake-and-routing.md`, Step 3a.
+
