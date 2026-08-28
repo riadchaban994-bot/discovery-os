@@ -100,6 +100,12 @@ still a model.
 with a timestamp.
 **Fails when:** done by someone who knows the shortcuts.
 
+### A12 Competitor teardown `[L1] [1 day]`
+**Answers:** what the category has trained customers to expect, and where the gaps are.
+**How:** map their flows against the jobs your evidence has surfaced, not against a
+feature checklist.
+**Fails when:** it becomes a feature-parity list. Copying a competitor's feature copies
+their unvalidated bet.
 ### A13 Operational and regulatory records you already hold `[L4] [1-3 days] [free]`
 **Answers:** what is actually happening, at full population, from data the organisation
 already has under existing operational authority. No recruiting, no consent process, no
@@ -142,14 +148,32 @@ and setting sit from yours. State the discount and the reason.
 pushes people to spend months generating weaker primary evidence than a morning of reading
 would have returned. See `references/03-evidence-ledger.md`.
 **In a domain with a literature, this is frequently the cheapest and strongest study
-available, and it should be step one.**
+available.**
 
-### A12 Competitor teardown `[L1] [1 day]`
-**Answers:** what the category has trained customers to expect, and where the gaps are.
-**How:** map their flows against the jobs your evidence has surfaced, not against a
-feature checklist.
-**Fails when:** it becomes a feature-parity list. Copying a competitor's feature copies
-their unvalidated bet.
+**A13 or A14 first?** Run them in parallel; they answer different questions and neither
+blocks the other. A13 tells you what is happening *here*, at your population, right now.
+A14 tells you what is already established *anywhere*, usually at a better sample and design
+than you can afford. Clinical, public-health and education work typically has both a rich
+operational record and a real literature, and a week spent on one while ignoring the other
+is a week wasted either way.
+
+### A15 Field trial / alpha programme `[L4-L6] [4-12 weeks]`
+**Answers:** how the thing behaves in the real environment, on real sites, over enough time
+for the failure modes to appear. For a physical product this is the closest you get to a
+controlled experiment, because randomisation across 200 factories is not available.
+**Needs:** three to ten named sites that agree to run it and report back, a contact at each,
+and a defined reporting cadence. In a channel-sold product the distributor usually has to be
+brought in as a partner rather than routed around.
+**How:** instrument the units if you can. Fixed check-in schedule. Log every failure,
+workaround and support call with its site and date. Ask what they stopped doing, and what
+they went back to.
+**Proves:** durability, environment tolerance, installation reality, the support burden per
+unit, and whether anyone uses the feature you built it for.
+**Cannot prove:** demand at scale, or anything about sites unlike the ones who volunteered,
+and volunteers are systematically your most engaged customers.
+**Fails when:** run for less time than the failure mode takes to appear, or when the sites
+are chosen for being easy. Include one hostile environment on purpose.
+
 
 ---
 
@@ -594,7 +618,9 @@ exists.
 ## J. When you have nothing
 
 The honest set for `customer_access = none`, `instrumentation = none`,
-`product_state = concept`. Every one of these is L1-L2. Say so.
+`product_state = concept`. Most of these are L1-L2 and you should say so. The exception is
+item 1: in a domain with a published literature, a controlled trial is graded on its own
+design and can be far stronger than anything else on this list.
 
 1. Desk research with sources and dates, gaps named explicitly. In a domain with a real
    published literature, this is A14 and it is graded on each source's own design, not as

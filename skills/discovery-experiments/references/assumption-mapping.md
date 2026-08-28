@@ -114,9 +114,10 @@ If value is unevidenced, test value first, even though it is harder.
 ```
 | # | Assumption | Category | Importance | Evidence | Freezes on | Test | Threshold | Owner | Status |
 |---|-----------|----------|------------|----------|------------|------|-----------|-------|--------|
-| 1 | Merchants pay 5% of order value | Viability | Collapse | L0 | Pre-sale to 20 | 5 of 20 | | queued |
-| 2 | Partner API p95 under 800ms | Feasibility | Collapse | L1 | Spike, 2 days | p95<800ms | | running |
-| 3 | Setup under 10 min unaided | Usability | Harder | L0 | 5 usability sessions | 4 of 5 | | queued |
+| 1 | Merchants pay 5% of order value | Viability | Collapse | L0 | - | Pre-sale to 20 | 5 of 20 | | queued |
+| 2 | Partner API p95 under 800ms | Feasibility | Collapse | L1 | - | Spike, 2 days | p95<800ms | | running |
+| 3 | Setup under 10 min unaided | Usability | Harder | L0 | - | 5 usability sessions | 4 of 5 | | queued |
+| 4 | Sensor housing fits the DIN rail | Feasibility | Collapse | L1 | 2026-11-14 tooling | Fit test on 3 cabinets | 3 of 3 | | queued |
 ```
 
 Review it weekly. Assumptions that have been tested move out; new ones surface as the

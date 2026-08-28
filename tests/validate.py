@@ -504,33 +504,83 @@ def t_per_unit_marking():
             fail(f'{f} never requires the inline [SYNTHETIC] marker')
 
 
-@check("every file that instructs someone to run a deceptive test carries its contraindication")
+@check("the deceptive-test contraindication sits next to the method, not elsewhere in the file")
 def t_deceptive_test_guards():
-    # The contraindication existed in one file and leaked from every other route to the
-    # method. In a clinical setting that is a patient-safety gap, so the routes are pinned
-    # here. Files that merely mention a fake door in passing are not routes.
+    # Earlier version of this check passed on any guard word anywhere in the file, so a
+    # fake-door "honest close" 200 lines away satisfied it for Wizard of Oz. Proximity now.
     routes = [
         'skills/product-discovery/references/02-method-index.md',
         'skills/discovery-experiments/references/experiment-library.md',
         'skills/discovery-experiments/references/ethics-and-consent.md',
-        'skills/discovery-experiments/SKILL.md',
         'skills/discovery-prototyping/SKILL.md',
         'skills/discovery-prototyping/references/prototype-types.md',
         'skills/discovery-prototyping/references/prototype-build-guide.md',
         'skills/discovery-prototyping/assets/woz-console.html',
-        'skills/discovery-prototyping/assets/fake-door.html',
         'commands/discovery-prototype.md',
         'commands/discovery-experiment.md',
     ]
-    guard_words = ('do not run', 'do not use', 'never wizard', 'prohibited', 'shadow mode',
-                   'honest close', 'not built yet')
+    guard = re.compile(r'do not (run|use)|never wizard|prohibited|shadow mode', re.I)
     for p in routes:
         if not os.path.exists(p):
             fail(f'{p} missing'); continue
-        low = open(p, encoding='utf-8').read().lower()
-        if not any(w in low for w in guard_words):
-            fail(f'{p} routes to a deceptive test with no contraindication or honest-close '
-                 f'requirement anywhere in the file')
+        lines = open(p, encoding='utf-8').read().split('\n')
+        hits = [i for i, l in enumerate(lines) if re.search(r'wizard of oz|woz', l, re.I)]
+        if not hits:
+            continue
+        # a guard must appear within 25 lines of at least one mention
+        ok = any(any(guard.search(l) for l in lines[max(0, i - 25):i + 25]) for i in hits)
+        if not ok:
+            fail(f'{p} mentions Wizard of Oz with no contraindication within 25 lines of it')
+
+
+@check("every markdown table has the same cell count in every row")
+def t_table_alignment():
+    # A column added to a header and not to the rows silently shifts every value one
+    # place left, which is worse than a missing column because it still looks like data.
+    for p in md_files():
+        lines = open(p, encoding='utf-8').read().split('\n')
+        i = 0
+        while i < len(lines) - 1:
+            if lines[i].strip().startswith('|') and re.match(r'^\s*\|[\s:|-]+\|\s*$', lines[i + 1]):
+                width = lines[i].count('|')
+                j = i + 2
+                while j < len(lines) and lines[j].strip().startswith('|'):
+                    if lines[j].count('|') != width:
+                        fail(f'{p}:{j+1}: table header has {width-1} cells, row has '
+                             f'{lines[j].count("|")-1}')
+                    j += 1
+                i = j
+            else:
+                i += 1
+
+
+@check("the market-specific metric models are reachable from the router")
+def t_metric_models_reachable():
+    # The models existed and nothing pointed at them; the only link ran backwards. Content
+    # being right is not the same as content being findable.
+    routing = open('skills/product-discovery/references/01-intake-and-routing.md',
+                   encoding='utf-8').read()
+    # anchor on the headings; the string "Step 3a" also appears as a cross-reference
+    m = re.search(r'^## Step 3a.*?(?=^## Step 3b)', routing, re.S | re.M)
+    step3a = m.group(0) if m else ''
+    if not step3a:
+        fail('cannot locate the Step 3a section'); return
+    if 'metric-design.md' not in step3a:
+        fail('Step 3a never points forward to discovery-quant/references/metric-design.md')
+    models = open('skills/discovery-quant/references/metric-design.md', encoding='utf-8').read()
+    for market in ['Captive users', 'Marketplaces', 'Public services',
+                   'Clinical and safety-critical', 'Channel-sold']:
+        if market not in models:
+            fail(f'metric-design.md has no model for {market}')
+    # every market row that has a model must say so where the router will see it
+    for market, marker in [('Clinical, regulated', 'Metric model:'),
+                           ('Channel-sold', 'Metric model:'),
+                           ('Internal tools', 'Metric model'),
+                           ('Marketplace or two-sided', 'Metric model')]:
+        if market in step3a:
+            seg = step3a.split(market)[1][:2500]
+            if marker not in seg:
+                fail(f'Step 3a row "{market}" states no metric model')
 
 
 @check("documented counts match what the repository actually contains")

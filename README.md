@@ -243,7 +243,8 @@ qual_data          none / raw / coded
 instrumentation    none / partial events / full analytics / experimentation platform
 volume             under 100 per week / 100 to 1k / 1k to 10k / over 10k
 product_state      concept / prototype / live and small / live at scale
-market             B2C mass / B2B SMB / B2B enterprise / internal or government / marketplace
+market             B2C mass / B2B SMB / B2B enterprise / channel-sold / marketplace /
+                   internal or captive / government / clinical or regulated
 ```
 
 Then the overrides fire, and any one of them can veto the method you wanted:

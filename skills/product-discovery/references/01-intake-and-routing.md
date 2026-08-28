@@ -306,6 +306,10 @@ stocking cost, channel margin, support burden, shelf or catalogue space. Those h
 to do with end-user value and they decide whether you sell anything.
 **Commitment signal:** a stocking order placed at the distributor's own risk, or a design
 win at the customer's engineering team. Not end-user enthusiasm relayed to you.
+**Metric model:** sell-in is not sell-through, and the gap is inventory that comes back.
+Track both, plus stocking depth, RMA and warranty rate, attach rate, and time from design win
+to first production order. Full set, plus the discovery corpus for a physical product, in
+`../discovery-quant/references/metric-design.md`.
 **Unit economics** must carry the channel margin stack. `[HEURISTIC]` in industrial
 distribution it is commonly a substantial share of list price, often a quarter to
 two-fifths, but it varies enough by sector that you must get your own numbers from the
@@ -369,6 +373,16 @@ being displayed and you compare what it would have done against what happened, c
 essentially no risk; and the **stepped-wedge rollout**, where every unit receives the
 intervention eventually and the order is randomised, which is why it gets approved.
 **Published literature is not L1 here.** See `references/03-evidence-ledger.md`.
+**Metric model:** the field already has one and inventing your own is slower and less
+credible with the clinicians whose behaviour you are trying to change. Alert or interruption
+burden per clinician per shift, override rate by alert type, appropriateness-adjusted
+override, time to dismiss, and the effect on the downstream clinical action. The trap:
+optimising override rate by suppressing alerts improves the metric and can harm patients, so
+any alert-burden work needs a safety guardrail on missed events. Full set in
+`../discovery-quant/references/metric-design.md`.
+**Note on cost:** appropriateness-adjusted override needs chart review or adjudication. It is
+not in the audit log and it is the expensive part. Budget for it or say you are not measuring
+it.
 **Deceptive tests are prohibited.** No fake doors, no Wizard of Oz, no concealment of who or
 what is generating a clinical, financial or legal output.
 

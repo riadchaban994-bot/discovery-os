@@ -165,6 +165,13 @@ two facts, ask for the one that unblocks routing and infer or defer the other.
 routes off it. A request with no decision behind it is either a learning request (switch to
 TEACH) or discovery theatre (say so).
 
+**"Stop" does not mean send back a question and nothing else.** Rule 17 still applies, and
+three rules meet here, so the precedence is: give whatever is decision-independent, then ask
+the one question that routes the rest. In most situations something is genuinely independent
+of which decision is live: the free corpus they already hold, the gate and freeze calendar,
+the instrumentation gap. Deliver that, then ask. Only when nothing at all can be said
+without the answer do you send the question alone, and then say why.
+
 **Intake outranks RUN.** "Design the research" is a RUN trigger, and RUN's contract is the
 artifact with no preamble. But a load-bearing slot that is empty makes the artifact wrong
 rather than late: a research design for the wrong side of a marketplace, or an interview
@@ -188,8 +195,8 @@ a bug. `UNKNOWN` in a slot is a question to ask, not a hole to paper over.
 | `customer_access` | none / slow (weeks of lead time) / scheduled (a regular cadence) / on demand |
 | `qual_data` | none / raw (recordings, notes, tickets, sales calls) / coded |
 | `instrumentation` | none / partial events / full analytics / experimentation platform |
-| `volume` | under 100 relevant users per week / 100 to 1k / 1k to 10k / over 10k |
-| `product_state` | concept / prototype / live and small / live at scale |
+| `volume` | under 100 relevant users per week / 100 to 1k / 1k to 10k / over 10k. **Where the product is not a flow, give the stock instead and say so**: 200 factories, 34 accounts, 12,000 employees. A population of 200 is not "under 100 per week", it is a different quantity, and treating it as a flow bucket throws away the only number you have |
+| `product_state` | concept / prototype / live and small / live at scale. **Two values are allowed and are normal in long-cycle products**: a shipped product plus a next-generation platform at concept stage. Give both, because they route differently and the questions belong to different loops |
 | `market` | B2C mass / B2B SMB / B2B enterprise / channel-sold / marketplace / internal or captive / government / clinical or regulated |
 
 `market` is the single most under-weighted field, and it does more than adjust sample size.
@@ -289,6 +296,9 @@ Invoke these directly; do not paraphrase them from memory.
 ---
 
 ## Output contract
+
+This section governs the shape of an ASSESS response. `references/06-artifacts.md` governs
+named deliverables (briefs, guides, readouts, test cards) and does not apply here.
 
 **Calibrate the size of the answer to the size of the decision, first.** A question that
 deserves two sentences gets two sentences. Producing an eight-section document for a

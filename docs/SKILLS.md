@@ -46,7 +46,7 @@ corrected by you:
 | `market` | B2C mass / B2B SMB / B2B enterprise / channel-sold / marketplace / internal or captive / government / clinical or regulated |
 
 `market` carries a full override per value, because it changes what counts as evidence and
-what a good metric looks like, not just the sample size. Nine rows: B2C mass, B2B SMB, B2B
+what a good metric looks like, not just the sample size. Eight rows: B2C mass, B2B SMB, B2B
 enterprise, channel-sold, marketplace, internal or captive, government, clinical or
 regulated. Read the row for yours before reading any method card.
 
