@@ -509,6 +509,18 @@ Run `python3 tests/validate.py` before opening a pull request.
 
 ---
 
+## Companion
+
+[**Tracking OS**](https://github.com/riadchaban994-bot/tracking-os) does the other half. Discovery OS
+decides what to build; Tracking OS decides what to measure once you have built it. It walks the app,
+screenshots every surface, and writes the tracking plan from what it saw, grading every event by how
+strong the evidence actually is.
+
+```bash
+/plugin marketplace add riadchaban994-bot/tracking-os
+/plugin install tracking-os@riadchaban
+```
+
 ## Licence
 
 MIT. Use it commercially, fork it, teach from it. Attribution appreciated, not required.
