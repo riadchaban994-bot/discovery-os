@@ -1,12 +1,12 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "discovery-os",
+  "name": "riadchaban",
   "owner": {
     "name": "Riad Chaban",
     "url": "https://www.linkedin.com/in/riadchaban"
   },
   "metadata": {
-    "description": "Discovery OS: a master product discovery system for Claude Code, Codex and any agent that reads skills. Built for ProductTank Syria, 2026.",
+    "description": "Riad Chaban's plugin marketplace. Discovery OS: a master product discovery system for Claude Code, Codex and any agent that reads skills. Given away at ProductTank Syria, 2026.",
     "version": "1.0.0"
   },
   "plugins": [
@@ -20,7 +20,12 @@
         "url": "https://www.linkedin.com/in/riadchaban"
       },
       "license": "MIT",
-      "keywords": ["product-discovery", "user-research", "experimentation", "product-management"]
+      "keywords": [
+        "product-discovery",
+        "user-research",
+        "experimentation",
+        "product-management"
+      ]
     }
   ]
 }

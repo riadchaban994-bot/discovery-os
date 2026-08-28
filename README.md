@@ -40,7 +40,7 @@ research that changes no decision.
 then
 
 ```bash
-/plugin install discovery-os@discovery-os
+/plugin install discovery-os@riadchaban
 ```
 
 Restart, and `/discovery` is live.
