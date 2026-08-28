@@ -403,6 +403,27 @@ def t_doc_links():
                     fail(f'{t}: anchor {anchor} not found in {rel}')
 
 
+@check("installer resolve_source writes only the path to stdout")
+def t_installer_stdout_clean():
+    # Regression: when piped from curl the script clones itself, and any progress
+    # message written to stdout is captured as part of the source path, which
+    # silently breaks every install that is not run from a clone.
+    src = open('install.sh', encoding='utf-8').read()
+    m = re.search(r'resolve_source\(\)\s*\{(.*?)\n\}', src, re.S)
+    if not m:
+        fail('cannot find resolve_source in install.sh'); return
+    body = m.group(1)
+    for line in body.split('\n'):
+        st = line.strip()
+        if not st or st.startswith('#'):
+            continue
+        # every emitting call inside this function must be redirected to stderr
+        if re.match(r'(dim|bold|ok|skip|warn|echo)\b', st) and '>&2' not in st:
+            fail(f'install.sh resolve_source writes to stdout: "{st[:60]}"')
+        if st.startswith('git clone') and '>&2' not in st:
+            fail('install.sh: git clone in resolve_source must redirect to stderr')
+
+
 # ---------------------------------------------------------------------------
 def main():
     checks = [v for k, v in sorted(globals().items())

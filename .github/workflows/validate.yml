@@ -70,6 +70,22 @@ jobs:
           test "$remaining" = "0" || { echo "uninstall left $remaining files"; exit 1; }
           echo "uninstall verified"
 
+      - name: Install the way curl pipes it, with only the script present
+        shell: bash
+        run: |
+          set -euo pipefail
+          # The curl path has no skills/ next to the script, so resolve_source must
+          # clone. Any progress output on stdout gets captured as the source path
+          # and breaks the install silently. This is the regression guard.
+          SANDBOX="$(mktemp -d)"; SCRIPTDIR="$(mktemp -d)"
+          mkdir -p "$SANDBOX/.claude"
+          cp install.sh "$SCRIPTDIR/install.sh"
+          cd "$SCRIPTDIR"
+          HOME="$SANDBOX" DISCOVERY_OS_REPO="file://$GITHUB_WORKSPACE" bash install.sh
+          test -f "$SANDBOX/.claude/skills/product-discovery/SKILL.md" \
+            || { echo "curl-style install did not land the skills"; exit 1; }
+          echo "curl-style install verified"
+
   package:
     runs-on: ubuntu-latest
     steps:

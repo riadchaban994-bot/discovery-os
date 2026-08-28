@@ -51,8 +51,9 @@ resolve_source() {
   if [ -n "$here" ] && [ -d "$here/skills" ]; then printf '%s' "$here"; return; fi
   command -v git >/dev/null 2>&1 || { echo "git is required to fetch Discovery OS" >&2; exit 1; }
   local tmp; tmp="$(mktemp -d)"
-  dim "  fetching $REPO_URL"
-  git clone --depth 1 --quiet "$REPO_URL" "$tmp/discovery-os"
+  # progress goes to stderr: stdout is captured by the caller as the source path
+  dim "  fetching $REPO_URL" >&2
+  git clone --depth 1 --quiet "$REPO_URL" "$tmp/discovery-os" >&2
   printf '%s' "$tmp/discovery-os"
 }
 
