@@ -37,6 +37,15 @@ The shortest path, and the one that keeps itself updated.
 
 Restart Claude Code. You now have seven skills and seven slash commands.
 
+Verify it landed:
+
+```bash
+claude plugin details discovery-os
+```
+
+That prints the component inventory and the projected token cost. Expect fourteen
+components and roughly 880 always-on tokens.
+
 `riadchaban994-bot/discovery-os` is the repository. `riadchaban` is the marketplace name
 declared inside it. They differ on purpose, so the install command reads as a name rather
 than a path.

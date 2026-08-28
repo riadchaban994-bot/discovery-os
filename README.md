@@ -472,6 +472,11 @@ Because a discovery tool that collects your product data without asking would be
 
 ## Requirements
 
+**Context cost.** Installed, the seven skills and seven commands add about **880 tokens to
+every session** as always-on descriptions, which is what lets them trigger on their own. The
+commander costs roughly 5k more only when it actually fires; each specialist 1.1k to 1.6k.
+Figures from `claude plugin details discovery-os`, so you can check them yourself.
+
 | For | You need |
 |---|---|
 | The skills | Nothing. They are Markdown |
