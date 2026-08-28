@@ -628,6 +628,41 @@ def t_documented_counts():
         fail(f'expected 13 templates, found {templates}')
 
 
+@check("every sub-skill carries the terseness and question rules, not just the commander")
+def t_output_rules_propagated():
+    # Same drift class as the per-unit marking gap: a rule that lives only in the master
+    # is absent when someone invokes a specialist directly.
+    for sk in SKILLS:
+        if sk == 'product-discovery':
+            continue
+        s = open(f'skills/{sk}/SKILL.md', encoding='utf-8').read()
+        if 'Terse by default' not in s:
+            fail(f'{sk}: no terseness rule; invoked directly it would default to prose')
+        if 'AskUserQuestion' not in s:
+            fail(f'{sk}: never mentions AskUserQuestion, so it cannot use the tool')
+        if 'No preamble' not in s:
+            fail(f'{sk}: does not forbid preamble')
+    master = open('skills/product-discovery/SKILL.md', encoding='utf-8').read()
+    for needed in ['## Output contract', '## Asking questions', 'AskUserQuestion',
+                   'Ask nothing']:
+        if needed not in master:
+            fail(f'product-discovery/SKILL.md missing "{needed}"')
+
+
+@check("the worked examples obey the contract's own word ceilings")
+def t_examples_within_ceiling():
+    # The docs demonstrated the shape the contract now forbids. Docs drift from a rule
+    # faster than the rule drifts from itself, so this pins them together.
+    CEILING = 300
+    src = open('docs/EXAMPLES.md', encoding='utf-8').read()
+    for part in re.split(r'\n## ', src)[1:]:
+        title = part.split('\n')[0].strip()
+        words = sum(len(b.split()) for b in re.findall(r'```\n(.*?)\n```', part, re.S))
+        if words > CEILING:
+            fail(f'docs/EXAMPLES.md "{title[:40]}" shows a {words}-word response; the '
+                 f'contract ceiling is {CEILING}')
+
+
 # ---------------------------------------------------------------------------
 def main():
     checks = [v for k, v in sorted(globals().items())

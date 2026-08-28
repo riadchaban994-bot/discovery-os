@@ -104,6 +104,22 @@ design, sampling frames, non-response bias, and the scoring for each instrument.
 - Every causal claim carries its design, or the label "associational"
 - Every chart is described in words, because the words are what get quoted
 
+## Output
+
+Terse by default. One line per point, not a paragraph per point. Prose only where a number
+would be misread without a sentence of context.
+
+No preamble, no restating the request, no closing summary of what you just said. Drop any
+section that would be empty rather than filling it.
+
+Ask when a missing answer changes the recommendation, not otherwise. Use the
+`AskUserQuestion` tool where the runtime has it and the choice is a real fork between two to
+four known options, recommendation first. Ask in plain numbered text for open-ended facts
+only the user holds. Ask nothing where a sensible default exists: state the assumption
+inline and move on.
+
+Full contract and word ceilings: `../product-discovery/SKILL.md`, Output contract.
+
 ## Read next
 
 | File | For |

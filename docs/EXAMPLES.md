@@ -28,69 +28,44 @@ What the skills actually do, in the shape they do it.
 > Our merchants keep asking for a bulk product upload. Should we build it? We have about
 > 3,000 active merchants and decent analytics.
 
-**It does not answer the question as asked.** It finds the real one first, states what it
-inferred so you can correct it, and asks only what it cannot infer.
+It does not answer as asked. It finds the real question, states what it inferred so you can
+correct it, and asks only what it cannot infer.
 
 ```
 Mode: ASSESS
 
-The real question is not whether to build bulk upload. It is which risk is
-unresolved for it. "Merchants ask for it" is a feature request, which is the
-visible end of a story about something that went wrong. The job is to find
-that story and then decide what actually addresses it.
+Not "should we build bulk upload". Which risk is unresolved for it. "Merchants ask
+for it" is the visible end of a story about something that went wrong; find the
+story first.
 
-Inferred from what you wrote, correct anything wrong:
-  customer_access    scheduled (you have 3,000 merchants you can reach)
-  instrumentation    full analytics
-  volume             ~3,000 active, so a surface-level A/B is marginal
-  product_state      live
-  market             B2B SMB  [ASSUMPTION, confirm]
+Inferred, correct anything wrong:
+  access scheduled · instrumentation full · volume ~3,000 active
+  product live · market B2B SMB [ASSUMPTION]
 
-Three questions:
-  1. What decision does this change? Is bulk upload competing with something
-     else for the same build slot, or is this a yes/no on its own?
-  2. Roughly how many merchants have asked, out of 3,000, and where did the
-     asks come from? Support, sales, or one large account?
-  3. Do you know how many products a typical merchant lists in their first
-     week, and how that compares to merchants who stay?
-```
+Method: trace mining, then 5 interviews. 2 days, then a week.
+  Search logs, tickets mentioning upload or import, session replays of add-product,
+  first-week listing counts. Free, and it sharpens the interviews.
+Beats a survey, which would measure whether merchants like the idea. They will.
+An A/B is unavailable: 3,000 active will not power a realistic effect.
 
-Once you answer, it routes:
+Will not tell you: whether they would pay more or stay longer. That needs a
+commitment test.
 
-```
-Method: trace mining first, then five interviews. Two days, then one week.
-
-Why this beats the alternatives here:
-  - You have a live product, so the cheapest evidence already exists and is
-    free. Search logs, support tickets mentioning upload or import, session
-    replays of the add-product flow, and the drop-off in first-week listing
-    counts. That is two days and it sharpens everything after it.
-  - A survey is wrong for this. It would tell you how many merchants like the
-    idea of bulk upload, which they will, and nothing about what they were
-    trying to do.
-  - An A/B test is not available yet. At 3,000 active merchants the surface
-    does not have the volume to detect a realistic effect in a sensible
-    window. Run sample_size.py against your real numbers to confirm.
-
-What this will not tell you:
-  Whether merchants would pay more, or stay longer, if it existed. Trace
-  mining and interviews establish the problem and its shape. Willingness to
-  pay needs a commitment test, and retention impact needs an experiment you
-  cannot currently run.
-
-Cost: 2 analyst days, then 5 sessions over one week. One person.
+Cost: 2 analyst days, then 5 sessions over a week. One person.
 
 Open assumptions:
-  1. Merchants asking are representative of merchants who matter. Unverified.
-     Check the revenue concentration of the askers before weighting them.
-  2. Market is B2B SMB. If any of these are enterprise accounts, the sample
-     logic changes.
+  Askers are representative. Check revenue concentration before weighting them.
 
-Next action: pull every support ticket and search query containing upload,
-import, bulk or csv from the last 90 days, and count distinct merchants.
+Need from you:
+  1. Is this competing for a build slot, or a yes/no on its own?
+  2. How many asked, out of 3,000, and through which channel?
+
+Next: pull every ticket and search query containing upload, import, bulk or csv
+from the last 90 days. Count distinct merchants.
 ```
 
----
+Two questions, not five. Both are facts only they hold. Everything else was inferred and
+shown rather than asked.
 
 ## 2. Auditing a PRD
 
@@ -311,8 +286,7 @@ a decision-grade study.
 
 ## 8. When it is not consumer software
 
-Every example above is a consumer or B2B software product, which is the default the whole
-field is written for. Here is what changes when it is not.
+Every example above is software with a voluntary user. Here is what changes when it is not.
 
 **You:**
 
@@ -322,45 +296,31 @@ field is written for. Here is what changes when it is not.
 ```
 Mode: ASSESS
 
-market = internal or captive. That changes three things before we go further.
+market = internal or captive. Three things change before anything else.
 
-1. Adoption is meaningless here and so is engagement. They cannot leave. The
-   100% is the mandate, not the product. Reporting it as anything else is the
-   most common measurement error in internal product work.
+1. Adoption and engagement are meaningless. They cannot leave. 100% is the mandate.
+   Use task cost instead: time to submit at median and p90, rework rate, rejection
+   and resubmission rate, help-desk contacts per 100 submissions, finance hours
+   spent correcting. Business case = fully-loaded minutes x frequency x 12,000.
 
-   What replaces it is task cost: time to complete a submission at the median
-   and the 90th percentile, error and rework rate, rejection and resubmission
-   rate, help-desk contacts per hundred submissions, and the hours the finance
-   team spends correcting. The business case is fully-loaded minutes times
-   frequency times 12,000, which is a hard number finance accepts.
+2. Your first study is a query, not research. Workflow audit trails, approval and
+   rejection logs, help-desk tickets by category, exports people take. Two days, no
+   recruiting, no consent, no procurement.
+   Add the shadow-process indicator: what people do in a spreadsheet instead.
 
-2. Your first study is not research, it is a query. The records already exist
-   under authority you already have: workflow audit trails, approval and
-   rejection logs, help-desk tickets by category, and the exports people take.
-   Two days, no recruiting, no consent process, no procurement.
+3. Separate policy pain from tool pain before coding a single complaint. Much of
+   what everyone complains about is a rule owned by Finance or Audit that you
+   cannot change. Mixing them gives you a backlog you are not allowed to fix.
 
-   Add the shadow-process indicator, which is the most honest signal a captive
-   tool emits: what are people doing in a spreadsheet instead, and why.
+Ladder note: fake doors and adoption say nothing here. Your commitment signal is
+unpaid effort. Someone maintaining a shadow spreadsheet has told you more than any
+satisfaction survey will.
 
-3. Before you code a single complaint, separate policy pain from tool pain.
-   In expense, procurement, HR and compliance systems a large share of what
-   everyone complains about is a rule owned by Finance, Audit or Legal that you
-   cannot change. Mixing them gives you a backlog of things you are not allowed
-   to fix, and it discredits the research the first time you present it.
-
-One caution on the evidence side. Because your users cannot decline, the top of
-the evidence ladder is unavailable to you: fake doors and adoption numbers say
-nothing about value here. Your commitment signal is unpaid effort. Someone
-maintaining a shadow spreadsheet has told you more than any satisfaction survey
-will.
-
-Next action: pull help-desk tickets by category for the last two quarters and
-the rejection and resubmission rate by expense type. Then find three people who
-keep their own spreadsheet and ask to see it.
+Next: pull help-desk tickets by category for two quarters and the rejection rate by
+expense type. Then find three people who keep their own spreadsheet and ask to see it.
 ```
 
-The same shift happens for hardware sold through distributors, for clinical tools, for
-public services and for marketplaces. Eight market rows, each replacing the parts of the
-default model that do not survive contact with that context. The full set is in
+The same shift happens for hardware sold through distributors, clinical tools, public
+services and marketplaces. Eight market rows, each replacing the parts of the default model
+that do not survive that context. Full set in
 `skills/product-discovery/references/01-intake-and-routing.md`, Step 3a.
-

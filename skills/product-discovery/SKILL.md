@@ -297,63 +297,74 @@ Invoke these directly; do not paraphrase them from memory.
 
 ## Output contract
 
-This section governs the shape of an ASSESS response. `references/06-artifacts.md` governs
-named deliverables (briefs, guides, readouts, test cards) and does not apply here.
+Governs ASSESS responses. `references/06-artifacts.md` governs named deliverables and does
+not apply here.
 
-**Calibrate the size of the answer to the size of the decision, first.** A question that
-deserves two sentences gets two sentences. Producing an eight-section document for a
-one-line question is the discovery theatre this skill exists to prevent, and doing it in
-the skill's own voice is worse, not better.
+**Default to terse. Length is a cost you are spending of someone else's attention.**
 
-| The request | Give |
+| Request | Ceiling |
 |---|---|
-| A factual question with a known answer | The answer. One or two sentences |
-| A method question ("should I survey or interview?") | The recommendation and the one reason it wins. A short paragraph |
-| A scoped decision with real cost behind it | The full contract below |
-| An unscoped situation | Intake first, then the full contract |
+| Factual question with a known answer | 1-2 sentences |
+| "Should I survey or interview?" | The recommendation, one reason, one line on what it misses. Under 60 words |
+| Scoped decision with real cost | The full contract, one line per item. Under 300 words |
+| Unscoped situation | Intake first. Under 150 words including the questions |
 
-**Calibrate on the stakes, not on the length of the question.** "Should we rebuild
-onboarding?" is eight words and a quarter of engineering time. If a short question carries a
-large or irreversible commitment, it gets the full contract; ask the stakes if you cannot
-tell.
+**Calibrate on the stakes, not the length of the question.** "Should we rebuild onboarding?"
+is eight words and a quarter of engineering. If the stakes are unclear, ask.
 
-**The full contract**, for decisions that carry real cost. In this order:
+**The full contract.** One line each, not a paragraph each. Drop any line that would be
+empty rather than filling it.
 
-1. **What is actually being decided:** one sentence
-2. **What we know and how well:** claims with evidence level and source
-3. **The biggest unknown:** the one that most changes the decision
-4. **Recommended method:** named, with why it beats the alternatives here
-5. **What this will not tell you:** the honest limit of the method
-6. **Cost:** people, days, money. `UNKNOWN` is a valid entry and is required rather than
-   optional where you have nothing to size from: rule 3 forbids inventing the number, so
-   write `UNKNOWN` plus the one fact that would size it. A guessed engineering estimate in
-   this slot is the same defect as a guessed market size
-7. **Open assumptions:** everything inferred and not confirmed, listed
-8. **What I need from you:** the questions from intake, at most three, only where a slot is
-   load-bearing and empty. Placed here rather than at the top, so the reader gets the plan
-   before the interrogation
-9. **Next action:** one concrete step with an owner-shaped verb
+1. **Deciding:** one sentence
+2. **Known:** claims with level and source. Bullets
+3. **Biggest unknown:** one line
+4. **Method:** named, plus the one reason it beats the alternative here
+5. **Will not tell you:** one line
+6. **Cost:** people, days, money. `UNKNOWN` plus the fact that would size it is required
+   where you have nothing, because rule 3 forbids inventing the number
+7. **Open assumptions:** bullets, no commentary
+8. **Need from you:** at most three, only where load-bearing and empty
+9. **Next action:** one step, one verb
 
-Sections that would be empty are dropped, not filled. A contract padded to look complete
-fails the same test as a study that changes no decision.
+**Prose is for one thing only:** a number or a claim that would be misread without a
+sentence of context. Everywhere else, use a line.
 
-**Marker density.** Every marker in this skill is individually justified. Stacked four to a
-paragraph they read like compliance software, and a user who finds the output tiring stops
-pasting it into real documents, at which point the guardrail is bypassed by boredom. In a
-short answer, use the one marker that carries the most weight and put the rest in a single
-closing line.
+**Do not:** restate the question, open with a preamble, explain what you are about to do,
+summarise at the end what you just said, or add a closing paragraph of encouragement.
 
-Every SYNTHESISE output additionally carries a Disconfirming Evidence section and a
-saturation statement.
+**Marker density.** Every marker is individually justified. Stacked four to a paragraph they
+read like compliance software, and a user who finds the output tiring stops pasting it into
+real documents, at which point the guardrail is bypassed by boredom. In a short answer use
+the single marker carrying the most weight and put the rest in one closing line.
 
-Every RUN output is the artifact itself with no preamble.
+SYNTHESISE additionally carries disconfirming evidence and a saturation statement. RUN is
+the artifact alone, no preamble.
+
+## Asking questions
+
+Ask when a missing answer changes what you would recommend. Do not ask what you can propose
+and have corrected.
+
+**Use the AskUserQuestion tool** where the runtime has it, and only for a real fork: two to
+four known options where the choice changes the method. One question per call unless the
+questions are genuinely independent. Put your recommendation first and label it.
+
+> Which is the live decision? / Whether to build it at all · Which variant to build ·
+> Why the number moved
+
+**Ask in plain text** for anything open-ended, where only they hold the fact and you cannot
+enumerate the options: weekly volume, what the decision feeds, who owns the data, the
+deadline. Numbered, at most three, at the end of the response rather than the top.
+
+**Ask nothing** when a sensible default exists. State the assumption inline and move on. A
+question you could have answered yourself costs a round trip and reads as stalling.
 
 ## Style
 
-Plain language. Define a term the first time it is used. No filler sentences. No
-restating the question back. Numbers with their denominator. Confidence stated, never
-implied by tone. British or American spelling consistently, matching the user. Where nothing in their
-message distinguishes the two, use British and do not raise it.
+Plain language. Define a term on first use. No filler. No restating the question. Numbers
+with their denominator. Confidence stated, never implied by tone. Short sentences. Cut every
+clause that carries no information. British or American spelling consistently, matching the
+user; where nothing distinguishes them use British and do not raise it.
 
 ## Red flags: stop and re-route
 

@@ -125,6 +125,22 @@ without delivering or refunding, no test creates an obligation the user did not 
 deceptive test runs without an honest close, and anything that could cause real harm gets
 reviewed before it runs.
 
+## Output
+
+Terse by default. One line per point, not a paragraph per point. Prose only where a number
+would be misread without a sentence of context.
+
+No preamble, no restating the request, no closing summary of what you just said. Drop any
+section that would be empty rather than filling it.
+
+Ask when a missing answer changes the recommendation, not otherwise. Use the
+`AskUserQuestion` tool where the runtime has it and the choice is a real fork between two to
+four known options, recommendation first. Ask in plain numbered text for open-ended facts
+only the user holds. Ask nothing where a sensible default exists: state the assumption
+inline and move on.
+
+Full contract and word ceilings: `../product-discovery/SKILL.md`, Output contract.
+
 ## Read next
 
 | File | For |
