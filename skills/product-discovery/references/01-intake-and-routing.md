@@ -344,7 +344,8 @@ people doing in a spreadsheet instead, and why.
 **Separate policy pain from tool pain before coding a single complaint.** In expense,
 procurement, HR and compliance tools, a large share of what "everyone complains about" is a
 rule owned by Finance, Audit or Legal that the product team cannot change. Mixing the two
-produces a backlog of things you are not allowed to fix.
+produces a backlog of things you are not allowed to fix. Full metric set in
+`../discovery-quant/references/metric-design.md`.
 
 ### Government and public service
 **The outcome is a duty, not a growth target.** Judged against a statutory or published
