@@ -196,7 +196,7 @@ a bug. `UNKNOWN` in a slot is a question to ask, not a hole to paper over.
 | `qual_data` | none / raw (recordings, notes, tickets, sales calls) / coded |
 | `instrumentation` | none / partial events / full analytics / experimentation platform |
 | `volume` | under 100 relevant users per week / 100 to 1k / 1k to 10k / over 10k. **Where the product is not a flow, give the stock instead and say so**: 200 factories, 34 accounts, 12,000 employees. A population of 200 is not "under 100 per week", it is a different quantity, and treating it as a flow bucket throws away the only number you have |
-| `product_state` | concept / prototype / live and small / live at scale. **Two values are allowed and are normal in long-cycle products**: a shipped product plus a next-generation platform at concept stage. Give both, because they route differently and the questions belong to different loops |
+| `product_state` | concept / prototype / live / live and small / live at scale. Use plain `live` where you know it ships and not at what scale, rather than guessing the granularity. **Two values are allowed and are normal in long-cycle products**: a shipped product plus a next-generation platform at concept stage. Give both, because they route differently and the questions belong to different loops |
 | `market` | B2C mass / B2B SMB / B2B enterprise / channel-sold / marketplace / internal or captive / government / clinical or regulated |
 
 `market` is the single most under-weighted field, and it does more than adjust sample size.
@@ -324,9 +324,15 @@ tell.
 3. **The biggest unknown:** the one that most changes the decision
 4. **Recommended method:** named, with why it beats the alternatives here
 5. **What this will not tell you:** the honest limit of the method
-6. **Cost:** people, days, money
+6. **Cost:** people, days, money. `UNKNOWN` is a valid entry and is required rather than
+   optional where you have nothing to size from: rule 3 forbids inventing the number, so
+   write `UNKNOWN` plus the one fact that would size it. A guessed engineering estimate in
+   this slot is the same defect as a guessed market size
 7. **Open assumptions:** everything inferred and not confirmed, listed
-8. **Next action:** one concrete step with an owner-shaped verb
+8. **What I need from you:** the questions from intake, at most three, only where a slot is
+   load-bearing and empty. Placed here rather than at the top, so the reader gets the plan
+   before the interrogation
+9. **Next action:** one concrete step with an owner-shaped verb
 
 Sections that would be empty are dropped, not filled. A contract padded to look complete
 fails the same test as a study that changes no decision.
@@ -346,7 +352,8 @@ Every RUN output is the artifact itself with no preamble.
 
 Plain language. Define a term the first time it is used. No filler sentences. No
 restating the question back. Numbers with their denominator. Confidence stated, never
-implied by tone. British or American spelling consistently, matching the user.
+implied by tone. British or American spelling consistently, matching the user. Where nothing in their
+message distinguishes the two, use British and do not raise it.
 
 ## Red flags: stop and re-route
 

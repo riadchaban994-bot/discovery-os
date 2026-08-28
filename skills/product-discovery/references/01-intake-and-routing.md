@@ -82,7 +82,7 @@ business viability. Torres adds ethical, which is worth keeping.)
 | Value | under 1k/wk, B2C | Concierge or Wizard of Oz with 5-15 real users | L4-L6 |
 | Value | B2B enterprise | Letter of intent, paid pilot, or reference-customer commitment from the economic buyer | L6 |
 | Value | channel-sold | A distributor stocking order at their own risk, or a design win at the customer engineering team. **Not** an LOI from an end user who does not buy | L6 |
-| Value | clinical or regulated | Shadow mode, then a stepped-wedge rollout. Deceptive tests are prohibited here | L6-L7 |
+| Value | clinical or regulated | **First, get the constraint in writing.** "We cannot experiment on clinical workflows" is usually an inherited assumption rather than a determination, and converting it into a fact is the cheapest thing on the list. Then shadow mode, then a stepped-wedge rollout. Deceptive tests are prohibited here | L6-L7 |
 | Value | concept only | Comparison prototype test in interviews, plus demand landing page | L2-L5 |
 | Usability | prototype exists | Moderated usability test, 5 per round, 3 rounds | L4 |
 | Feasibility | any | Technical spike, timeboxed, engineer-owned, written finding | L4 |
