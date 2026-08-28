@@ -111,6 +111,10 @@ and does not refuse the work. It does the work with the guardrail made structura
 - A decision recorded on thin evidence gets a confidence label matching the evidence,
   not matching the user's confidence.
 
+A user who answers the objection inside their own first message ("I know they're not real",
+"that's on me", "no caveats") has already reaffirmed. Produce it stamped on the first turn
+rather than making them ask twice, and spend the saved time on the honest alternative.
+
 The rule is: never refuse to help, never agree to mislabel.
 
 ---
