@@ -289,7 +289,8 @@ Sample sizes are small by nature. Weight depth, triangulation and commitment evi
 Statistical significance is usually unavailable and pretending otherwise is worse than
 admitting it.
 **Metric model:** account-level, not user-level. Seat usage against contracted seats, ticket
-severity, sponsor turnover, whether the original business case was ever measured. Survival
+severity, sponsor turnover, whether the original business case was ever measured. Full set in
+`../discovery-quant/references/metric-design.md`. Survival
 curves and week-one leading indicators are user-churn tools and become noise below about 100
 accounts. Do not plot Kaplan-Meier on thirty-four accounts.
 **Roles:** buyer, user, approver and blocker are four different interviews. The person who
@@ -331,6 +332,9 @@ Simpson's paradox waiting to happen.
 **Every experiment needs a metric on both sides and a joint overall evaluation criterion.**
 A change that spreads work more evenly to help supply retention usually costs the demand
 side speed or quality. Randomise by time block, cluster or geo, never by user.
+**Metric model:** match rate, fill rate, time to first match, share of suppliers with at
+least one match per period, retention conditioned on having received a match, take rate.
+Full set in `../discovery-quant/references/metric-design.md`.
 
 ### Internal tools and captive users
 **Adoption is meaningless.** They cannot leave. See the captive-user block in
@@ -355,6 +359,10 @@ districts or demographics. Not volume.
 not incidence. Get incidence from the operational source: inspection crews, contractors,
 sensors, case records. Otherwise you optimise for the districts that already complain.
 **The excluded population is the research question**, more often than the served one.
+**Metric model:** time to resolve, repeat contact rate, first-contact resolution, and equity
+of service across districts or demographics, which is a measure a commercial product never
+has and a public one is accountable for. Judged against a published or statutory standard,
+not against growth. Full set in `../discovery-quant/references/metric-design.md`.
 **Incentives** for participants are restricted or prohibited in many public contexts. Check
 before designing recruitment around them.
 **A commitment made upward is usually not reversible.** When a director has promised a

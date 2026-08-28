@@ -572,15 +572,30 @@ def t_metric_models_reachable():
                    'Clinical and safety-critical', 'Channel-sold']:
         if market not in models:
             fail(f'metric-design.md has no model for {market}')
-    # every market row that has a model must say so where the router will see it
-    for market, marker in [('Clinical, regulated', 'Metric model:'),
-                           ('Channel-sold', 'Metric model:'),
-                           ('Internal tools', 'Metric model'),
-                           ('Marketplace or two-sided', 'Metric model')]:
-        if market in step3a:
-            seg = step3a.split(market)[1][:2500]
-            if marker not in seg:
-                fail(f'Step 3a row "{market}" states no metric model')
+    # Every market row whose context has a model in metric-design.md must state it AND
+    # point at it. Splitting on the row heading rather than a character window, because a
+    # window bleeds into the next row and gives a falsely reassuring answer.
+    needs_model = {
+        'B2B enterprise': 'B2B enterprise',
+        'Channel-sold': 'Channel-sold and hardware',
+        'Marketplace or two-sided': 'Marketplaces and two-sided products',
+        'Internal tools and captive users': 'Captive users',
+        'Government and public service': 'Public services',
+        'Clinical, regulated and safety-critical': 'Clinical and safety-critical',
+    }
+    rows = re.split(r'\n### ', step3a)[1:]
+    seen = {}
+    for r in rows:
+        seen[r.split('\n')[0].strip()] = r
+    for row_prefix in needs_model:
+        match = next((v for k, v in seen.items() if k.startswith(row_prefix)), None)
+        if match is None:
+            fail(f'Step 3a has no row starting "{row_prefix}"'); continue
+        if 'Metric model' not in match:
+            fail(f'Step 3a row "{row_prefix}" states no metric model')
+        if 'metric-design.md' not in match:
+            fail(f'Step 3a row "{row_prefix}" states a metric model but never points at '
+                 f'the full set in metric-design.md')
 
 
 @check("documented counts match what the repository actually contains")
