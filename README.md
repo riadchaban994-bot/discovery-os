@@ -37,6 +37,7 @@ Free, MIT, no accounts, no telemetry. Built as a giveaway for
 - [The analysis scripts](#the-analysis-scripts)
 - [The prototype artifacts](#the-prototype-artifacts)
 - [Templates](#templates)
+- [How it answers](#how-it-answers)
 - [What it will not do](#what-it-will-not-do)
 - [Grounded in](#grounded-in)
 - [File structure](#file-structure)
@@ -355,6 +356,19 @@ useful part. A test card whose threshold was written after the data arrived is n
 card.
 
 ---
+
+## How it answers
+
+Terse by default. A two-sentence question gets two sentences; the full contract is one line
+per item and capped at 300 words. No preamble, no restating your question back, no closing
+summary of what it just said. Prose is reserved for a number that would be misread without
+a sentence of context.
+
+It asks when a missing answer would change the recommendation, and not otherwise. A real
+fork between known options goes through `AskUserQuestion` with the recommendation first.
+An open-ended fact only you hold is a plain numbered question, placed after the plan rather
+than before it. Where a sensible default exists it states the assumption inline and moves on,
+because a question it could have answered itself costs you a round trip.
 
 ## What it will not do
 
