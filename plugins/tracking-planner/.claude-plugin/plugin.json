@@ -1,0 +1,28 @@
+{
+  "name": "tracking-planner",
+  "version": "1.0.0",
+  "description": "Tracking plans written from evidence, not from memory. Walks your app hands-on, an Android emulator, an iOS simulator, a browser or a Figma file, screenshots every surface, and builds a product-analytics tracking plan from what it actually sees. Every event is graded by evidence, parameters group into reusable attribute packs, sibling events consolidate, and the output is a phased, buildable Excel workbook with the screenshots embedded. GA4 and Firebase first, with destination rules for Amplitude, Mixpanel, PostHog and Segment.",
+  "author": {
+    "name": "Riad Chaban",
+    "url": "https://github.com/riadchaban994-bot"
+  },
+  "license": "MIT",
+  "keywords": [
+    "tracking-plan",
+    "product-analytics",
+    "event-taxonomy",
+    "instrumentation",
+    "measurement-plan",
+    "ga4",
+    "firebase",
+    "amplitude",
+    "mixpanel",
+    "posthog",
+    "segment",
+    "analytics-spec",
+    "evidence"
+  ],
+  "skills": "./skills/",
+  "homepage": "https://github.com/riadchaban994-bot/tracking-planner",
+  "repository": "https://github.com/riadchaban994-bot/tracking-planner"
+}

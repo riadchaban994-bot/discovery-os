@@ -1,0 +1,371 @@
+{
+ "meta": {
+  "product": "Example Streaming",
+  "version": "0.1",
+  "date": "2026-08-28",
+  "output_name": "Example_TrackingPlan.xlsx",
+  "subtitle": "A synthetic worked example showing the shape of a plan: three packs, six events, and one of each evidence grade. No app was walked to produce it, so nothing here is graded OBSERVED. Copy the structure, throw away the content.",
+  "the_ask": "This is an example, not a real ask. In a real plan this paragraph names how many events you want built and what you are deliberately not asking for.",
+  "phase1_intro": "4 events: 3 client, 1 server. Sort by Source to split the mobile ticket from the backend ticket.",
+  "destination": "ga4"
+ },
+ "governance": [
+  {
+   "title": "What this is",
+   "rows": [
+    [
+     "Purpose",
+     "The single source of truth for what this product measures. One property, all platforms, identical event names everywhere."
+    ],
+    [
+     "How to read it",
+     "Tab 2 is the build ask. Tab 4 defines the attribute packs. Tab 5 is the full target state. Anything not graded OBSERVED is a design to confirm, not a spec to implement."
+    ]
+   ]
+  }
+ ],
+ "phase1_config": [
+  [
+   "1. Identity",
+   "Set the user id at sign-in and clear it at sign-out. Without stable identity there is no retention measurement at all."
+  ],
+  [
+   "2. Register definitions first",
+   "Custom definitions are almost never backfilled, so anything registered after launch is blank for every day before it."
+  ]
+ ],
+ "packs": [
+  {
+   "id": "CTX",
+   "name": "Core context (auto-collected)",
+   "purpose": "What the SDK attaches to every event. Documented so nobody re-sends it.",
+   "params": [
+    {
+     "name": "platform / os_version / app_version",
+     "req": "n/a - SDK",
+     "type": "string",
+     "transport": "auto",
+     "values": "",
+     "notes": "Collected automatically; re-sending it is a naming-rule violation."
+    }
+   ]
+  },
+  {
+   "id": "CON",
+   "name": "Content",
+   "purpose": "The title in context. Attached by every playback and browse event.",
+   "params": [
+    {
+     "name": "content_id",
+     "req": "required",
+     "type": "string",
+     "transport": "event param",
+     "values": "tt0111161",
+     "notes": "The join key for every content-level analysis.",
+     "register": true
+    },
+    {
+     "name": "content_type",
+     "req": "required",
+     "type": "enum",
+     "transport": "event param",
+     "values": "film | series | episode | trailer",
+     "notes": "The catalogue split behind every funnel.",
+     "register": true
+    },
+    {
+     "name": "genre",
+     "req": "optional",
+     "type": "string",
+     "transport": "event param",
+     "values": "thriller",
+     "notes": "Display context; absence should never fail QA."
+    },
+    {
+     "name": "duration_sec",
+     "req": "conditional",
+     "type": "int",
+     "transport": "event param",
+     "values": "5460",
+     "notes": "Playable content only; undefined for a browse card.",
+     "register_metric": true
+    }
+   ]
+  },
+  {
+   "id": "PLAY",
+   "name": "Playback",
+   "purpose": "How a session of watching actually went. Attached by the playback events only.",
+   "params": [
+    {
+     "name": "position_sec",
+     "req": "required",
+     "type": "int",
+     "transport": "event param",
+     "values": "312",
+     "notes": "Where in the title the event happened.",
+     "register_metric": true
+    },
+    {
+     "name": "quality",
+     "req": "optional",
+     "type": "enum",
+     "transport": "event param",
+     "values": "sd | hd | uhd",
+     "notes": "Delivered quality at the moment of the event.",
+     "register": true
+    },
+    {
+     "name": "is_autoplay",
+     "req": "conditional",
+     "type": "boolean",
+     "transport": "event param",
+     "values": "true | false",
+     "notes": "Only when playback started without an explicit press."
+    }
+   ]
+  }
+ ],
+ "user_properties": [
+  {
+   "name": "plan_tier",
+   "phase": "P1",
+   "type": "enum",
+   "values": "free | standard | premium",
+   "update": "on sign-in and on any plan change",
+   "why": "Every metric splits by tier, and tier drives the whole monetisation read."
+  },
+  {
+   "name": "is_internal",
+   "phase": "P1",
+   "type": "boolean",
+   "values": "true | false",
+   "update": "once, on staff accounts",
+   "why": "Staff traffic otherwise looks like a tracking bug in month one."
+  }
+ ],
+ "events": [
+  {
+   "name": "first_open",
+   "journey": "0 App lifecycle",
+   "type": "auto",
+   "phase": "free",
+   "source": "SDK",
+   "evidence": "SDK",
+   "trigger": "First launch after install",
+   "platforms": "app",
+   "collection": "auto",
+   "packs": [],
+   "extra_params": [],
+   "key_event": false,
+   "kpi": "Installs",
+   "screens": "n/a - collected by the SDK",
+   "notes": "Free. No engineering work."
+  },
+  {
+   "name": "session_start",
+   "journey": "0 App lifecycle",
+   "type": "auto",
+   "phase": "free",
+   "source": "SDK",
+   "evidence": "SDK",
+   "trigger": "A new session begins",
+   "platforms": "app+web",
+   "collection": "auto",
+   "packs": [],
+   "extra_params": [],
+   "key_event": false,
+   "kpi": "MAU denominator",
+   "screens": "n/a - collected by the SDK",
+   "notes": "Free."
+  },
+  {
+   "name": "content_viewed",
+   "journey": "1 Browse",
+   "type": "custom",
+   "phase": "P1",
+   "source": "FE",
+   "evidence": "INFERRED",
+   "trigger": "A title detail page finishes rendering",
+   "platforms": "app+web",
+   "collection": "client",
+   "packs": [
+    "CON"
+   ],
+   "extra_params": [
+    "entry_point: home | search | continue_watching | recommendation"
+   ],
+   "key_event": false,
+   "kpi": "Browse-to-play conversion",
+   "screens": "no screen - this example is synthetic, nothing was walked",
+   "why_p1": "The denominator of the browse-to-play funnel. Without it, play counts have nothing to divide by.",
+   "work": "FE - one line on the detail screen",
+   "notes": "entry_point is what tells you whether recommendations are earning their place. Graded INFERRED because this example was written from a description, not from a walkthrough."
+  },
+  {
+   "name": "playback_started",
+   "journey": "2 Playback",
+   "type": "custom",
+   "phase": "P1",
+   "source": "FE",
+   "evidence": "INFERRED",
+   "trigger": "The first frame renders, not when the play control is pressed",
+   "platforms": "app+web",
+   "collection": "client",
+   "packs": [
+    "CON",
+    "PLAY (position_sec, quality, is_autoplay)"
+   ],
+   "extra_params": [],
+   "key_event": true,
+   "kpi": "Plays",
+   "screens": "no screen - this example is synthetic, nothing was walked",
+   "why_p1": "The core value moment. Firing it on first frame rather than on press is deliberate: the gap between the two is where startup failures hide.",
+   "work": "FE - player callback",
+   "notes": "Do not fire on press. A press that never becomes a frame is a failure, not a play. Graded INFERRED because this example was written from a description, not from a walkthrough."
+  },
+  {
+   "name": "playback_failed",
+   "journey": "2 Playback",
+   "type": "custom",
+   "phase": "P1",
+   "source": "FE",
+   "evidence": "INFERRED",
+   "trigger": "Playback aborts before or during the stream",
+   "platforms": "app+web",
+   "collection": "client",
+   "packs": [
+    "CON",
+    "PLAY (position_sec, quality)"
+   ],
+   "extra_params": [
+    "error_reason: drm | network | geo_blocked | decode | unknown"
+   ],
+   "key_event": false,
+   "kpi": "Playback reliability",
+   "screens": "no screen - this example is synthetic, nothing was walked",
+   "why_p1": "Failed plays are invisible today and look identical to users who changed their mind.",
+   "work": "FE - player error handler",
+   "notes": "PARTIAL: the surface was seen but only the network branch was reproduced. The other error_reason values come from the player SDK docs and need confirming against the real error codes."
+  },
+  {
+   "name": "subscription_renewed",
+   "journey": "3 Monetisation",
+   "type": "custom",
+   "phase": "P1",
+   "source": "BE",
+   "evidence": "UNVERIFIABLE",
+   "trigger": "The billing system confirms a successful renewal",
+   "platforms": "server",
+   "collection": "server",
+   "packs": [],
+   "extra_params": [
+    "plan_tier: free | standard | premium",
+    "renewal_number: int"
+   ],
+   "key_event": true,
+   "kpi": "Retained revenue",
+   "screens": "no screen - server-side, needs a real billing cycle to observe",
+   "why_p1": "Renewal is the actual retention outcome; app engagement is only a leading indicator of it.",
+   "work": "BE - one hook on the billing webhook",
+   "notes": "UNVERIFIABLE: nobody subscribed during discovery, so the billing states are designed from the provider docs. Confirm the real webhook payload before building."
+  }
+ ],
+ "key_events": [
+  {
+   "name": "playback_started",
+   "why": "The core value moment of a streaming product.",
+   "kpi": "Plays"
+  },
+  {
+   "name": "subscription_renewed",
+   "why": "The retention outcome that revenue actually depends on.",
+   "kpi": "Retained revenue"
+  }
+ ],
+ "journeys": [
+  {
+   "name": "Browse to play",
+   "kpi": "Plays",
+   "events": [
+    "content_viewed",
+    "playback_started"
+   ],
+   "baseline": "unknown until Phase 1 data lands"
+  },
+  {
+   "name": "Playback reliability",
+   "kpi": "Reliability",
+   "events": [
+    "playback_started",
+    "playback_failed"
+   ],
+   "baseline": "no measurement exists today"
+  }
+ ],
+ "gaps_closed": [
+  {
+   "gap": "Failed plays are invisible",
+   "evidence": "Support tickets mention buffering, but no event exists",
+   "fix": "playback_failed with a reason enum"
+  },
+  {
+   "gap": "Recommendations cannot be evaluated",
+   "evidence": "No entry point is recorded on a title view",
+   "fix": "entry_point on content_viewed"
+  }
+ ],
+ "journey_map": [
+  [
+   "Title detail",
+   "Artwork, synopsis, a play control and an add-to-list control",
+   "content_viewed",
+   "entry_point must be captured here or it is lost"
+  ],
+  [
+   "Player",
+   "Full-screen playback with a scrubber and a quality selector",
+   "playback_started; playback_failed",
+   "First frame is the honest trigger, not the press"
+  ]
+ ],
+ "open_questions": [
+  [
+   "Nothing here was observed",
+   "This example plan was written from a description; no app was walked, so every event is INFERRED or UNVERIFIABLE.",
+   "In a real engagement the first ask is a build or a staging environment to walk. Without one, the plan is a proposal."
+  ],
+  [
+   "Player error codes",
+   "error_reason values come from the SDK docs, not from observed failures. Only the network branch was reproduced.",
+   "Ask engineering for the real error-code list from the player integration and replace the enum wholesale."
+  ],
+  [
+   "Billing webhook",
+   "The renewal event and its states are designed from provider documentation; no subscription was ever active during discovery.",
+   "Ask for a sample webhook payload and the full set of billing states."
+  ]
+ ],
+ "roadmap": [
+  [
+   "Phase 1 - build now",
+   "The value moment, its denominator, its failure mode, and the revenue outcome.",
+   "4 (+2 free)",
+   "Now. One client release plus one backend hook.",
+   "A browse-to-play funnel, a reliability number that does not exist today, and renewal tied to behaviour."
+  ],
+  [
+   "Phase 2 - earn it",
+   "Playback depth and completion, list management, search, recommendation slates.",
+   "0",
+   "When Phase 1 raises a question you cannot answer.",
+   "Depth behind the Phase 1 headline numbers."
+  ]
+ ],
+ "cuts": [
+  [
+   "Playback heartbeats",
+   "A progress ping every 30 seconds is the highest-volume event in any streaming plan and it is billable on most platforms. Completion can be derived from a single completion event, so heartbeats wait until someone needs second-by-second retention curves."
+  ]
+ ]
+}

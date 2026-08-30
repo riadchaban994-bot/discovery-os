@@ -1,0 +1,170 @@
+{
+  "$comment": "Structure for a tracking plan. Only meta and events are required; every other key is optional and its tab is skipped when absent. Field notes are in _doc keys, which the builder ignores.",
+  "meta": {
+    "product": "string, the product name",
+    "version": "string",
+    "date": "YYYY-MM-DD",
+    "subtitle": "one paragraph shown under the title on tab 1: counts, what the grades mean, where to start",
+    "the_ask": "the single paragraph a stakeholder should read first: what you want built, and what you are NOT asking for",
+    "phase1_intro": "how to read the build tab, and how the work splits between client and backend",
+    "output_name": "optional filename for the workbook",
+    "limits": {
+      "event_dimensions": 50,
+      "user_dimensions": 25,
+      "metrics": 50
+    },
+    "theme": {
+      "_doc": "optional colour overrides",
+      "ink": "2B1F17",
+      "accent": "C2410C",
+      "paper": "FAF7F2",
+      "grey": "6B6259",
+      "line": "D8D2C9",
+      "font": "Arial"
+    }
+  },
+  "governance": [
+    {
+      "title": "section heading on tab 1",
+      "rows": [
+        [
+          "label",
+          "the paragraph"
+        ]
+      ]
+    }
+  ],
+  "phase1_config": [
+    [
+      "label",
+      "a setup step that is not an event: property config, identity, registration, exclusions"
+    ]
+  ],
+  "packs": [
+    {
+      "id": "ORD",
+      "name": "Cart & order",
+      "purpose": "one line on what this pack is for and when it attaches",
+      "params": [
+        {
+          "name": "transaction_id",
+          "req": "required | conditional | optional | see owner | n/a - SDK",
+          "type": "string | number | int | boolean | enum",
+          "transport": "event param | items[] | SDK identity | cross-reference",
+          "values": "the value list or a realistic example, never status prose",
+          "notes": "the condition if conditional, plus anything an engineer would otherwise guess",
+          "register": true,
+          "register_metric": false
+        }
+      ]
+    }
+  ],
+  "user_properties": [
+    {
+      "name": "user_state",
+      "phase": "P1",
+      "type": "enum",
+      "values": "guest | registered",
+      "update": "when it is set and when it is cleared",
+      "why": "what it makes possible"
+    }
+  ],
+  "events": [
+    {
+      "name": "purchase",
+      "journey": "4 Checkout & purchase",
+      "type": "recommended | custom | auto",
+      "phase": "P1 | P2 | P3 | free",
+      "source": "FE | BE | FE + BE | SDK",
+      "evidence": "OBSERVED | PARTIAL | INFERRED | UNVERIFIABLE | SDK",
+      "trigger": "the precise moment it fires, in the app's own vocabulary",
+      "platforms": "app+web | app | web | server",
+      "collection": "client | server (MP) | client, server backfill ...",
+      "packs": [
+        "ORD (transaction_id, value, currency)",
+        "ITM"
+      ],
+      "extra_params": [
+        "only params not already in an attached pack"
+      ],
+      "key_event": true,
+      "kpi": "which KPI or known gap this serves",
+      "screens": "SCR-45, SCR-37   (or a stated reason when there is no surface to photograph)",
+      "why_p1": "Phase 1 only: why this earns a place now",
+      "work": "Phase 1 only: where the work lands, e.g. 'FE - one line' or 'BE - one hook'",
+      "notes": "anything else, including merge history and open questions"
+    }
+  ],
+  "key_events": [
+    {
+      "name": "purchase",
+      "why": "why this is a conversion",
+      "kpi": "KPI2"
+    }
+  ],
+  "journeys": [
+    {
+      "name": "Menu to order",
+      "kpi": "KPI2",
+      "events": [
+        "view_item",
+        "add_to_cart",
+        "purchase"
+      ],
+      "baseline": "the measured baseline today, if known"
+    }
+  ],
+  "gaps_closed": [
+    {
+      "gap": "what is broken today",
+      "evidence": "how you know",
+      "fix": "the event that closes it"
+    }
+  ],
+  "journey_map": [
+    [
+      "screen or surface",
+      "what the user sees and does",
+      "events fired",
+      "notes and findings"
+    ]
+  ],
+  "open_questions": [
+    [
+      "item",
+      "what the plan asserts and why it is uncertain",
+      "what to ask engineering for"
+    ]
+  ],
+  "roadmap": [
+    [
+      "Phase 1 - build now",
+      "scope",
+      "50 (+11 free)",
+      "trigger to start",
+      "what it buys you"
+    ]
+  ],
+  "cuts": [
+    [
+      "what was cut",
+      "why"
+    ]
+  ],
+  "deletions": [
+    [
+      "deleted event",
+      "covered instead by"
+    ]
+  ],
+  "_constraints": {
+    "_doc": "Shape rules the builder relies on. validate_plan.py checks the ones it can; these are the rest.",
+    "roadmap": "Each row is [label, scope, count, trigger, benefit]. The label may be anything, but if it contains 'Phase 1', 'Phase 2' or 'Phase 3' the row is tinted to match. A label without a phase number is fine and is simply left untinted.",
+    "events[].screens": "Either a comma-separated list of SCR-nn references matching files in tracking_plan_screens/, or a plain sentence saying why there is no screen. Never leave it empty: a blank reads as an oversight, a stated reason reads as a decision.",
+    "events[].packs": "Strings of the form 'PACKID' or 'PACKID (param, param)'. The pack id must exist in packs[] and every named parameter must exist in that pack, or validate_plan.py blocks the build.",
+    "events[].extra_params": "Strictly additive. A parameter already carried by an attached pack must not be repeated here.",
+    "meta.destination": "One of ga4, amplitude, mixpanel, posthog, segment, generic. Drives which limits validate_plan.py checks against. Defaults to ga4 when absent.",
+    "meta.limits": "Optional account-level overrides. Honoured by both the builder and the validator, so they cannot disagree about the same file.",
+    "any string value": "A value starting with = + - or @ is parsed as a formula by every spreadsheet application and renders as an error. validate_plan.py blocks these."
+  }
+}
