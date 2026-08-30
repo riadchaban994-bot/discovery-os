@@ -6,8 +6,8 @@
     "url": "https://github.com/riadchaban994-bot"
   },
   "metadata": {
-    "description": "Riad Chaban's plugin marketplace. Discovery OS: a master product discovery system for Claude Code, Codex and any agent that reads skills. Given away at ProductTank Syria, 2026.",
-    "version": "1.2.0"
+    "description": "Riad Chaban's plugin marketplace. Discovery OS and the Tracking Planner: product discovery and evidence-graded tracking plans for Claude Code, Codex and any agent that reads skills. Given away at ProductTank Syria, 2026.",
+    "version": "1.3.0"
   },
   "plugins": [
     {
@@ -28,6 +28,37 @@
       ],
       "homepage": "https://github.com/riadchaban994-bot/discovery-os",
       "repository": "https://github.com/riadchaban994-bot/discovery-os"
+    },
+    {
+      "name": "tracking-planner",
+      "source": {
+        "source": "github",
+        "repo": "riadchaban994-bot/tracking-planner"
+      },
+      "description": "Tracking plans written from evidence, not from memory. Walks your app hands-on, an Android emulator, an iOS simulator, a browser or a Figma file, screenshots every surface, and builds a product-analytics tracking plan from what it actually sees. Every event is graded by evidence, parameters group into reusable attribute packs, sibling events consolidate, and the output is a phased, buildable Excel workbook with the screenshots embedded. GA4 and Firebase first, with destination rules for Amplitude, Mixpanel, PostHog and Segment.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Riad Chaban",
+        "url": "https://github.com/riadchaban994-bot"
+      },
+      "license": "MIT",
+      "keywords": [
+        "tracking-plan",
+        "product-analytics",
+        "event-taxonomy",
+        "instrumentation",
+        "measurement-plan",
+        "ga4",
+        "firebase",
+        "amplitude",
+        "mixpanel",
+        "posthog",
+        "segment",
+        "analytics-spec",
+        "evidence"
+      ],
+      "homepage": "https://github.com/riadchaban994-bot/tracking-planner",
+      "repository": "https://github.com/riadchaban994-bot/tracking-planner"
     }
   ]
 }
