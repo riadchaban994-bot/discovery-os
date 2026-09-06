@@ -527,14 +527,15 @@ Run `python3 tests/validate.py` before opening a pull request.
 
 ## Companion
 
-[**Tracking OS**](https://github.com/riadchaban994-bot/tracking-os) does the other half. Discovery OS
-decides what to build; Tracking OS decides what to measure once you have built it. It walks the app,
-screenshots every surface, and writes the tracking plan from what it saw, grading every event by how
-strong the evidence actually is.
+[**The Tracking Planner**](https://github.com/riadchaban994-bot/tracking-planner) does the other half.
+Discovery OS decides what to build; the tracking planner decides what to measure once you have built
+it. It walks the app, screenshots every surface, and writes the tracking plan from what it saw,
+grading every event by how strong the evidence actually is.
+
+It ships in this same marketplace, so if you added the marketplace above, it is one more line.
 
 ```bash
-/plugin marketplace add riadchaban994-bot/tracking-os
-/plugin install tracking-os@riadchaban
+/plugin install tracking-planner@riadchaban
 ```
 
 ## Licence
